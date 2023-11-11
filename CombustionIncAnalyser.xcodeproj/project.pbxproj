@@ -1,0 +1,618 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */; };
+		CDB4B1DC2AFF80D5006E6597 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DB2AFF80D5006E6597 /* ContentView.swift */; };
+		CDB4B1DE2AFF80D5006E6597 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DD2AFF80D5006E6597 /* Item.swift */; };
+		CDB4B1E02AFF80D6006E6597 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDB4B1DF2AFF80D6006E6597 /* Assets.xcassets */; };
+		CDB4B1E42AFF80D6006E6597 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDB4B1E32AFF80D6006E6597 /* Preview Assets.xcassets */; };
+		CDB4B1EE2AFF80D7006E6597 /* CombustionIncAnalyserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1ED2AFF80D7006E6597 /* CombustionIncAnalyserTests.swift */; };
+		CDB4B1F82AFF80D7006E6597 /* CombustionIncAnalyserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1F72AFF80D7006E6597 /* CombustionIncAnalyserUITests.swift */; };
+		CDB4B1FA2AFF80D7006E6597 /* CombustionIncAnalyserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1F92AFF80D7006E6597 /* CombustionIncAnalyserUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CDB4B1EA2AFF80D7006E6597 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDB4B1CE2AFF80D5006E6597 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CDB4B1D52AFF80D5006E6597;
+			remoteInfo = CombustionIncAnalyser;
+		};
+		CDB4B1F42AFF80D7006E6597 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDB4B1CE2AFF80D5006E6597 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CDB4B1D52AFF80D5006E6597;
+			remoteInfo = CombustionIncAnalyser;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombustionIncAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserApp.swift; sourceTree = "<group>"; };
+		CDB4B1DB2AFF80D5006E6597 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CDB4B1DD2AFF80D5006E6597 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		CDB4B1DF2AFF80D6006E6597 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CDB4B1E12AFF80D6006E6597 /* CombustionIncAnalyser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CombustionIncAnalyser.entitlements; sourceTree = "<group>"; };
+		CDB4B1E32AFF80D6006E6597 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CDB4B1E92AFF80D7006E6597 /* CombustionIncAnalyserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CombustionIncAnalyserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDB4B1ED2AFF80D7006E6597 /* CombustionIncAnalyserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserTests.swift; sourceTree = "<group>"; };
+		CDB4B1F32AFF80D7006E6597 /* CombustionIncAnalyserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CombustionIncAnalyserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDB4B1F72AFF80D7006E6597 /* CombustionIncAnalyserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserUITests.swift; sourceTree = "<group>"; };
+		CDB4B1F92AFF80D7006E6597 /* CombustionIncAnalyserUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CDB4B1D32AFF80D5006E6597 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDB4B1E62AFF80D7006E6597 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDB4B1F02AFF80D7006E6597 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CDB4B1CD2AFF80D5006E6597 = {
+			isa = PBXGroup;
+			children = (
+				CDB4B1D82AFF80D5006E6597 /* CombustionIncAnalyser */,
+				CDB4B1EC2AFF80D7006E6597 /* CombustionIncAnalyserTests */,
+				CDB4B1F62AFF80D7006E6597 /* CombustionIncAnalyserUITests */,
+				CDB4B1D72AFF80D5006E6597 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CDB4B1D72AFF80D5006E6597 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */,
+				CDB4B1E92AFF80D7006E6597 /* CombustionIncAnalyserTests.xctest */,
+				CDB4B1F32AFF80D7006E6597 /* CombustionIncAnalyserUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CDB4B1D82AFF80D5006E6597 /* CombustionIncAnalyser */ = {
+			isa = PBXGroup;
+			children = (
+				CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */,
+				CDB4B1DB2AFF80D5006E6597 /* ContentView.swift */,
+				CDB4B1DD2AFF80D5006E6597 /* Item.swift */,
+				CDB4B1DF2AFF80D6006E6597 /* Assets.xcassets */,
+				CDB4B1E12AFF80D6006E6597 /* CombustionIncAnalyser.entitlements */,
+				CDB4B1E22AFF80D6006E6597 /* Preview Content */,
+			);
+			path = CombustionIncAnalyser;
+			sourceTree = "<group>";
+		};
+		CDB4B1E22AFF80D6006E6597 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CDB4B1E32AFF80D6006E6597 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CDB4B1EC2AFF80D7006E6597 /* CombustionIncAnalyserTests */ = {
+			isa = PBXGroup;
+			children = (
+				CDB4B1ED2AFF80D7006E6597 /* CombustionIncAnalyserTests.swift */,
+			);
+			path = CombustionIncAnalyserTests;
+			sourceTree = "<group>";
+		};
+		CDB4B1F62AFF80D7006E6597 /* CombustionIncAnalyserUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CDB4B1F72AFF80D7006E6597 /* CombustionIncAnalyserUITests.swift */,
+				CDB4B1F92AFF80D7006E6597 /* CombustionIncAnalyserUITestsLaunchTests.swift */,
+			);
+			path = CombustionIncAnalyserUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CDB4B1D52AFF80D5006E6597 /* CombustionIncAnalyser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDB4B1FD2AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombustionIncAnalyser" */;
+			buildPhases = (
+				CDB4B1D22AFF80D5006E6597 /* Sources */,
+				CDB4B1D32AFF80D5006E6597 /* Frameworks */,
+				CDB4B1D42AFF80D5006E6597 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CombustionIncAnalyser;
+			productName = CombustionIncAnalyser;
+			productReference = CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CDB4B1E82AFF80D7006E6597 /* CombustionIncAnalyserTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDB4B2002AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombustionIncAnalyserTests" */;
+			buildPhases = (
+				CDB4B1E52AFF80D7006E6597 /* Sources */,
+				CDB4B1E62AFF80D7006E6597 /* Frameworks */,
+				CDB4B1E72AFF80D7006E6597 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CDB4B1EB2AFF80D7006E6597 /* PBXTargetDependency */,
+			);
+			name = CombustionIncAnalyserTests;
+			productName = CombustionIncAnalyserTests;
+			productReference = CDB4B1E92AFF80D7006E6597 /* CombustionIncAnalyserTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CDB4B1F22AFF80D7006E6597 /* CombustionIncAnalyserUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDB4B2032AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombustionIncAnalyserUITests" */;
+			buildPhases = (
+				CDB4B1EF2AFF80D7006E6597 /* Sources */,
+				CDB4B1F02AFF80D7006E6597 /* Frameworks */,
+				CDB4B1F12AFF80D7006E6597 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CDB4B1F52AFF80D7006E6597 /* PBXTargetDependency */,
+			);
+			name = CombustionIncAnalyserUITests;
+			productName = CombustionIncAnalyserUITests;
+			productReference = CDB4B1F32AFF80D7006E6597 /* CombustionIncAnalyserUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CDB4B1CE2AFF80D5006E6597 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					CDB4B1D52AFF80D5006E6597 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+					CDB4B1E82AFF80D7006E6597 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = CDB4B1D52AFF80D5006E6597;
+					};
+					CDB4B1F22AFF80D7006E6597 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = CDB4B1D52AFF80D5006E6597;
+					};
+				};
+			};
+			buildConfigurationList = CDB4B1D12AFF80D5006E6597 /* Build configuration list for PBXProject "CombustionIncAnalyser" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CDB4B1CD2AFF80D5006E6597;
+			productRefGroup = CDB4B1D72AFF80D5006E6597 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CDB4B1D52AFF80D5006E6597 /* CombustionIncAnalyser */,
+				CDB4B1E82AFF80D7006E6597 /* CombustionIncAnalyserTests */,
+				CDB4B1F22AFF80D7006E6597 /* CombustionIncAnalyserUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CDB4B1D42AFF80D5006E6597 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDB4B1E42AFF80D6006E6597 /* Preview Assets.xcassets in Resources */,
+				CDB4B1E02AFF80D6006E6597 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDB4B1E72AFF80D7006E6597 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDB4B1F12AFF80D7006E6597 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CDB4B1D22AFF80D5006E6597 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDB4B1DC2AFF80D5006E6597 /* ContentView.swift in Sources */,
+				CDB4B1DE2AFF80D5006E6597 /* Item.swift in Sources */,
+				CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDB4B1E52AFF80D7006E6597 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDB4B1EE2AFF80D7006E6597 /* CombustionIncAnalyserTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDB4B1EF2AFF80D7006E6597 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDB4B1F82AFF80D7006E6597 /* CombustionIncAnalyserUITests.swift in Sources */,
+				CDB4B1FA2AFF80D7006E6597 /* CombustionIncAnalyserUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CDB4B1EB2AFF80D7006E6597 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CDB4B1D52AFF80D5006E6597 /* CombustionIncAnalyser */;
+			targetProxy = CDB4B1EA2AFF80D7006E6597 /* PBXContainerItemProxy */;
+		};
+		CDB4B1F52AFF80D7006E6597 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CDB4B1D52AFF80D5006E6597 /* CombustionIncAnalyser */;
+			targetProxy = CDB4B1F42AFF80D7006E6597 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CDB4B1FB2AFF80D7006E6597 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CDB4B1FC2AFF80D7006E6597 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		CDB4B1FE2AFF80D7006E6597 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CombustionIncAnalyser/CombustionIncAnalyser.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"CombustionIncAnalyser/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.opensourcerer.CombustionIncAnalyser;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CDB4B1FF2AFF80D7006E6597 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CombustionIncAnalyser/CombustionIncAnalyser.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"CombustionIncAnalyser/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.opensourcerer.CombustionIncAnalyser;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CDB4B2012AFF80D7006E6597 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.opensourcerer.CombustionIncAnalyserTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CombustionIncAnalyser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CombustionIncAnalyser";
+			};
+			name = Debug;
+		};
+		CDB4B2022AFF80D7006E6597 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.opensourcerer.CombustionIncAnalyserTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CombustionIncAnalyser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CombustionIncAnalyser";
+			};
+			name = Release;
+		};
+		CDB4B2042AFF80D7006E6597 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.opensourcerer.CombustionIncAnalyserUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CombustionIncAnalyser;
+			};
+			name = Debug;
+		};
+		CDB4B2052AFF80D7006E6597 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.opensourcerer.CombustionIncAnalyserUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CombustionIncAnalyser;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CDB4B1D12AFF80D5006E6597 /* Build configuration list for PBXProject "CombustionIncAnalyser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDB4B1FB2AFF80D7006E6597 /* Debug */,
+				CDB4B1FC2AFF80D7006E6597 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CDB4B1FD2AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombustionIncAnalyser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDB4B1FE2AFF80D7006E6597 /* Debug */,
+				CDB4B1FF2AFF80D7006E6597 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CDB4B2002AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombustionIncAnalyserTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDB4B2012AFF80D7006E6597 /* Debug */,
+				CDB4B2022AFF80D7006E6597 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CDB4B2032AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombustionIncAnalyserUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDB4B2042AFF80D7006E6597 /* Debug */,
+				CDB4B2052AFF80D7006E6597 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CDB4B1CE2AFF80D5006E6597 /* Project object */;
+}
