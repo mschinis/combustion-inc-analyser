@@ -125,7 +125,7 @@ extension CookTimelineRow {
         } else {
             throw DecodingCSVError.invalidProperty("sessionID")
         }
-        
+
         // Sequence Number
         if let sequenceNumberString = dictionary[CodingKeys.sequenceNumber.rawValue] as? String,
            let sequenceNumber = Int(sequenceNumberString) {
@@ -296,6 +296,34 @@ extension CookTimelineRow {
 
         // Notes
         self.notes = dictionary[CodingKeys.notes.rawValue] as? String
+    }
+    
+    var serializedDictionary: [String: String] {
+        var encoder = JSONEncoder()
+        let dictionary = (try? JSONSerialization.jsonObject(with: JSONEncoder().encode(self))) as? [String: Any] ?? [:]
+        
+        // Convert everything back to string, in order to save back to CSV
+        return dictionary.reduce(into: [String:String](), { partialResult, current in
+            if let newValue = current.value as? Int {
+                partialResult[current.key] = String(newValue)
+                return
+            }
+
+            if let newValue = current.value as? Double {
+                partialResult[current.key] = String(newValue)
+                return
+            }
+
+            if let newValue = current.value as? Float {
+                partialResult[current.key] = String(newValue)
+                return
+            }
+            
+            if let newValue = current.value as? String {
+                partialResult[current.key] = newValue
+                return
+            }
+        })
     }
 }
 

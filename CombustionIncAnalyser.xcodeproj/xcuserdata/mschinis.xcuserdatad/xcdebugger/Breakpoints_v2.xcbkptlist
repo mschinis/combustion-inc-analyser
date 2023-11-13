@@ -3,4 +3,612 @@
    uuid = "26C1870D-4063-471E-A373-8C95338A23E9"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EA08FB64-367F-4DE9-BFE2-DB724AA3BFA6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B9088C89-8767-409A-B99A-85D7244D238B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0C6EFBB4-2628-4E23-AF57-08894F0500E1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "85F55B07-9C55-4645-BCF5-68B4A93C111D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "40F79ABF-8AFD-424D-89AE-767BAFF2D6AE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6082D7CC-F3BF-4B3E-AFB8-45E8CB83FC5C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "01395A95-D7F0-4233-9A62-19D847FD4378"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1FDC9313-9308-48C1-9DE1-DA901CF8A085"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8A149126-D757-4D37-B047-1ECF8E37E9FC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3E8DA230-9385-416F-85F6-999A4CFBC417"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "63DA5535-91FF-4159-91E8-2A0EFC45B9D2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BBC316ED-B473-4C9D-A117-8A99EAD6E388"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3A3809E9-53CF-44E7-9B6B-A160B96CC725"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2FFF357D-7417-4AFA-99B7-73E69A9543E2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "50E786C6-59EE-4401-A11D-0E0147C45290"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AC2E3765-5456-44F8-90BD-DB20917E07BD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "52A2CC8D-8562-4E07-A3B2-40BFDAB045CB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F9118169-6DBD-4567-AA2E-45164139BE2B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A4669B94-AFF9-4E52-B833-839AB55A67AC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6EF242C7-0DEC-43B5-917D-B099F6CD621A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BC5DCDBE-9A47-4EB6-A9C5-B8124743F42F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB4F9EF2-4645-4D19-AFE1-89B15F4AAE5B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7340E184-A073-4B39-A09F-40074E9B5B43"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DECF33D6-C725-4E20-BF6A-4862D3C9A07D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "318"
+            endingLineNumber = "318"
+            landmarkName = "serializedDictionary"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "DECF33D6-C725-4E20-BF6A-4862D3C9A07D - a422d2c042520879"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Swift.Dictionary&lt;Swift.String, Swift.String&gt;, (key: Swift.String, value: Any)) -&gt; () in CombustionIncAnalyser.CookTimelineRow.serializedDictionary.getter : Swift.Dictionary&lt;Swift.String, Swift.String&gt;"
+                  moduleName = "CombustionIncAnalyser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mschinis/Documents/code/mschinis/combustion-inc-analyser/CombustionIncAnalyser/Models/CookTimelineRow.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "319"
+                  endingLineNumber = "319"
+                  offsetFromSymbolStart = "1364">
+               </Location>
+               <Location
+                  uuid = "DECF33D6-C725-4E20-BF6A-4862D3C9A07D - a422d2c042520879"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Swift.Dictionary&lt;Swift.String, Swift.String&gt;, (key: Swift.String, value: Any)) -&gt; () in CombustionIncAnalyser.CookTimelineRow.serializedDictionary.getter : Swift.Dictionary&lt;Swift.String, Swift.String&gt;"
+                  moduleName = "CombustionIncAnalyser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mschinis/Documents/code/mschinis/combustion-inc-analyser/CombustionIncAnalyser/Models/CookTimelineRow.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "319"
+                  endingLineNumber = "319"
+                  offsetFromSymbolStart = "1592">
+               </Location>
+               <Location
+                  uuid = "DECF33D6-C725-4E20-BF6A-4862D3C9A07D - a422d2c042520818"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Swift.Dictionary&lt;Swift.String, Swift.String&gt;, (key: Swift.String, value: Any)) -&gt; () in CombustionIncAnalyser.CookTimelineRow.serializedDictionary.getter : Swift.Dictionary&lt;Swift.String, Swift.String&gt;"
+                  moduleName = "CombustionIncAnalyser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mschinis/Documents/code/mschinis/combustion-inc-analyser/CombustionIncAnalyser/Models/CookTimelineRow.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "318"
+                  endingLineNumber = "318"
+                  offsetFromSymbolStart = "1264">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "76D76B7F-7D65-41AA-BD15-190E8194BE46"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
+            landmarkName = "serializedDictionary"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7B399ECC-5D6A-476D-9B21-E35DD22A2446"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
+            landmarkName = "serializedDictionary"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "7B399ECC-5D6A-476D-9B21-E35DD22A2446 - a422d2c042520bbf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Swift.Dictionary&lt;Swift.String, Swift.String&gt;, (key: Swift.String, value: Any)) -&gt; () in CombustionIncAnalyser.CookTimelineRow.serializedDictionary.getter : Swift.Dictionary&lt;Swift.String, Swift.String&gt;"
+                  moduleName = "CombustionIncAnalyser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mschinis/Documents/code/mschinis/combustion-inc-analyser/CombustionIncAnalyser/Models/CookTimelineRow.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "313"
+                  endingLineNumber = "313"
+                  offsetFromSymbolStart = "920">
+               </Location>
+               <Location
+                  uuid = "7B399ECC-5D6A-476D-9B21-E35DD22A2446 - a422d2c042520bbf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Swift.Dictionary&lt;Swift.String, Swift.String&gt;, (key: Swift.String, value: Any)) -&gt; () in CombustionIncAnalyser.CookTimelineRow.serializedDictionary.getter : Swift.Dictionary&lt;Swift.String, Swift.String&gt;"
+                  moduleName = "CombustionIncAnalyser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mschinis/Documents/code/mschinis/combustion-inc-analyser/CombustionIncAnalyser/Models/CookTimelineRow.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "313"
+                  endingLineNumber = "313"
+                  offsetFromSymbolStart = "852">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "88E99F14-328C-422C-BEBD-11DCCCB35AEB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
+            landmarkName = "serializedDictionary"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "88E99F14-328C-422C-BEBD-11DCCCB35AEB - a422d2c042520a85"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Swift.Dictionary&lt;Swift.String, Swift.String&gt;, (key: Swift.String, value: Any)) -&gt; () in CombustionIncAnalyser.CookTimelineRow.serializedDictionary.getter : Swift.Dictionary&lt;Swift.String, Swift.String&gt;"
+                  moduleName = "CombustionIncAnalyser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mschinis/Documents/code/mschinis/combustion-inc-analyser/CombustionIncAnalyser/Models/CookTimelineRow.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "307"
+                  endingLineNumber = "307"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  uuid = "88E99F14-328C-422C-BEBD-11DCCCB35AEB - a422d2c042520a85"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Swift.Dictionary&lt;Swift.String, Swift.String&gt;, (key: Swift.String, value: Any)) -&gt; () in CombustionIncAnalyser.CookTimelineRow.serializedDictionary.getter : Swift.Dictionary&lt;Swift.String, Swift.String&gt;"
+                  moduleName = "CombustionIncAnalyser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mschinis/Documents/code/mschinis/combustion-inc-analyser/CombustionIncAnalyser/Models/CookTimelineRow.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "307"
+                  endingLineNumber = "307"
+                  offsetFromSymbolStart = "316">
+               </Location>
+               <Location
+                  uuid = "88E99F14-328C-422C-BEBD-11DCCCB35AEB - a422d2c042520a85"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Swift.Dictionary&lt;Swift.String, Swift.String&gt;, (key: Swift.String, value: Any)) -&gt; () in CombustionIncAnalyser.CookTimelineRow.serializedDictionary.getter : Swift.Dictionary&lt;Swift.String, Swift.String&gt;"
+                  moduleName = "CombustionIncAnalyser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mschinis/Documents/code/mschinis/combustion-inc-analyser/CombustionIncAnalyser/Models/CookTimelineRow.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "307"
+                  endingLineNumber = "307"
+                  offsetFromSymbolStart = "412">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4F1D5D56-3BF0-4C5C-AD57-41B9097E7E26"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CombustionIncAnalyser/Models/CookTimelineRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
+            landmarkName = "serializedDictionary"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "4F1D5D56-3BF0-4C5C-AD57-41B9097E7E26 - 28f3106534b0f52f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CombustionIncAnalyser.CookTimelineRow.serializedDictionary.getter : Swift.Dictionary&lt;Swift.String, Swift.String&gt;"
+                  moduleName = "CombustionIncAnalyser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mschinis/Documents/code/mschinis/combustion-inc-analyser/CombustionIncAnalyser/Models/CookTimelineRow.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "306"
+                  endingLineNumber = "306"
+                  offsetFromSymbolStart = "776">
+               </Location>
+               <Location
+                  uuid = "4F1D5D56-3BF0-4C5C-AD57-41B9097E7E26 - a422d2c042520aa4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Swift.Dictionary&lt;Swift.String, Swift.String&gt;, (key: Swift.String, value: Any)) -&gt; () in CombustionIncAnalyser.CookTimelineRow.serializedDictionary.getter : Swift.Dictionary&lt;Swift.String, Swift.String&gt;"
+                  moduleName = "CombustionIncAnalyser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mschinis/Documents/code/mschinis/combustion-inc-analyser/CombustionIncAnalyser/Models/CookTimelineRow.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "306"
+                  endingLineNumber = "306"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
