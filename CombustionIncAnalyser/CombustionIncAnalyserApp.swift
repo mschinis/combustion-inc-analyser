@@ -36,6 +36,12 @@ struct CombustionIncAnalyserApp: App {
                     homeViewModel.didTapOpenFilepicker()
                 }
                 .keyboardShortcut("o")
+                
+                Button("Save") {
+                    homeViewModel.didTapSave()
+                }
+                .disabled(homeViewModel.selectedFileURL == nil)
+                .keyboardShortcut("s")
             }
         }
 //        .modelContainer(sharedModelContainer)
