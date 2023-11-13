@@ -7,6 +7,12 @@
 
 import Foundation
 
+//extension Array where Element == String {
+//    subscript(index: Int, default default: String = "") -> String {
+//
+//    }
+//}
+
 class CSVTemperatureParser {
     private var headers: [String]
     private var data: [String]
@@ -26,7 +32,7 @@ class CSVTemperatureParser {
                 let dd = headers
                     .enumerated()
                     .reduce(into: [String: String]()) { partialResult, current in
-                        partialResult[current.element] = rowData[current.offset]
+                        partialResult[current.element] = current.offset < rowData.count ? rowData[current.offset] : nil
                     }
 
                 // Remove items failing decoding

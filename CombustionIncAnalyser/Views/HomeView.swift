@@ -18,6 +18,15 @@ struct GraphHoverPosition {
     var ambient: Float
 }
 
+struct GraphAnnotationRequest: Identifiable {
+    var id: Int {
+        sequenceNumber
+    }
+
+    var sequenceNumber: Int
+    var text: String = ""
+}
+
 class HomeViewModel: ObservableObject {
     @Published var data: [CookTimelineRow] = []
 
@@ -36,6 +45,17 @@ class HomeViewModel: ObservableObject {
             print(error.localizedDescription)
         }
     }
+    
+    func didAddAnnotation(sequenceNumber: Int, text: String) {
+        guard let index = data.firstIndex(where: { $0.sequenceNumber == sequenceNumber }) else {
+            return
+        }
+
+        var row = data[index]
+        row.notes = text
+
+        data[index] = row
+    }
 }
 
 struct HomeView: View {
@@ -52,6 +72,9 @@ struct HomeView: View {
     
     @State private var graphHoverPosition: GraphHoverPosition? = nil
 
+    @State private var graphAnnotationRequest: GraphAnnotationRequest? = nil
+    @State private var areNotesVisible = true
+
     init() {
         self._viewModel = StateObject(wrappedValue: HomeViewModel())
     }
@@ -60,6 +83,11 @@ struct HomeView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
+    func didTapToggleNotes() {
+        withAnimation {
+            areNotesVisible.toggle()
+        }
+    }
 
     func didTapOpenFilepicker() {
         let panel = NSOpenPanel()
@@ -78,7 +106,18 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             if viewModel.data.isEmpty {
-                Text("Select a file to get started!")
+                VStack {
+                    Text("Select a file to get started!")
+                    
+                    Button(action: didTapOpenFilepicker, label: {
+                        Text("Open Combustion Inc csv")
+                    })
+                    .padding(.top)
+                }
+                
+
+                
+                    .padding()
             } else {
                 HStack {
                     Chart(viewModel.data) {
@@ -132,7 +171,7 @@ struct HomeView: View {
                         "Suface Temperature": Color.red,
                         "Ambient Temperature": Color.yellow
                     ])
-                    // Get chart hover
+                    // Get mouse position over the graph
                     .chartOverlay { proxy in
                         Color.clear
                             .onContinuousHover { hoverPhase in
@@ -144,18 +183,64 @@ struct HomeView: View {
                                     self.graphHoverPosition = nil
                                 }
                             }
+                            .onTapGesture {
+                                if let graphHoverPosition {
+                                    self.graphAnnotationRequest = GraphAnnotationRequest(sequenceNumber: graphHoverPosition.sequenceNumber)
+                                }
+                            }
                     }
+                    .padding()
+                    // Setting the height of the graph to be the same as the window's height, in order to maximise the window available
+//                    .frame(height: windowGeometry.size.height)
 
-                    Form {
-                        Toggle(isOn: .constant(true)) {
-                            Text("Core temperature")
-                        }
+                    ScrollView {
+                        Text("Notes")
+                        Text("Notes")
+                        Text("Notes")
+                        Text("Notes")
                     }
-                    .padding(.leading)
+                    .fixedSize()
+//                    .offset(x: areNotesVisible ? 300 : 0)
+                    .frame(width: areNotesVisible ? 300 : 0)
+
+//                    Form {
+//                        Toggle(isOn: .constant(true)) {
+//                            Text("Core temperature")
+//                        }
+//                    }
+//                    .padding(.leading)
                 }
             }
         }
-        .padding()
+        .sheet(item: $graphAnnotationRequest, content: { item in
+            Form {
+                TextEditor(
+                    text: Binding(get: {
+                        item.text
+                    }, set: { newValue in
+                        graphAnnotationRequest?.text = newValue
+                    })
+                )
+                .frame(width: 300, height: 200)
+
+                HStack {
+                    Button("OK", action: {
+                        // Update graph
+                        viewModel.didAddAnnotation(
+                            sequenceNumber: item.sequenceNumber,
+                            text: item.text
+                        )
+                    
+                        // Close the sheet
+                        self.graphAnnotationRequest = nil
+                    })
+                    Button("Cancel", role: .cancel) {
+                        self.graphAnnotationRequest = nil
+                    }
+                }
+            }
+            .padding()
+        })
         .toolbar {
             // Show currently open filename at the top
             if let selectedFileURL {
@@ -164,12 +249,17 @@ struct HomeView: View {
                 }
             }
             
-            // Load button
-            ToolbarItem(id: "load", placement: .primaryAction) {
-                Button(action: didTapOpenFilepicker, label: {
-                    Image(systemName: "filemenu.and.cursorarrow")
+            // Toggle notes button
+            ToolbarItem(id: "notes_sidebar", placement: .primaryAction) {
+                Button(action: didTapToggleNotes, label: {
+                    Image(systemName: "note.text")
                 })
             }
+            
+            // Load button
+//            ToolbarItem(id: "load", placement: .primaryAction) {
+//                
+//            }
         }
     }
     
