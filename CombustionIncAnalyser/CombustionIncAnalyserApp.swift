@@ -24,9 +24,19 @@ struct CombustionIncAnalyserApp: App {
 //        }
 //    }()
 
+    @StateObject private var homeViewModel = HomeViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            HomeView(viewModel: homeViewModel)
+        }
+        .commands {
+            CommandGroup(after: .newItem) {
+                Button("Open") {
+                    homeViewModel.didTapOpenFilepicker()
+                }
+                .keyboardShortcut("o")
+            }
         }
 //        .modelContainer(sharedModelContainer)
     }
