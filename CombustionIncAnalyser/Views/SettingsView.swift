@@ -1,10 +1,10 @@
+////
+////  SettingsView.swift
+////  CombustionIncAnalyser
+////
+////  Created by Michael Schinis on 14/11/2023.
+////
 //
-//  SettingsView.swift
-//  CombustionIncAnalyser
-//
-//  Created by Michael Schinis on 14/11/2023.
-//
-
 import SwiftUI
 
 enum AppSettings: String {

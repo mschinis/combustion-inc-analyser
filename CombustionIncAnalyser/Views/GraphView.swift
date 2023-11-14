@@ -114,50 +114,9 @@ struct GraphView: View {
     }
 
     var body: some View {
-        Chart(data) {
-            LinesView(row: $0)
-
-            if isGraphCoreEnabled {
-                // Core temperature graph
-                LineMark(
-                    x: .value("Timestamp", $0.timestamp),
-                    y: .value("Core Temperature", $0.virtualCoreTemperature),
-                    series: .value("Core Temperature", "A")
-                )
-                .foregroundStyle(.blue)
-            }
-
-            if isGraphSurfaceEnabled {
-                // Surface temperature graph
-                LineMark(
-                    x: .value("Timestamp", $0.timestamp),
-                    y: .value("Suface Temperature", $0.virtualSurfaceTemperature),
-                    series: .value("Surface Temperature", "B")
-                )
-                .foregroundStyle(.yellow)
-            }
-            
-            if isGraphAmbientEnabled {
-                // Ambient temperature graph
-                LineMark(
-                    x: .value("Timestamp", $0.timestamp),
-                    y: .value("Ambient Temperature", $0.virtualAmbientTemperature),
-                    series: .value("Ambient Temperature", "C")
-                )
-                .foregroundStyle(.red)
-            }
-
-            if isGraphNotesEnabled, let _ = $0.notes {
-//            if let _ = $0.notes {
-                PointMark(
-                    x: .value("X", $0.timestamp),
-                    y: .value("Y", 0)
-                )
-                .symbol {
-                    Image(systemName: "note")
-                        .offset(y: -16)
-                        .foregroundStyle(.blue)
-                }
+        Chart {
+            ForEach(data) {
+                LinesView(row: $0)
             }
 
             if let noteHoveredTimestamp {
