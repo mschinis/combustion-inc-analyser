@@ -105,6 +105,7 @@ struct HomeView: View {
 
     @State private var graphHoverPosition: GraphHoverPosition? = nil
 
+    @State private var noteHoveredTimestamp: Double? = nil
     @State private var graphAnnotationRequest: GraphAnnotationRequest? = nil
     @State private var areNotesVisible = true
 
@@ -137,63 +138,25 @@ struct HomeView: View {
     }
 
     var chartView: some View {
-        GraphView(data: viewModel.data, graphAnnotationRequest: $graphAnnotationRequest)
-            .padding()
+        GraphView(
+            data: viewModel.data,
+            noteHoveredTimestamp: $noteHoveredTimestamp,
+            graphAnnotationRequest: $graphAnnotationRequest
+        )
+        .padding()
     }
 
     var notesView: some View {
-        ScrollView(.vertical) {
-            VStack(alignment: .leading) {
-                Text("Cook notes")
-                    .font(.headline)
-                    .padding(.bottom)
-
-                ForEach(viewModel.notes) { row in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Time: \(row.timeInterval.hourMinuteFormat())")
-                                .font(.headline)
-                            Text(row.notes ?? "")
-                            
-                            Divider()
-                        }
-
-                        Spacer()
-
-                        Button(action: {
-                            graphAnnotationRequest = .init(
-                                sequenceNumber: row.sequenceNumber,
-                                text: row.notes ?? ""
-                            )
-//                            viewModel.didRemoveAnnotation(sequenceNumber: row.sequenceNumber)
-                        }) {
-                            Image(systemName: "pencil")
-                        }
-                        
-                        Button(action: {
-                            viewModel.didRemoveAnnotation(sequenceNumber: row.sequenceNumber)
-                        }) {
-                            Image(systemName: "xmark.bin")
-                        }
-                    }
-                }
-
-                if viewModel.notes.isEmpty {
-                    Spacer()
-
-                    Text("No cooking notes added.")
-                        .font(.headline)
-                    Text("Select a point on the graph to enter a new note!")
-
-                    Spacer()
-                }
-            }
-            .padding()
-        }
+        NotesView(
+            notes: viewModel.notes,
+            noteHoveredTimestamp: $noteHoveredTimestamp,
+            graphAnnotationRequest: $graphAnnotationRequest,
+            didTapRemoveAnnotation: viewModel.didRemoveAnnotation(sequenceNumber:)
+        )
         .frame(width: areNotesVisible ? 300 : 0)
         .opacity(areNotesVisible ? 1 : 0)
     }
-    
+
     var body: some View {
         ZStack {
             if viewModel.data.isEmpty {
@@ -217,7 +180,7 @@ struct HomeView: View {
         // Annotation Sheet
         .sheet(item: $graphAnnotationRequest, content: { item in
             Form {
-                Text("Add annotation notes")
+                Text("Add new note")
 
                 TextEditor(
                     text: Binding(get: {

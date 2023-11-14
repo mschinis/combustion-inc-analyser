@@ -52,6 +52,7 @@ struct LinesView: ChartContent {
 
 struct GraphView: View {
     var data: [CookTimelineRow]
+    @Binding var noteHoveredTimestamp: Double?
     @Binding var graphAnnotationRequest: GraphAnnotationRequest?
 
     @State private var graphHoverPosition: GraphHoverPosition? = nil
@@ -101,6 +102,12 @@ struct GraphView: View {
                         .offset(y: -16)
                         .foregroundStyle(.blue)
                 }
+            }
+
+            if let noteHoveredTimestamp {
+                RuleMark(x: .value("X", noteHoveredTimestamp))
+                    .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
+                    .foregroundStyle(.gray.opacity(0.8))
             }
 
             // Show the points on the graph being hovered over.
@@ -181,5 +188,9 @@ struct GraphView: View {
 }
 
 #Preview {
-    GraphView(data: [], graphAnnotationRequest: .constant(nil))
+    GraphView(
+        data: [],
+        noteHoveredTimestamp: .constant(nil),
+        graphAnnotationRequest: .constant(nil)
+    )
 }
