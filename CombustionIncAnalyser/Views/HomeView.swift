@@ -107,6 +107,7 @@ struct HomeView: View {
 
     @State private var noteHoveredTimestamp: Double? = nil
     @State private var graphAnnotationRequest: GraphAnnotationRequest? = nil
+    @State private var areSettingsVisible = false
     @State private var areNotesVisible = true
 
     init() {
@@ -121,6 +122,10 @@ struct HomeView: View {
         withAnimation {
             areNotesVisible.toggle()
         }
+    }
+    
+    func didTapOpenSettings() {
+        areSettingsVisible = true
     }
     
     @MainActor
@@ -209,6 +214,15 @@ struct HomeView: View {
             }
             .padding()
         })
+        .sheet(isPresented: $areSettingsVisible, content: {
+            VStack {
+                Text("Settings")
+                    .font(.title2)
+
+                SettingsView()
+            }
+            .padding()
+        })
         .toolbar {
             // Show currently open filename at the top
             if let selectedFileURL = viewModel.selectedFileURL {
@@ -240,6 +254,15 @@ struct HomeView: View {
                 .help("Share graph")
             }
 
+            // Toggle notes button
+            ToolbarItem(id: "settings", placement: .primaryAction) {
+                Button(action: didTapOpenSettings, label: {
+                    Image(systemName: "gear")
+                })
+                .disabled(viewModel.selectedFileURL == nil)
+                .help("Open settings")
+            }
+            
             // Toggle notes button
             ToolbarItem(id: "notes_sidebar", placement: .primaryAction) {
                 Button(action: didTapToggleNotes, label: {

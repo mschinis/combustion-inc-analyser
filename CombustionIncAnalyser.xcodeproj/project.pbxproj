@@ -11,6 +11,7 @@
 		CD5F3EAE2B03AC61001F3061 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EAD2B03AC61001F3061 /* GraphView.swift */; };
 		CD5F3EB42B03D4BB001F3061 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EB32B03D4BB001F3061 /* TimeInterval.swift */; };
 		CD5F3EB62B03DF96001F3061 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EB52B03DF96001F3061 /* NotesView.swift */; };
+		CD5F3EB92B03EB08001F3061 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EB82B03EB08001F3061 /* SettingsView.swift */; };
 		CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */; };
 		CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */; };
 		CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DD2AFF80D5006E6597 /* SwiftDataItem.swift */; };
@@ -46,6 +47,7 @@
 		CD5F3EAD2B03AC61001F3061 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		CD5F3EB32B03D4BB001F3061 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		CD5F3EB52B03DF96001F3061 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
+		CD5F3EB82B03EB08001F3061 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombustionIncAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserApp.swift; sourceTree = "<group>"; };
 		CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContentView.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				CDB4B2072AFF94C1006E6597 /* HomeView.swift */,
 				CD5F3EAD2B03AC61001F3061 /* GraphView.swift */,
 				CD5F3EB52B03DF96001F3061 /* NotesView.swift */,
+				CD5F3EB82B03EB08001F3061 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */,
 				CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureExporter.swift in Sources */,
 				CD5F3EAE2B03AC61001F3061 /* GraphView.swift in Sources */,
+				CD5F3EB92B03EB08001F3061 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,7 @@ struct NotesView: View {
         ScrollView(.vertical) {
             VStack(alignment: .leading) {
                 Text("Cook notes")
-                    .font(.headline)
+                    .font(.title2)
                     .padding(.bottom)
 
                 ForEach(notes) { row in
