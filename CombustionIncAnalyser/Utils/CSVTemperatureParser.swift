@@ -26,7 +26,7 @@ class CSVTemperatureParser {
         if !headers.contains(CookTimelineRow.CodingKeys.notes.rawValue) {
             headers.append(CookTimelineRow.CodingKeys.notes.rawValue)
         }
-        
+
         self.headers = headers
         self.data = Array(rows[1..<rows.count])
     }

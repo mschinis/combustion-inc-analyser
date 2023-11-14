@@ -75,7 +75,18 @@ struct CookTimelineRow: Codable, Identifiable {
     var predictionValueSeconds: Int
     
     var notes: String? = nil
+
+    var timeInterval: TimeInterval {
+        TimeInterval(timestamp)
+    }
     
+    // A computed date, which helps us format the date correctly
+    // TODO: Change Date() with actual date of the cook
+//    var date: Date {
+//        let dayComponent = Calendar.current.startOfDay(for: Date())
+//        return dayComponent.addingTimeInterval(TimeInterval(timestamp))
+//    }
+
     enum CodingKeys: String, CodingKey, CaseIterable {
         case timestamp = "Timestamp"
         case sessionID = "SessionID"

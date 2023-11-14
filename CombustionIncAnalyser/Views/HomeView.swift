@@ -8,16 +8,6 @@
 import SwiftUI
 import Charts
 
-struct GraphHoverPosition {
-    var x: Float
-    
-    var sequenceNumber: Int
-    
-    var core: Float
-    var surface: Float
-    var ambient: Float
-}
-
 struct GraphAnnotationRequest: Identifiable {
     var id: Int {
         sequenceNumber
@@ -147,90 +137,10 @@ struct HomeView: View {
     }
 
     var chartView: some View {
-        Chart(viewModel.data) {
-            // Core temperature graph
-            LineMark(
-                x: .value("Timestamp", $0.timestamp),
-                y: .value("Core Temperature", $0.virtualCoreTemperature),
-                series: .value("Core Temperature", "A")
-            )
-            .foregroundStyle(.blue)
-            
-            // Surface temperature graph
-            LineMark(
-                x: .value("Timestamp", $0.timestamp),
-                y: .value("Suface Temperature", $0.virtualSurfaceTemperature),
-                series: .value("Surface Temperature", "B")
-            )
-            .foregroundStyle(.yellow)
-            
-            // Ambient temperature graph
-            LineMark(
-                x: .value("Timestamp", $0.timestamp),
-                y: .value("Ambient Temperature", $0.virtualAmbientTemperature),
-                series: .value("Ambient Temperature", "C")
-            )
-            .foregroundStyle(.red)
-            
-            if let _ = $0.notes {
-                PointMark(
-                    x: .value("X", $0.timestamp),
-                    y: .value("Y", 0)
-                )
-                .symbol {
-                    Image(systemName: "note")
-                        .offset(y: -16)
-                        .foregroundStyle(.blue)
-                }
-            }
-
-            // Show the points on the graph being hovered over.
-            if let graphHoverPosition {
-                PointMark(
-                    x: .value("X", graphHoverPosition.x),
-                    y: .value("Y", graphHoverPosition.core)
-                )
-                .foregroundStyle(.blue)
-
-                PointMark(
-                    x: .value("X", graphHoverPosition.x),
-                    y: .value("Y", graphHoverPosition.surface)
-                )
-                .foregroundStyle(.yellow)
-
-                PointMark(
-                    x: .value("X", graphHoverPosition.x),
-                    y: .value("Y", graphHoverPosition.ambient)
-                )
-                .foregroundStyle(.red)
-            }
-        }
-        .chartForegroundStyleScale([
-            "Core Temperature": Color.blue,
-            "Suface Temperature": Color.yellow,
-            "Ambient Temperature": Color.red
-        ])
-        // Get mouse position over the graph
-        .chartOverlay { proxy in
-            Color.clear
-                .onContinuousHover { hoverPhase in
-                    switch hoverPhase {
-                    case .active(let cGPoint):
-                        let xPosition = proxy.value(atX: cGPoint.x, as: Float.self)!
-                        self.graphHoverPosition = value(x: xPosition)
-                    case .ended:
-                        self.graphHoverPosition = nil
-                    }
-                }
-                .onTapGesture {
-                    if let graphHoverPosition {
-                        self.graphAnnotationRequest = GraphAnnotationRequest(sequenceNumber: graphHoverPosition.sequenceNumber)
-                    }
-                }
-        }
-        .padding()
+        GraphView(data: viewModel.data, graphAnnotationRequest: $graphAnnotationRequest)
+            .padding()
     }
-    
+
     var notesView: some View {
         ScrollView(.vertical) {
             VStack(alignment: .leading) {
@@ -241,7 +151,7 @@ struct HomeView: View {
                 ForEach(viewModel.notes) { row in
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("\(row.timestamp)")
+                            Text("Time: \(row.timeInterval.hourMinuteFormat())")
                                 .font(.headline)
                             Text(row.notes ?? "")
                             
@@ -250,6 +160,16 @@ struct HomeView: View {
 
                         Spacer()
 
+                        Button(action: {
+                            graphAnnotationRequest = .init(
+                                sequenceNumber: row.sequenceNumber,
+                                text: row.notes ?? ""
+                            )
+//                            viewModel.didRemoveAnnotation(sequenceNumber: row.sequenceNumber)
+                        }) {
+                            Image(systemName: "pencil")
+                        }
+                        
                         Button(action: {
                             viewModel.didRemoveAnnotation(sequenceNumber: row.sequenceNumber)
                         }) {
@@ -342,9 +262,6 @@ struct HomeView: View {
                 .help("Save file")
             }
             
-//            Spacer()
-//                .padding(.trailing)
-            
             // Share graph button
             ToolbarItem(id: "share", placement: .primaryAction) {
                 ShareLink(
@@ -369,30 +286,6 @@ struct HomeView: View {
                 .help("Toggle notes sidebar")
             }
         }
-    }
-    
-    func value(x: Float) -> GraphHoverPosition? {
-        // Round to the closest 5th second, since the data is structured as such
-        let closestValue = Double(round(x / 5) * 5)
-        
-        // Find the temperature data which corresponds to the hovered position on the graph
-        let row = viewModel.data.first { row in
-            row.timestamp == closestValue
-        }
-
-        guard let row else {
-            return nil
-        }
-
-        return GraphHoverPosition(
-            x: x,
-            
-            sequenceNumber: row.sequenceNumber,
-
-            core: row.estimatedCoreTemperature,
-            surface: row.virtualSurfaceTemperature,
-            ambient: row.virtualAmbientTemperature
-        )
     }
 }
 

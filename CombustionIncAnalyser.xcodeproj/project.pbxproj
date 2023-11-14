@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EA92B02C8BB001F3061 /* CSVTemperatureExporter.swift */; };
+		CD5F3EAE2B03AC61001F3061 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EAD2B03AC61001F3061 /* GraphView.swift */; };
+		CD5F3EB42B03D4BB001F3061 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EB32B03D4BB001F3061 /* TimeInterval.swift */; };
 		CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */; };
 		CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */; };
 		CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DD2AFF80D5006E6597 /* SwiftDataItem.swift */; };
@@ -40,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		CD5F3EA92B02C8BB001F3061 /* CSVTemperatureExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVTemperatureExporter.swift; sourceTree = "<group>"; };
+		CD5F3EAD2B03AC61001F3061 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		CD5F3EB32B03D4BB001F3061 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombustionIncAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserApp.swift; sourceTree = "<group>"; };
 		CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContentView.swift; sourceTree = "<group>"; };
@@ -82,6 +86,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD5F3EB22B03D4B1001F3061 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CD5F3EB32B03D4BB001F3061 /* TimeInterval.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		CDB4B1CD2AFF80D5006E6597 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +166,7 @@
 		CDB4B20D2B016EBF006E6597 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CD5F3EB22B03D4B1001F3061 /* Extensions */,
 				CDB4B20B2B016E70006E6597 /* CSVTemperatureParser.swift */,
 				CD5F3EA92B02C8BB001F3061 /* CSVTemperatureExporter.swift */,
 			);
@@ -172,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				CDB4B2072AFF94C1006E6597 /* HomeView.swift */,
+				CD5F3EAD2B03AC61001F3061 /* GraphView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -307,12 +321,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */,
+				CD5F3EB42B03D4BB001F3061 /* TimeInterval.swift in Sources */,
 				CDB4B2082AFF94C1006E6597 /* HomeView.swift in Sources */,
 				CDB4B20A2AFFA95B006E6597 /* CookTimelineRow.swift in Sources */,
 				CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */,
 				CDB4B20C2B016E70006E6597 /* CSVTemperatureParser.swift in Sources */,
 				CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */,
 				CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureExporter.swift in Sources */,
+				CD5F3EAE2B03AC61001F3061 /* GraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
