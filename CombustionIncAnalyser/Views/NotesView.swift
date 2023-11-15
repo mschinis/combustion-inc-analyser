@@ -25,31 +25,33 @@ struct NotesView: View {
                     .padding(.bottom)
 
                 ForEach(notes) { row in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Time: \(row.timeInterval.hourMinuteFormat())")
-                                .font(.headline)
-                            Text(row.notes ?? "")
+                    VStack {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Time: \(row.timeInterval.hourMinuteFormat())")
+                                    .font(.headline)
+                                Text(row.notes ?? "")
+                            }
+
+                            Spacer()
+
+                            Button(action: {
+                                graphAnnotationRequest = .init(
+                                    sequenceNumber: row.sequenceNumber,
+                                    text: row.notes ?? ""
+                                )
+                            }) {
+                                Image(systemName: "pencil")
+                            }
                             
-                            Divider()
+                            Button(action: {
+                                didTapRemoveAnnotation(row.sequenceNumber)
+                            }) {
+                                Image(systemName: "xmark.bin")
+                            }
                         }
 
-                        Spacer()
-
-                        Button(action: {
-                            graphAnnotationRequest = .init(
-                                sequenceNumber: row.sequenceNumber,
-                                text: row.notes ?? ""
-                            )
-                        }) {
-                            Image(systemName: "pencil")
-                        }
-                        
-                        Button(action: {
-                            didTapRemoveAnnotation(row.sequenceNumber)
-                        }) {
-                            Image(systemName: "xmark.bin")
-                        }
+                        Divider()
                     }
                     .onHover(perform: { hovering in
                         if hovering {

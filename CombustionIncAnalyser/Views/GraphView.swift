@@ -42,7 +42,7 @@ struct NotInsertedRange: Identifiable {
     var upper: Double
 }
 
-struct LinesView: ChartContent {
+struct TemperatureCurvesView: ChartContent {
     var row: CookTimelineRow
 
     @AppStorage(AppSettings.graphsCore.rawValue) private var isGraphCoreEnabled: Bool = true
@@ -153,7 +153,7 @@ struct GraphView: View {
     var body: some View {
         Chart {
             ForEach(_data) {
-                LinesView(row: $0)
+                TemperatureCurvesView(row: $0)
             }
 
             ForEach(_notInsertedRanges) {
@@ -173,6 +173,12 @@ struct GraphView: View {
 
             // Show the points on the graph being hovered over.
             if let graphHoverPosition {
+                // Vertical line on hover
+//                RuleMark(x: .value("X", graphHoverPosition.x))
+//                    .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
+//                    .foregroundStyle(.yellow.opacity(0.8))
+
+                // Dots on curve, on hover
                 if isGraphCoreEnabled {
                     PointMark(
                         x: .value("X", graphHoverPosition.x),
