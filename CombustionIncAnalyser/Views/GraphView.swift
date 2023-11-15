@@ -8,6 +8,20 @@
 import Charts
 import SwiftUI
 
+struct Stripes: Shape {
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let width = rect.size.width
+        let height = rect.size.height
+        
+        for x in stride(from: 0, through: width, by: width / 9) {
+            path.move(to: CGPoint(x: x, y: 0))
+            path.addLine(to: CGPoint(x: x, y: height))
+        }
+        return path
+    }
+}
 
 struct GraphHoverPosition {
     var x: Float
@@ -17,6 +31,15 @@ struct GraphHoverPosition {
     var core: Float
     var surface: Float
     var ambient: Float
+}
+
+struct NotInsertedRange: Identifiable {
+    var id: String {
+        "\(lower)_\(upper)"
+    }
+
+    var lower: Double
+    var upper: Double
 }
 
 struct LinesView: ChartContent {
@@ -84,6 +107,20 @@ struct GraphView: View {
     @AppStorage(AppSettings.graphsAmbient.rawValue) private var isGraphAmbientEnabled: Bool = true
     @AppStorage(AppSettings.graphsNotes.rawValue) private var isGraphNotesEnabled: Bool = true
 
+    private var _data: [CookTimelineRow] {
+        data
+//            .filter {
+//                $0.sequenceNumber % 3 == 0
+//            }
+    }
+    
+    private var _notInsertedRanges: [NotInsertedRange] {
+        [
+    //            NotInsertedRange(lower: 0, upper: 100),
+    //            NotInsertedRange(lower: 200, upper: 500)
+        ]
+    }
+
     /// Returns a struct with all the resolved positions on the graph, for the core, surface, ambient and "x" position
     /// so we can annotate the graph.
     ///
@@ -115,10 +152,19 @@ struct GraphView: View {
 
     var body: some View {
         Chart {
-            ForEach(data) {
+            ForEach(_data) {
                 LinesView(row: $0)
             }
 
+            ForEach(_notInsertedRanges) {
+                    RectangleMark(
+                        xStart: .value("X1", $0.lower),
+                        xEnd: .value("X2", $0.upper)
+                    )
+                    .foregroundStyle(.gray)
+                    .opacity(0.1)
+            }
+            
             if let noteHoveredTimestamp {
                 RuleMark(x: .value("X", noteHoveredTimestamp))
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
@@ -155,7 +201,8 @@ struct GraphView: View {
         .chartForegroundStyleScale([
             "Core Temperature": Color.blue,
             "Suface Temperature": Color.yellow,
-            "Ambient Temperature": Color.red
+            "Ambient Temperature": Color.red,
+            "Probe not inserted": Color.gray.opacity(0.2)
         ])
         // Get mouse position over the graph
         .chartOverlay { proxy in
