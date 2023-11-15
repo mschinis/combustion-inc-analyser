@@ -10,20 +10,7 @@ import SwiftData
 
 @main
 struct CombustionIncAnalyserApp: App {
-//    var sharedModelContainer: ModelContainer = {
-//        let schema = Schema([
-//            Item.self,
-
-//        ])
-//        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-//
-//        do {
-//            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-//        } catch {
-//            fatalError("Could not create ModelContainer: \(error)")
-//        }
-//    }()
-
+    
     @StateObject private var homeViewModel = HomeViewModel()
     
     var body: some Scene {
@@ -44,6 +31,5 @@ struct CombustionIncAnalyserApp: App {
                 .keyboardShortcut("s")
             }
         }
-//        .modelContainer(sharedModelContainer)
     }
 }

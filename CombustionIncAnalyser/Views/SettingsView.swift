@@ -7,26 +7,20 @@
 //
 import SwiftUI
 
-enum AppSettings: String {
-    case graphsCore = "graphs.core"
-    case graphsSurface = "graphs.surface"
-    case graphsAmbient = "graphs.ambient"
-    case graphsNotes = "graphs.notes"
-    case graphsProbeNotInserted = "graphs.probeNotInserted"
 
-    case performanceMode = "performance.mode"
-}
 
 struct SettingsView: View {
     // Graph Curves
-    @AppStorage(AppSettings.graphsCore.rawValue) private var isGraphsCoreEnabled: Bool = true
-    @AppStorage(AppSettings.graphsSurface.rawValue) private var isGraphsSurfaceEnabled: Bool = true
-    @AppStorage(AppSettings.graphsAmbient.rawValue) private var isGraphsAmbientEnabled: Bool = true
-    @AppStorage(AppSettings.graphsNotes.rawValue) private var isGraphsNotesEnabled: Bool = true
-    @AppStorage(AppSettings.graphsProbeNotInserted.rawValue) private var isGraphsProbeNotInsertedEnabled: Bool = true
-    
+    @AppStorage(AppSettingsKeys.graphsCore.rawValue) private var isGraphsCoreEnabled: Bool = true
+    @AppStorage(AppSettingsKeys.graphsSurface.rawValue) private var isGraphsSurfaceEnabled: Bool = true
+    @AppStorage(AppSettingsKeys.graphsAmbient.rawValue) private var isGraphsAmbientEnabled: Bool = true
+    @AppStorage(AppSettingsKeys.graphsNotes.rawValue) private var isGraphsNotesEnabled: Bool = true
+    @AppStorage(AppSettingsKeys.graphsProbeNotInserted.rawValue) private var isGraphsProbeNotInsertedEnabled: Bool = true
+
+    @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
+
     // Other
-    @AppStorage(AppSettings.performanceMode.rawValue) private var isPerformanceModeEnabled: Bool = true
+    @AppStorage(AppSettingsKeys.performanceMode.rawValue) private var isPerformanceModeEnabled: Bool = true
 
     var body: some View {
         VStack {
@@ -35,11 +29,27 @@ struct SettingsView: View {
 
             Form {
                 Section {
-                    Toggle("Core Temperature", isOn: $isGraphsCoreEnabled)
-                    Toggle("Surface Temperature", isOn: $isGraphsSurfaceEnabled)
-                    Toggle("Ambient Temperature", isOn: $isGraphsAmbientEnabled)
+                    Toggle("Core Temperature", isOn: $enabledCurves.core)
+                    Toggle("Surface Temperature", isOn: $enabledCurves.surface)
+                    Toggle("Ambient Temperature", isOn: $enabledCurves.ambient)
                 } header: {
                     Text("Temperature curves")
+                        .bold()
+                }
+
+                Spacer().frame(height: 16)
+
+                Section {
+                    Toggle("T1 (Tip)", isOn: $enabledCurves.t1)
+                    Toggle("T2", isOn: $enabledCurves.t2)
+                    Toggle("T3", isOn: $enabledCurves.t3)
+                    Toggle("T4", isOn: $enabledCurves.t4)
+                    Toggle("T5", isOn: $enabledCurves.t5)
+                    Toggle("T6", isOn: $enabledCurves.t6)
+                    Toggle("T7", isOn: $enabledCurves.t7)
+                    Toggle("T8 (Handle)", isOn: $enabledCurves.t8)
+                } header: {
+                    Text("Advanced temperature curves")
                         .bold()
                 }
 

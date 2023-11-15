@@ -109,6 +109,8 @@ struct HomeView: View {
     @State private var graphAnnotationRequest: GraphAnnotationRequest? = nil
     @State private var areSettingsVisible = false
     @State private var areNotesVisible = true
+    
+    @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
 
     init() {
         self._viewModel = StateObject(wrappedValue: HomeViewModel())
@@ -144,6 +146,7 @@ struct HomeView: View {
 
     var chartView: some View {
         GraphView(
+            enabledCurves: enabledCurves,
             data: viewModel.data,
             noteHoveredTimestamp: $noteHoveredTimestamp,
             graphAnnotationRequest: $graphAnnotationRequest

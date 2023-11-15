@@ -8,21 +8,6 @@
 import Charts
 import SwiftUI
 
-struct Stripes: Shape {
-    
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let width = rect.size.width
-        let height = rect.size.height
-        
-        for x in stride(from: 0, through: width, by: width / 9) {
-            path.move(to: CGPoint(x: x, y: 0))
-            path.addLine(to: CGPoint(x: x, y: height))
-        }
-        return path
-    }
-}
-
 struct GraphHoverPosition {
     var x: Float
     
@@ -42,72 +27,24 @@ struct NotInsertedRange: Identifiable {
     var upper: Double
 }
 
-struct TemperatureCurvesView: ChartContent {
-    var row: CookTimelineRow
-
-    @AppStorage(AppSettings.graphsCore.rawValue) private var isGraphCoreEnabled: Bool = true
-    @AppStorage(AppSettings.graphsSurface.rawValue) private var isGraphSurfaceEnabled: Bool = true
-    @AppStorage(AppSettings.graphsAmbient.rawValue) private var isGraphAmbientEnabled: Bool = true
-    @AppStorage(AppSettings.graphsNotes.rawValue) private var isGraphNotesEnabled: Bool = true
-
-    var body: some ChartContent {
-        if isGraphCoreEnabled {
-            // Core temperature graph
-            LineMark(
-                x: .value("Timestamp", row.timestamp),
-                y: .value("Core Temperature", row.virtualCoreTemperature),
-                series: .value("Core Temperature", "A")
-            )
-            .foregroundStyle(.blue)
-        }
-
-        if isGraphSurfaceEnabled {
-            // Surface temperature graph
-            LineMark(
-                x: .value("Timestamp", row.timestamp),
-                y: .value("Suface Temperature", row.virtualSurfaceTemperature),
-                series: .value("Surface Temperature", "B")
-            )
-            .foregroundStyle(.yellow)
-        }
-        
-        if isGraphAmbientEnabled {
-            // Ambient temperature graph
-            LineMark(
-                x: .value("Timestamp", row.timestamp),
-                y: .value("Ambient Temperature", row.virtualAmbientTemperature),
-                series: .value("Ambient Temperature", "C")
-            )
-            .foregroundStyle(.red)
-        }
-
-        if isGraphNotesEnabled, let _ = row.notes {
-            PointMark(
-                x: .value("X", row.timestamp),
-                y: .value("Y", 0)
-            )
-            .symbol {
-                Image(systemName: "note")
-                    .offset(y: -16)
-                    .foregroundStyle(.blue)
-            }
-        }
-    }
-}
 
 struct GraphView: View {
+    var enabledCurves: AppSettingsEnabledCurves
     var data: [CookTimelineRow]
     @Binding var noteHoveredTimestamp: Double?
     @Binding var graphAnnotationRequest: GraphAnnotationRequest?
 
     @State private var graphHoverPosition: GraphHoverPosition? = nil
 
-    @AppStorage(AppSettings.graphsCore.rawValue) private var isGraphCoreEnabled: Bool = true
-    @AppStorage(AppSettings.graphsSurface.rawValue) private var isGraphSurfaceEnabled: Bool = true
-    @AppStorage(AppSettings.graphsAmbient.rawValue) private var isGraphAmbientEnabled: Bool = true
-    @AppStorage(AppSettings.graphsNotes.rawValue) private var isGraphNotesEnabled: Bool = true
-    @AppStorage(AppSettings.graphsProbeNotInserted.rawValue) private var isGraphsProbeNotInsertedEnabled: Bool = true
-    @AppStorage(AppSettings.performanceMode.rawValue) private var isPerformanceModeEnabled: Bool = true
+    
+//    @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
+
+//    @AppStorage(AppSettings.graphsCore.rawValue) private var isGraphCoreEnabled: Bool = true
+//    @AppStorage(AppSettings.graphsSurface.rawValue) private var isGraphSurfaceEnabled: Bool = true
+//    @AppStorage(AppSettings.graphsAmbient.rawValue) private var isGraphAmbientEnabled: Bool = true
+    @AppStorage(AppSettingsKeys.graphsNotes.rawValue) private var isGraphNotesEnabled: Bool = true
+    @AppStorage(AppSettingsKeys.graphsProbeNotInserted.rawValue) private var isGraphsProbeNotInsertedEnabled: Bool = true
+    @AppStorage(AppSettingsKeys.performanceMode.rawValue) private var isPerformanceModeEnabled: Bool = true
 
     /// For performance, sample the graph and only show every second data point
     private var _data: [CookTimelineRow] {
@@ -194,11 +131,76 @@ struct GraphView: View {
             ambient: row.virtualAmbientTemperature
         )
     }
+    
+    var chartColors: KeyValuePairs<String, Color> {
+//        var colors: [Color] = []
+//        
+//        if enabledCurves.ambient {
+//            colors.append(Color.blue)
+//        }
+//        
+//        if enabledCurves.surface {
+//            colors.append(Color.yellow)
+//        }
+//        
+//        if enabledCurves.ambient {
+//            colors.append(Color.red)
+//        }
+//        
+//        if enabledCurves.t1 {
+//            colors.append(Color.orange)
+//        }
+//        
+//        if enabledCurves.t2 {
+//            colors.append(Color.purple)
+//        }
+//        
+//        if enabledCurves.t3 {
+//            colors.append(Color.cyan)
+//        }
+//        
+//        if enabledCurves.t4 {
+//            colors.append(Color.teal)
+//        }
+//        
+//        if enabledCurves.t5 {
+//            colors.append(Color.mint)
+//        }
+//        
+//        if enabledCurves.t6 {
+//            colors.append(Color.pink)
+//        }
+//        
+//        if enabledCurves.t7 {
+//            colors.append(Color.brown)
+//        }
+//        
+//        if enabledCurves.t8 {
+//            colors.append(Color.black)
+//        }
+
+        
+        
+        return [
+            "Core Temperature": Color.blue,
+            "Suface Temperature": Color.yellow,
+            "Ambient Temperature": Color.red,
+            "Probe not inserted": Color.gray.opacity(0.2),
+            "T1 (tip)": Color.orange,
+            "T2": Color.purple,
+            "T3": Color.cyan,
+            "T4": Color.teal,
+            "T5": Color.mint,
+            "T6": Color.pink,
+            "T7": Color.brown,
+            "T8": Color.black
+        ]
+    }
 
     var body: some View {
         Chart {
             ForEach(_data) {
-                TemperatureCurvesView(row: $0)
+                TemperatureCurvesView(enabledCurves: enabledCurves, row: $0)
             }
 
             ForEach(_notInsertedRanges) {
@@ -219,42 +221,13 @@ struct GraphView: View {
             // Show the points on the graph being hovered over.
             if let graphHoverPosition {
                 // Vertical line on hover
-//                RuleMark(x: .value("X", graphHoverPosition.x))
-//                    .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
-//                    .foregroundStyle(.yellow.opacity(0.8))
-
-                // Dots on curve, on hover
-                if isGraphCoreEnabled {
-                    PointMark(
-                        x: .value("X", graphHoverPosition.x),
-                        y: .value("Y", graphHoverPosition.core)
-                    )
-                    .foregroundStyle(.blue)
-                }
-
-                if isGraphSurfaceEnabled {
-                    PointMark(
-                        x: .value("X", graphHoverPosition.x),
-                        y: .value("Y", graphHoverPosition.surface)
-                    )
-                    .foregroundStyle(.yellow)
-                }
-
-                if isGraphAmbientEnabled {
-                    PointMark(
-                        x: .value("X", graphHoverPosition.x),
-                        y: .value("Y", graphHoverPosition.ambient)
-                    )
-                    .foregroundStyle(.red)
-                }
+                RuleMark(x: .value("X", graphHoverPosition.x))
+                    .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
+                    .foregroundStyle(.yellow.opacity(0.8))
             }
         }
-        .chartForegroundStyleScale([
-            "Core Temperature": Color.blue,
-            "Suface Temperature": Color.yellow,
-            "Ambient Temperature": Color.red,
-            "Probe not inserted": Color.gray.opacity(0.2)
-        ])
+//        .chartForegroundStyleScale(range: graphColors())
+        .chartForegroundStyleScale(chartColors)
         // Get mouse position over the graph
         .chartOverlay { proxy in
             Color.clear
@@ -308,6 +281,7 @@ struct GraphView: View {
 
 #Preview {
     GraphView(
+        enabledCurves: AppSettingsEnabledCurves.defaults,
         data: [],
         noteHoveredTimestamp: .constant(nil),
         graphAnnotationRequest: .constant(nil)
