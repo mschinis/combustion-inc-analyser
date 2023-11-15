@@ -106,14 +106,18 @@ struct GraphView: View {
     @AppStorage(AppSettings.graphsSurface.rawValue) private var isGraphSurfaceEnabled: Bool = true
     @AppStorage(AppSettings.graphsAmbient.rawValue) private var isGraphAmbientEnabled: Bool = true
     @AppStorage(AppSettings.graphsNotes.rawValue) private var isGraphNotesEnabled: Bool = true
+    @AppStorage(AppSettings.performanceMode.rawValue) private var isPerformanceModeEnabled: Bool = true
 
+    /// For performance, sample the graph and only show every second data point
     private var _data: [CookTimelineRow] {
-        data
-//            .filter {
-//                $0.sequenceNumber % 3 == 0
-//            }
+        guard isPerformanceModeEnabled else {
+            return data
+        }
+        
+        // Reduce graph resolution by 50%, when performance mode is enabled
+        return data.filter { $0.sequenceNumber % 3 == 0 }
     }
-    
+
     private var _notInsertedRanges: [NotInsertedRange] {
         [
     //            NotInsertedRange(lower: 0, upper: 100),

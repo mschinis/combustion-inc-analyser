@@ -215,13 +215,7 @@ struct HomeView: View {
             .padding()
         })
         .sheet(isPresented: $areSettingsVisible, content: {
-            VStack {
-                Text("Settings")
-                    .font(.title2)
-
-                SettingsView()
-            }
-            .padding()
+            SettingsView()
         })
         .toolbar {
             // Show currently open filename at the top

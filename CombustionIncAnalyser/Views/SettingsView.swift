@@ -12,24 +12,50 @@ enum AppSettings: String {
     case graphsSurface = "graphs.surface"
     case graphsAmbient = "graphs.ambient"
     case graphsNotes = "graphs.notes"
+    case performanceMode = "performance.mode"
 }
 
 struct SettingsView: View {
-    @AppStorage(AppSettings.graphsCore.rawValue) private var graphsCore: Bool = true
-    @AppStorage(AppSettings.graphsSurface.rawValue) private var graphsSurface: Bool = true
-    @AppStorage(AppSettings.graphsAmbient.rawValue) private var graphsAmbient: Bool = true
-    @AppStorage(AppSettings.graphsNotes.rawValue) private var graphsNotes: Bool = true
+    @AppStorage(AppSettings.graphsCore.rawValue) private var isGraphsCoreEnabled: Bool = true
+    @AppStorage(AppSettings.graphsSurface.rawValue) private var isGraphsSurfaceEnabled: Bool = true
+    @AppStorage(AppSettings.graphsAmbient.rawValue) private var isGraphsAmbientEnabled: Bool = true
+    @AppStorage(AppSettings.graphsNotes.rawValue) private var isGraphsNotesEnabled: Bool = true
+    @AppStorage(AppSettings.performanceMode.rawValue) private var isPerformanceModeEnabled: Bool = true
 
     var body: some View {
-        Form {
-            Section("Graph options") {
-                Toggle("Core Temperature", isOn: $graphsCore)
-                Toggle("Surface Temperature", isOn: $graphsSurface)
-                Toggle("Ambient Temperature", isOn: $graphsAmbient)
+        VStack {
+            Text("Settings")
+                .font(.title2)
 
-                Toggle("Show note indicators", isOn: $graphsNotes)
+            Form {
+                Section {
+                    Toggle("Core Temperature", isOn: $isGraphsCoreEnabled)
+                    Toggle("Surface Temperature", isOn: $isGraphsSurfaceEnabled)
+                    Toggle("Ambient Temperature", isOn: $isGraphsAmbientEnabled)
+
+                    Toggle("Show note indicators", isOn: $isGraphsNotesEnabled)
+                } header: {
+                    Text("Graph settings")
+                        .bold()
+                }
+
+                Spacer().frame(height: 15)
+
+                Section {
+                    Toggle("Performance Mode", isOn: $isPerformanceModeEnabled)
+                    Text("Recommended, especially for long cooks.")
+                        .font(.subheadline)
+                        .bold()
+                    Text("Performance mode reduces graph resolution\nslightly in order to improve performance.")
+                        .font(.subheadline)
+                } header: {
+                    Text("Other")
+                        .bold()
+                }
             }
+            .padding(8)
         }
+        .padding()
     }
 }
 
