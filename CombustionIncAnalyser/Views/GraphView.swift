@@ -106,6 +106,7 @@ struct GraphView: View {
     @AppStorage(AppSettings.graphsSurface.rawValue) private var isGraphSurfaceEnabled: Bool = true
     @AppStorage(AppSettings.graphsAmbient.rawValue) private var isGraphAmbientEnabled: Bool = true
     @AppStorage(AppSettings.graphsNotes.rawValue) private var isGraphNotesEnabled: Bool = true
+    @AppStorage(AppSettings.graphsProbeNotInserted.rawValue) private var isGraphsProbeNotInsertedEnabled: Bool = true
     @AppStorage(AppSettings.performanceMode.rawValue) private var isPerformanceModeEnabled: Bool = true
 
     /// For performance, sample the graph and only show every second data point
@@ -118,11 +119,51 @@ struct GraphView: View {
         return data.filter { $0.sequenceNumber % 3 == 0 }
     }
 
+    typealias NotInsertedTemp = (lower: Double, upper: Double, isCompleted: Bool)
     private var _notInsertedRanges: [NotInsertedRange] {
-        [
-    //            NotInsertedRange(lower: 0, upper: 100),
-    //            NotInsertedRange(lower: 200, upper: 500)
-        ]
+        guard isGraphsProbeNotInsertedEnabled else {
+            return []
+        }
+        
+        return data
+            .reduce(into: [NotInsertedTemp]()) { partialResult, row in
+                // If the probe is not inserted, mark the previous iteration as completed, and move on
+                guard row.predictionState == .probeNotInserted else {
+                    if let latestResult = partialResult.last, latestResult.isCompleted == false {
+                        partialResult[partialResult.count - 1] = (latestResult.lower, latestResult.upper, true)
+                    }
+                    return
+                }
+
+                // *** Probe not inserted ***
+                if let latestResult = partialResult.last {
+                    if latestResult.isCompleted {
+                        // If the previous group is already completed, create a new group
+                        partialResult.append(
+                            (
+                                lower: row.timestamp,
+                                upper: row.timestamp,
+                                isCompleted: false
+                            )
+                        )
+                    } else {
+                        // If the previous group is not completed, update it
+                        partialResult[partialResult.count - 1] = (
+                            lower: latestResult.lower,
+                            upper: row.timestamp,
+                            isCompleted: false
+                        )
+                    }
+                } else {
+                    // If no groups exist, create a new group
+                    partialResult = [
+                        (lower: row.timestamp, upper: row.timestamp, isCompleted: false)
+                    ]
+                }
+            }
+            .map { temp in
+                NotInsertedRange(lower: temp.lower, upper: temp.upper)
+            }
     }
 
     /// Returns a struct with all the resolved positions on the graph, for the core, surface, ambient and "x" position

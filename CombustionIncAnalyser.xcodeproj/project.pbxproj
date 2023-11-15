@@ -23,6 +23,7 @@
 		CDB4B2082AFF94C1006E6597 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B2072AFF94C1006E6597 /* HomeView.swift */; };
 		CDB4B20A2AFFA95B006E6597 /* CookTimelineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B2092AFFA95B006E6597 /* CookTimelineRow.swift */; };
 		CDB4B20C2B016E70006E6597 /* CSVTemperatureParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B20B2B016E70006E6597 /* CSVTemperatureParser.swift */; };
+		CDD3149D2B04EF6F00A557F8 /* SelectFileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3149C2B04EF6F00A557F8 /* SelectFileScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		CDB4B2072AFF94C1006E6597 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CDB4B2092AFFA95B006E6597 /* CookTimelineRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookTimelineRow.swift; sourceTree = "<group>"; };
 		CDB4B20B2B016E70006E6597 /* CSVTemperatureParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVTemperatureParser.swift; sourceTree = "<group>"; };
+		CDD3149C2B04EF6F00A557F8 /* SelectFileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFileScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +194,7 @@
 				CD5F3EAD2B03AC61001F3061 /* GraphView.swift */,
 				CD5F3EB52B03DF96001F3061 /* NotesView.swift */,
 				CD5F3EB82B03EB08001F3061 /* SettingsView.swift */,
+				CDD3149C2B04EF6F00A557F8 /* SelectFileScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				CDB4B20C2B016E70006E6597 /* CSVTemperatureParser.swift in Sources */,
 				CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */,
 				CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureExporter.swift in Sources */,
+				CDD3149D2B04EF6F00A557F8 /* SelectFileScreen.swift in Sources */,
 				CD5F3EAE2B03AC61001F3061 /* GraphView.swift in Sources */,
 				CD5F3EB92B03EB08001F3061 /* SettingsView.swift in Sources */,
 			);

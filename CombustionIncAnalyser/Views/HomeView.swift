@@ -40,14 +40,14 @@ class HomeViewModel: ObservableObject {
         ]
 
         if panel.runModal() == .OK, let url = panel.url {
-            self.selectedFileURL = url
             self.didSelect(file: url)
         }
     }
 
     func didSelect(file: URL) {
         do {
-            
+            self.selectedFileURL = file
+
             let contents = try String(contentsOf: file)
             
             // Separate cook information from the remaining temperature data
@@ -165,15 +165,10 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             if viewModel.data.isEmpty {
-                VStack {
-                    Text("Select a file to get started!")
-                    
-                    Button(action: viewModel.didTapOpenFilepicker, label: {
-                        Text("Open Combustion Inc csv")
-                    })
-                    .padding(.top)
-                }
-                .padding()
+                SelectFileScreen(
+                    didSelectFile: viewModel.didSelect(file:),
+                    didTapOpenFilePicker: viewModel.didTapOpenFilepicker
+                )
             } else {
                 HStack(alignment: .top) {
                     chartView
