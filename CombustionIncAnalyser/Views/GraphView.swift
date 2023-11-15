@@ -186,14 +186,14 @@ struct GraphView: View {
             "Suface Temperature": Color.yellow,
             "Ambient Temperature": Color.red,
             "Probe not inserted": Color.gray.opacity(0.2),
-            "T1 (tip)": Color.orange,
+            "T1 (Tip)": Color.orange,
             "T2": Color.purple,
             "T3": Color.cyan,
             "T4": Color.teal,
             "T5": Color.mint,
             "T6": Color.pink,
             "T7": Color.brown,
-            "T8": Color.black
+            "T8 (Handle)": Color.black
         ]
     }
 
