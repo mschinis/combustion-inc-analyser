@@ -53,7 +53,7 @@ struct GraphView: View {
         }
         
         // Reduce graph resolution by 50%, when performance mode is enabled
-        return data.filter { $0.sequenceNumber % 3 == 0 }
+        return data.filter { $0.sequenceNumber % 5 == 0 }
     }
 
     typealias NotInsertedTemp = (lower: Double, upper: Double, isCompleted: Bool)
