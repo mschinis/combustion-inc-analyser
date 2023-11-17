@@ -151,6 +151,7 @@ struct HomeView: View {
         GraphView(
             enabledCurves: enabledCurves,
             data: viewModel.data,
+            notes: viewModel.notes,
             noteHoveredTimestamp: $noteHoveredTimestamp,
             graphAnnotationRequest: $graphAnnotationRequest
         )

@@ -31,17 +31,13 @@ struct NotInsertedRange: Identifiable {
 struct GraphView: View {
     var enabledCurves: AppSettingsEnabledCurves
     var data: [CookTimelineRow]
+    var notes: [CookTimelineRow]
+
     @Binding var noteHoveredTimestamp: Double?
     @Binding var graphAnnotationRequest: GraphAnnotationRequest?
 
     @State private var graphHoverPosition: GraphHoverPosition? = nil
 
-    
-//    @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
-
-//    @AppStorage(AppSettings.graphsCore.rawValue) private var isGraphCoreEnabled: Bool = true
-//    @AppStorage(AppSettings.graphsSurface.rawValue) private var isGraphSurfaceEnabled: Bool = true
-//    @AppStorage(AppSettings.graphsAmbient.rawValue) private var isGraphAmbientEnabled: Bool = true
     @AppStorage(AppSettingsKeys.graphsNotes.rawValue) private var isGraphNotesEnabled: Bool = true
     @AppStorage(AppSettingsKeys.graphsProbeNotInserted.rawValue) private var isGraphsProbeNotInsertedEnabled: Bool = true
     @AppStorage(AppSettingsKeys.performanceMode.rawValue) private var isPerformanceModeEnabled: Bool = true
@@ -212,6 +208,22 @@ struct GraphView: View {
                     .opacity(0.1)
             }
             
+            if isGraphNotesEnabled {
+                ForEach(notes) {
+                    PointMark(
+                        x: .value("X", $0.timestamp),
+                        y: .value("Y", 0)
+                    )
+                    .symbol {
+                        Image("pencil.and.list.clipboard")
+                            .font(.title2)
+                            .foregroundColor(Color(.graphNote))
+                            .offset(y: -24)
+                    }
+                }
+            }
+            
+            
             if let noteHoveredTimestamp {
                 RuleMark(x: .value("X", noteHoveredTimestamp))
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
@@ -226,7 +238,6 @@ struct GraphView: View {
                     .foregroundStyle(.yellow.opacity(0.8))
             }
         }
-//        .chartForegroundStyleScale(range: graphColors())
         .chartForegroundStyleScale(chartColors)
         // Get mouse position over the graph
         .chartOverlay { proxy in
@@ -283,6 +294,7 @@ struct GraphView: View {
     GraphView(
         enabledCurves: AppSettingsEnabledCurves.defaults,
         data: [],
+        notes: [],
         noteHoveredTimestamp: .constant(nil),
         graphAnnotationRequest: .constant(nil)
     )

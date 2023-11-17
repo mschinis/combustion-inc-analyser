@@ -12,13 +12,6 @@ struct TemperatureCurvesView: ChartContent {
     var enabledCurves: AppSettingsEnabledCurves
     var row: CookTimelineRow
 
-//    @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
-    
-//    @AppStorage(AppSettings.graphsCore.rawValue) private var isGraphCoreEnabled: Bool = true
-//    @AppStorage(AppSettings.graphsSurface.rawValue) private var isGraphSurfaceEnabled: Bool = true
-//    @AppStorage(AppSettings.graphsAmbient.rawValue) private var isGraphAmbientEnabled: Bool = true
-    @AppStorage(AppSettingsKeys.graphsNotes.rawValue) private var isGraphNotesEnabled: Bool = true
-
     var body: some ChartContent {
         if enabledCurves.core {
             // Core temperature graph
@@ -120,18 +113,6 @@ struct TemperatureCurvesView: ChartContent {
                 series: .value("T8", "T8")
             )
             .foregroundStyle(.black)
-        }
-
-        if isGraphNotesEnabled, let _ = row.notes {
-            PointMark(
-                x: .value("X", row.timestamp),
-                y: .value("Y", 0)
-            )
-            .symbol {
-                Image(systemName: "note")
-                    .offset(y: -16)
-                    .foregroundStyle(.blue)
-            }
         }
     }
 }
