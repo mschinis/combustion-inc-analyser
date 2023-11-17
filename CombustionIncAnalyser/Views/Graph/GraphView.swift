@@ -10,12 +10,8 @@ import SwiftUI
 
 struct GraphHoverPosition {
     var x: Float
-    
-    var sequenceNumber: Int
-    
-    var core: Float
-    var surface: Float
-    var ambient: Float
+
+    var data: CookTimelineRow
 }
 
 struct NotInsertedRange: Identifiable {
@@ -119,12 +115,8 @@ struct GraphView: View {
 
         return GraphHoverPosition(
             x: x,
-            
-            sequenceNumber: row.sequenceNumber,
 
-            core: row.estimatedCoreTemperature,
-            surface: row.virtualSurfaceTemperature,
-            ambient: row.virtualAmbientTemperature
+            data: row
         )
     }
     
@@ -200,6 +192,11 @@ struct GraphView: View {
         return percentage < 0.2
     }
 
+    func formatAnnotationTemperature(label: String, value: Float) -> AttributedString {
+        let formattedValue = String(format: "%.2f", value)
+        return try! AttributedString(markdown: "**\(label):** \(formattedValue)°")
+    }
+    
     var body: some View {
         Chart {
             ForEach(_data) {
@@ -243,12 +240,65 @@ struct GraphView: View {
                 RuleMark(x: .value("X", graphHoverPosition.x))
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
                     .foregroundStyle(.yellow.opacity(0.8))
-                    .annotation(position: shouldGraphHoverAnnotation(arraySize: data.count, currentPosition: graphHoverPosition.sequenceNumber) ? .leading : .trailing, alignment: .center, spacing: 16) {
+                    .annotation(position: shouldGraphHoverAnnotation(arraySize: data.count, currentPosition: graphHoverPosition.data.sequenceNumber) ? .leading : .trailing, alignment: .center, spacing: 16) {
                         VStack(alignment: .leading) {
                             Text("**Time:** \(TimeInterval(graphHoverPosition.x).hourMinuteFormat())")
-                            Text("**Core:** \(graphHoverPosition.core, specifier: "%.2f")°")
-                            Text("**Surface:** \(graphHoverPosition.surface, specifier: "%.2f")°")
-                            Text("**Ambient:** \(graphHoverPosition.ambient, specifier: "%.2f")°")
+
+                            if enabledCurves.core {
+                                Text(
+                                    formatAnnotationTemperature(label: "Core", value: graphHoverPosition.data.virtualCoreTemperature)
+                                )
+                            }
+                            if enabledCurves.surface {
+                                Text(
+                                    formatAnnotationTemperature(label: "Surface", value: graphHoverPosition.data.virtualSurfaceTemperature)
+                                )
+                            }
+                            if enabledCurves.ambient {
+                                Text(
+                                    formatAnnotationTemperature(label: "Ambient", value: graphHoverPosition.data.virtualAmbientTemperature)
+                                )
+                            }
+                            if enabledCurves.t1 {
+                                Text(
+                                    formatAnnotationTemperature(label: "T1 (Tip)", value: graphHoverPosition.data.t1)
+                                )
+                            }
+                            if enabledCurves.t2 {
+                                Text(
+                                    formatAnnotationTemperature(label: "T2", value: graphHoverPosition.data.t2)
+                                )
+                            }
+                            if enabledCurves.t3 {
+                                Text(
+                                    formatAnnotationTemperature(label: "T3", value: graphHoverPosition.data.t3)
+                                )
+                            }
+                            if enabledCurves.t4 {
+                                Text(
+                                    formatAnnotationTemperature(label: "T4", value: graphHoverPosition.data.t4)
+                                )
+                            }
+                            if enabledCurves.t5 {
+                                Text(
+                                    formatAnnotationTemperature(label: "T5", value: graphHoverPosition.data.t5)
+                                )
+                            }
+                            if enabledCurves.t6 {
+                                Text(
+                                    formatAnnotationTemperature(label: "T6", value: graphHoverPosition.data.t6)
+                                )
+                            }
+                            if enabledCurves.t7 {
+                                Text(
+                                    formatAnnotationTemperature(label: "T7", value: graphHoverPosition.data.t7)
+                                )
+                            }
+                            if enabledCurves.t8 {
+                                Text(
+                                    formatAnnotationTemperature(label: "T8 (Handle)", value: graphHoverPosition.data.t8)
+                                )
+                            }
                         }
                         .padding()
                         .background(
@@ -274,7 +324,7 @@ struct GraphView: View {
                 .onTapGesture {
                     if let graphHoverPosition {
                         self.graphAnnotationRequest = GraphAnnotationRequest(
-                            sequenceNumber: graphHoverPosition.sequenceNumber
+                            sequenceNumber: graphHoverPosition.data.sequenceNumber
                         )
                     }
                 }
