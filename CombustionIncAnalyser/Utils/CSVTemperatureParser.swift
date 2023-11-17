@@ -34,7 +34,9 @@ class CSVTemperatureParser {
     func parse() -> [CookTimelineRow] {
         return data
             .reduce(into: [CookTimelineRow]()) { partialResult, row in
-                let rowData = row.split(separator: ",").map { String($0) }
+                // Workaround, supporting commas inside a note. This assumes that the note column will always be the last column in the CSV
+                let maximumNumberOfSplits = self.headers.count - 1
+                let rowData = row.split(separator: ",", maxSplits: maximumNumberOfSplits).map { String($0) }
 
                 let dd = headers
                     .enumerated()
