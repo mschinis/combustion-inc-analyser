@@ -32,8 +32,8 @@ class CSVTemperatureExporter {
             .joined(separator: ",")
         }
     
-        let fileInfoWithHeaders = [fileInfo, strHeaders].joined(separator: "\r\n\r\n")
-        let outputData = ([fileInfoWithHeaders] + strData).joined(separator: "\r\n")
+        let fileInfoWithHeaders = [fileInfo, strHeaders].joined(separator: "\n\n")
+        let outputData = ([fileInfoWithHeaders] + strData).joined(separator: "\n")
         
         do {
             try outputData.write(to: url, atomically: false, encoding: .utf8)

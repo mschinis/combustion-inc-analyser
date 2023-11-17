@@ -18,7 +18,7 @@ class CSVTemperatureParser {
     private(set) var data: [String]
 
     init(_ csvString: String) {
-        let rows = csvString.split(separator: "\r\n").map { String($0) }
+        let rows = csvString.split(separator: "\n").map { String($0) }
 
         var headers = rows[0].split(separator: ",").map { String($0) }
         

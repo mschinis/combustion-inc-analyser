@@ -48,10 +48,13 @@ class HomeViewModel: ObservableObject {
         do {
             self.selectedFileURL = file
 
-            let contents = try String(contentsOf: file)
-            
+            let contents = (try String(contentsOf: file))
+                // Some CSV exports contain "\r\n" for each new CSV line, while others contain just "\n".
+                // Replace all the \r\n occurences with a "\n" which is a more widely accepted format.
+                .replacingOccurrences(of: "\r\n", with: "\n")
+
             // Separate cook information from the remaining temperature data
-            let fileSegments = contents.split(separator: "\r\n\r\n").map { String($0) }
+            let fileSegments = contents.split(separator: "\n\n").map { String($0) }
             let fileInfo = fileSegments[0]
             let temperatureInfo = fileSegments[1]
 
