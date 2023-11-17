@@ -43,14 +43,7 @@ struct SelectFileScreen: View {
             // Indent the dashed border slightly
             .padding(24)
             // Handle dropped file
-            .dropDestination(for: URL.self) { items, location in
-                if let fileURL = items.first, fileURL.absoluteString.hasSuffix(".csv") {
-                    didSelectFile(fileURL)
-                    return true
-                } else {
-                    return false
-                }
-            }
+            .csvDropDestination(with: didSelectFile)
     }
 }
 

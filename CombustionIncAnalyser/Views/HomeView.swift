@@ -181,6 +181,7 @@ struct HomeView: View {
 
                     notesView
                 }
+                .csvDropDestination(with: viewModel.didSelect(file:))
             }
         }
         // Annotation Sheet
