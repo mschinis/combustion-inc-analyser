@@ -192,6 +192,13 @@ struct GraphView: View {
             "T8 (Handle)": Color.black
         ]
     }
+    
+    func shouldGraphHoverAnnotation(arraySize: Int, currentPosition: Int) -> Bool {
+        let distance = Double(data.count) - Double(currentPosition)
+        let percentage = distance / Double(data.count)
+        
+        return percentage < 0.2
+    }
 
     var body: some View {
         Chart {
@@ -236,6 +243,19 @@ struct GraphView: View {
                 RuleMark(x: .value("X", graphHoverPosition.x))
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
                     .foregroundStyle(.yellow.opacity(0.8))
+                    .annotation(position: shouldGraphHoverAnnotation(arraySize: data.count, currentPosition: graphHoverPosition.sequenceNumber) ? .leading : .trailing, alignment: .center, spacing: 16) {
+                        VStack(alignment: .leading) {
+                            Text("**Time:** \(TimeInterval(graphHoverPosition.x).hourMinuteFormat())")
+                            Text("**Core:** \(graphHoverPosition.core, specifier: "%.2f")°")
+                            Text("**Surface:** \(graphHoverPosition.surface, specifier: "%.2f")°")
+                            Text("**Ambient:** \(graphHoverPosition.ambient, specifier: "%.2f")°")
+                        }
+                        .padding()
+                        .background(
+                            .regularMaterial
+                        )
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                    }
             }
         }
         .chartForegroundStyleScale(chartColors)
