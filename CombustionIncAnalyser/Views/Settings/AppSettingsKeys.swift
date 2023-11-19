@@ -13,4 +13,6 @@ enum AppSettingsKeys: String {
 
     case enabledCurves = "graphs.enabled"
     case performanceMode = "performance.mode"
+    
+    case temperatureUnit = "temperatureUnit"
 }

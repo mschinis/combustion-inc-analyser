@@ -24,6 +24,8 @@
 		CDB4B20A2AFFA95B006E6597 /* CookTimelineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B2092AFFA95B006E6597 /* CookTimelineRow.swift */; };
 		CDB4B20C2B016E70006E6597 /* CSVTemperatureParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B20B2B016E70006E6597 /* CSVTemperatureParser.swift */; };
 		CDB4B2122B09F0B7006E6597 /* SettingsVisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B2112B09F0B7006E6597 /* SettingsVisible.swift */; };
+		CDB4B2182B0A058B006E6597 /* TemperatureReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B2172B0A058B006E6597 /* TemperatureReading.swift */; };
+		CDB4B21A2B0A2CCA006E6597 /* TemperatureUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B2192B0A2CCA006E6597 /* TemperatureUnit.swift */; };
 		CDD3149D2B04EF6F00A557F8 /* SelectFileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3149C2B04EF6F00A557F8 /* SelectFileScreen.swift */; };
 		CDD314A02B05348100A557F8 /* AppSettingsEnabledCurves.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3149F2B05348100A557F8 /* AppSettingsEnabledCurves.swift */; };
 		CDD314A22B05349400A557F8 /* AppSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314A12B05349400A557F8 /* AppSettingsKeys.swift */; };
@@ -70,6 +72,8 @@
 		CDB4B2092AFFA95B006E6597 /* CookTimelineRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookTimelineRow.swift; sourceTree = "<group>"; };
 		CDB4B20B2B016E70006E6597 /* CSVTemperatureParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVTemperatureParser.swift; sourceTree = "<group>"; };
 		CDB4B2112B09F0B7006E6597 /* SettingsVisible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVisible.swift; sourceTree = "<group>"; };
+		CDB4B2172B0A058B006E6597 /* TemperatureReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureReading.swift; sourceTree = "<group>"; };
+		CDB4B2192B0A2CCA006E6597 /* TemperatureUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnit.swift; sourceTree = "<group>"; };
 		CDD3149C2B04EF6F00A557F8 /* SelectFileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFileScreen.swift; sourceTree = "<group>"; };
 		CDD3149F2B05348100A557F8 /* AppSettingsEnabledCurves.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsEnabledCurves.swift; sourceTree = "<group>"; };
 		CDD314A12B05349400A557F8 /* AppSettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsKeys.swift; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				CDB4B2092AFFA95B006E6597 /* CookTimelineRow.swift */,
+				CDB4B2172B0A058B006E6597 /* TemperatureReading.swift */,
+				CDB4B2192B0A2CCA006E6597 /* TemperatureUnit.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -396,7 +402,9 @@
 				CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */,
 				CDD314A22B05349400A557F8 /* AppSettingsKeys.swift in Sources */,
 				CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureExporter.swift in Sources */,
+				CDB4B21A2B0A2CCA006E6597 /* TemperatureUnit.swift in Sources */,
 				CDD314A02B05348100A557F8 /* AppSettingsEnabledCurves.swift in Sources */,
+				CDB4B2182B0A058B006E6597 /* TemperatureReading.swift in Sources */,
 				CDD3149D2B04EF6F00A557F8 /* SelectFileScreen.swift in Sources */,
 				CD5F3EAE2B03AC61001F3061 /* GraphView.swift in Sources */,
 				CDB4B2122B09F0B7006E6597 /* SettingsVisible.swift in Sources */,

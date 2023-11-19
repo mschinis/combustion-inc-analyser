@@ -26,6 +26,8 @@ struct NotInsertedRange: Identifiable {
 
 struct GraphView: View {
     var enabledCurves: AppSettingsEnabledCurves
+    var temperatureUnit: TemperatureUnit
+
     var data: [CookTimelineRow]
     var notes: [CookTimelineRow]
 
@@ -200,7 +202,11 @@ struct GraphView: View {
     var body: some View {
         Chart {
             ForEach(_data) {
-                TemperatureCurvesView(enabledCurves: enabledCurves, row: $0)
+                TemperatureCurvesView(
+                    temperatureUnit:  temperatureUnit,
+                    enabledCurves: enabledCurves,
+                    row: $0
+                )
             }
 
             ForEach(_notInsertedRanges) {
@@ -246,57 +252,90 @@ struct GraphView: View {
 
                             if enabledCurves.core {
                                 Text(
-                                    formatAnnotationTemperature(label: "Core", value: graphHoverPosition.data.virtualCoreTemperature)
+                                    formatAnnotationTemperature(
+                                        label: "Core",
+                                        value: graphHoverPosition.data.virtualCoreTemperature.value(for: temperatureUnit)
+                                    )
                                 )
                             }
                             if enabledCurves.surface {
                                 Text(
-                                    formatAnnotationTemperature(label: "Surface", value: graphHoverPosition.data.virtualSurfaceTemperature)
+                                    formatAnnotationTemperature(
+                                        label: "Surface",
+                                        value: graphHoverPosition.data.virtualSurfaceTemperature.value(for: temperatureUnit)
+                                    )
                                 )
                             }
                             if enabledCurves.ambient {
                                 Text(
-                                    formatAnnotationTemperature(label: "Ambient", value: graphHoverPosition.data.virtualAmbientTemperature)
+                                    formatAnnotationTemperature(
+                                        label: "Ambient",
+                                        value: graphHoverPosition.data.virtualAmbientTemperature.value(for: temperatureUnit)
+                                    )
                                 )
                             }
                             if enabledCurves.t1 {
                                 Text(
-                                    formatAnnotationTemperature(label: "T1 (Tip)", value: graphHoverPosition.data.t1)
+                                    formatAnnotationTemperature(
+                                        label: "T1 (Tip)",
+                                        value: graphHoverPosition.data.t1.value(for: temperatureUnit)
+                                    )
                                 )
                             }
                             if enabledCurves.t2 {
                                 Text(
-                                    formatAnnotationTemperature(label: "T2", value: graphHoverPosition.data.t2)
+                                    formatAnnotationTemperature(
+                                        label: "T2",
+                                        value: graphHoverPosition.data.t2.value(for: temperatureUnit)
+                                    )
                                 )
                             }
                             if enabledCurves.t3 {
                                 Text(
-                                    formatAnnotationTemperature(label: "T3", value: graphHoverPosition.data.t3)
+                                    formatAnnotationTemperature(
+                                        label: "T3",
+                                        value: graphHoverPosition.data.t3.value(for: temperatureUnit)
+                                    )
                                 )
                             }
                             if enabledCurves.t4 {
                                 Text(
-                                    formatAnnotationTemperature(label: "T4", value: graphHoverPosition.data.t4)
+                                    formatAnnotationTemperature(
+                                        label: "T4",
+                                        value: graphHoverPosition.data.t4.value(for: temperatureUnit)
+                                    )
                                 )
                             }
                             if enabledCurves.t5 {
                                 Text(
-                                    formatAnnotationTemperature(label: "T5", value: graphHoverPosition.data.t5)
+                                    formatAnnotationTemperature(
+                                        label: "T5",
+                                        value: graphHoverPosition.data.t5.value(for: temperatureUnit)
+                                    )
                                 )
                             }
                             if enabledCurves.t6 {
                                 Text(
-                                    formatAnnotationTemperature(label: "T6", value: graphHoverPosition.data.t6)
+                                    formatAnnotationTemperature(
+                                        label: "T6",
+                                        value: graphHoverPosition.data.t6.value(for: temperatureUnit)
+                                    )
                                 )
                             }
                             if enabledCurves.t7 {
                                 Text(
-                                    formatAnnotationTemperature(label: "T7", value: graphHoverPosition.data.t7)
+                                    formatAnnotationTemperature(
+                                        label: "T7",
+                                        value: graphHoverPosition.data.t7.value(for: temperatureUnit)
+                                    )
                                 )
                             }
                             if enabledCurves.t8 {
                                 Text(
-                                    formatAnnotationTemperature(label: "T8 (Handle)", value: graphHoverPosition.data.t8)
+                                    formatAnnotationTemperature(
+                                        label: "T8 (Handle)",
+                                        value: graphHoverPosition.data.t8.value(for: temperatureUnit)
+                                    )
                                 )
                             }
                         }
@@ -363,6 +402,7 @@ struct GraphView: View {
 #Preview {
     GraphView(
         enabledCurves: AppSettingsEnabledCurves.defaults,
+        temperatureUnit: .celsius,
         data: [],
         notes: [],
         noteHoveredTimestamp: .constant(nil),

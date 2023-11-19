@@ -49,19 +49,20 @@ struct CookTimelineRow: Codable, Identifiable {
     var sessionID: String
     var sequenceNumber: Int
 
-    var t1: Float
-    var t2: Float
-    var t3: Float
-    var t4: Float
-    var t5: Float
-    var t6: Float
-    var t7: Float
-    var t8: Float
+    var t1: TemperatureReading
+    var t2: TemperatureReading
+    var t3: TemperatureReading
+    var t4: TemperatureReading
+    var t5: TemperatureReading
+    var t6: TemperatureReading
+    var t7: TemperatureReading
+    var t8: TemperatureReading
 
-    var virtualCoreTemperature:     Float
-    var virtualSurfaceTemperature:  Float
-    var virtualAmbientTemperature:  Float
-    var estimatedCoreTemperature:   Float
+    var virtualCoreTemperature:     TemperatureReading
+    var virtualSurfaceTemperature:  TemperatureReading
+    var virtualAmbientTemperature:  TemperatureReading
+    var estimatedCoreTemperature:   TemperatureReading
+
     var predictionSetPoint:         Float
 
     var virtualCoreSensor: Sensor
@@ -147,7 +148,8 @@ extension CookTimelineRow {
         
         // T1
         if let tString = dictionary[CodingKeys.t1.rawValue] as? String,
-           let temp = Float(tString) {
+           let tFloat = Float(tString) {
+            let temp = TemperatureReading(celsius: tFloat)
             self.t1 = temp
         } else {
             throw DecodingCSVError.invalidProperty("t1")
@@ -155,7 +157,8 @@ extension CookTimelineRow {
 
         // T2
         if let tString = dictionary[CodingKeys.t2.rawValue] as? String,
-           let temp = Float(tString) {
+           let tFloat = Float(tString) {
+            let temp = TemperatureReading(celsius: tFloat)
             self.t2 = temp
         } else {
             throw DecodingCSVError.invalidProperty("t2")
@@ -163,7 +166,8 @@ extension CookTimelineRow {
         
         // T3
         if let tString = dictionary[CodingKeys.t3.rawValue] as? String,
-           let temp = Float(tString) {
+           let tFloat = Float(tString) {
+            let temp = TemperatureReading(celsius: tFloat)
             self.t3 = temp
         } else {
             throw DecodingCSVError.invalidProperty("t3")
@@ -171,7 +175,8 @@ extension CookTimelineRow {
         
         // T4
         if let tString = dictionary[CodingKeys.t4.rawValue] as? String,
-           let temp = Float(tString) {
+           let tFloat = Float(tString) {
+            let temp = TemperatureReading(celsius: tFloat)
             self.t4 = temp
         } else {
             throw DecodingCSVError.invalidProperty("t4")
@@ -179,7 +184,8 @@ extension CookTimelineRow {
         
         // T5
         if let tString = dictionary[CodingKeys.t5.rawValue] as? String,
-           let temp = Float(tString) {
+           let tFloat = Float(tString) {
+            let temp = TemperatureReading(celsius: tFloat)
             self.t5 = temp
         } else {
             throw DecodingCSVError.invalidProperty("t5")
@@ -187,7 +193,8 @@ extension CookTimelineRow {
         
         // T6
         if let tString = dictionary[CodingKeys.t6.rawValue] as? String,
-           let temp = Float(tString) {
+           let tFloat = Float(tString) {
+            let temp = TemperatureReading(celsius: tFloat)
             self.t6 = temp
         } else {
             throw DecodingCSVError.invalidProperty("t6")
@@ -195,7 +202,8 @@ extension CookTimelineRow {
         
         // T7
         if let tString = dictionary[CodingKeys.t7.rawValue] as? String,
-           let temp = Float(tString) {
+           let tFloat = Float(tString) {
+            let temp = TemperatureReading(celsius: tFloat)
             self.t7 = temp
         } else {
             throw DecodingCSVError.invalidProperty("t7")
@@ -203,7 +211,8 @@ extension CookTimelineRow {
         
         // T8
         if let tString = dictionary[CodingKeys.t8.rawValue] as? String,
-           let temp = Float(tString) {
+           let tFloat = Float(tString) {
+            let temp = TemperatureReading(celsius: tFloat)
             self.t8 = temp
         } else {
             throw DecodingCSVError.invalidProperty("t8")
@@ -211,7 +220,8 @@ extension CookTimelineRow {
 
         // virtualCoreTemperature
         if let tString = dictionary[CodingKeys.virtualCoreTemperature.rawValue] as? String,
-           let temp = Float(tString) {
+           let tFloat = Float(tString) {
+            let temp = TemperatureReading(celsius: tFloat)
             self.virtualCoreTemperature = temp
         } else {
             throw DecodingCSVError.invalidProperty("virtualCoreTemperature")
@@ -219,7 +229,8 @@ extension CookTimelineRow {
 
         // virtualSurfaceTemperature
         if let tString = dictionary[CodingKeys.virtualSurfaceTemperature.rawValue] as? String,
-           let temp = Float(tString) {
+           let tFloat = Float(tString) {
+            let temp = TemperatureReading(celsius: tFloat)
             self.virtualSurfaceTemperature = temp
         } else {
             throw DecodingCSVError.invalidProperty("virtualSurfaceTemperature")
@@ -227,7 +238,8 @@ extension CookTimelineRow {
 
         // virtualAmbientTemperature
         if let tString = dictionary[CodingKeys.virtualAmbientTemperature.rawValue] as? String,
-           let temp = Float(tString) {
+           let tFloat = Float(tString) {
+            let temp = TemperatureReading(celsius: tFloat)
             self.virtualAmbientTemperature = temp
         } else {
             throw DecodingCSVError.invalidProperty("virtualAmbientTemperature")
@@ -235,7 +247,8 @@ extension CookTimelineRow {
 
         // estimatedCoreTemperature
         if let tString = dictionary[CodingKeys.estimatedCoreTemperature.rawValue] as? String,
-           let temp = Float(tString) {
+           let tFloat = Float(tString) {
+            let temp = TemperatureReading(celsius: tFloat)
             self.estimatedCoreTemperature = temp
         } else {
             throw DecodingCSVError.invalidProperty("estimatedCoreTemperature")
@@ -243,8 +256,8 @@ extension CookTimelineRow {
 
         // predictionSetPoint
         if let tString = dictionary[CodingKeys.predictionSetPoint.rawValue] as? String,
-           let temp = Float(tString) {
-            self.predictionSetPoint = temp
+           let tFloat = Float(tString) {
+            self.predictionSetPoint = tFloat
         } else {
             throw DecodingCSVError.invalidProperty("predictionSetPoint")
         }

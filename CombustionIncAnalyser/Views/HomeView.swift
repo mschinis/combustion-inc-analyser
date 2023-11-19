@@ -115,6 +115,7 @@ struct HomeView: View {
     @Environment(\.isSettingsVisible) private var isSettingsVisible: Binding<Bool>
     
     @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
+    @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
 
     init() {
         self._viewModel = StateObject(wrappedValue: HomeViewModel())
@@ -131,7 +132,7 @@ struct HomeView: View {
     }
     
     func didTapOpenSettings() {
-        isSettingsVisible.wrappedValue = false
+        isSettingsVisible.wrappedValue = true
     }
     
     @MainActor
@@ -151,6 +152,8 @@ struct HomeView: View {
     var chartView: some View {
         GraphView(
             enabledCurves: enabledCurves,
+            temperatureUnit: temperatureUnit,
+            
             data: viewModel.data,
             notes: viewModel.notes,
             noteHoveredTimestamp: $noteHoveredTimestamp,

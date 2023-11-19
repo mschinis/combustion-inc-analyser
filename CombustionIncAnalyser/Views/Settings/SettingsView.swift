@@ -18,6 +18,7 @@ struct SettingsView: View {
 
     // Other
     @AppStorage(AppSettingsKeys.performanceMode.rawValue) private var isPerformanceModeEnabled: Bool = true
+    @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
 
     var body: some View {
         VStack {
@@ -63,8 +64,16 @@ struct SettingsView: View {
                 Spacer().frame(height: 16)
 
                 Section {
-                    Toggle("Performance Mode", isOn: $isPerformanceModeEnabled)
+                    Picker(selection: $temperatureUnit) {
+                        ForEach(TemperatureUnit.allCases) { unit in
+                            Text(unit.rawValue.capitalized).tag(unit)
+                        }
+                    } label: {
+                        Text("Temperature Unit")
+                    }
 
+                    Toggle("Performance Mode", isOn: $isPerformanceModeEnabled)
+                    
                     Text("Recommended, especially for long cooks.")
                         .font(.subheadline)
                         .bold()
