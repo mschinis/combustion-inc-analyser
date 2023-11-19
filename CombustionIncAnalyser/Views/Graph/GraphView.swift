@@ -395,6 +395,8 @@ struct GraphView: View {
                 }
             }
         })
+        .chartXAxisLabel("Time", alignment: .center)
+        .chartYAxisLabel("Temperature (\(temperatureUnit.rawValue.capitalized))")
         .padding()
     }
 }
