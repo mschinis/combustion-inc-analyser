@@ -11,9 +11,6 @@ import SwiftUI
 
 struct SettingsView: View {
     // Graph Curves
-    @AppStorage(AppSettingsKeys.graphsCore.rawValue) private var isGraphsCoreEnabled: Bool = true
-    @AppStorage(AppSettingsKeys.graphsSurface.rawValue) private var isGraphsSurfaceEnabled: Bool = true
-    @AppStorage(AppSettingsKeys.graphsAmbient.rawValue) private var isGraphsAmbientEnabled: Bool = true
     @AppStorage(AppSettingsKeys.graphsNotes.rawValue) private var isGraphsNotesEnabled: Bool = true
     @AppStorage(AppSettingsKeys.graphsProbeNotInserted.rawValue) private var isGraphsProbeNotInsertedEnabled: Bool = true
 

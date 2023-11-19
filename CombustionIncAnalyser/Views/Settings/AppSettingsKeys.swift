@@ -8,12 +8,9 @@
 import Foundation
 
 enum AppSettingsKeys: String {
-    case graphsCore = "graphs.core"
-    case graphsSurface = "graphs.surface"
-    case graphsAmbient = "graphs.ambient"
     case graphsNotes = "graphs.notes"
     case graphsProbeNotInserted = "graphs.probeNotInserted"
 
-    case enabledCurves = "graphs.enabledd"
+    case enabledCurves = "graphs.enabled"
     case performanceMode = "performance.mode"
 }

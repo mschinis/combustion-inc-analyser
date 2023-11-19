@@ -236,7 +236,7 @@ struct HomeView: View {
                 .disabled(viewModel.selectedFileURL == nil)
                 .help("Save file")
             }
-            
+
             // Share graph button
             ToolbarItem(id: "share", placement: .primaryAction) {
                 ShareLink(

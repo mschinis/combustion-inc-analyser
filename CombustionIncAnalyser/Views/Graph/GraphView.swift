@@ -43,7 +43,7 @@ struct GraphView: View {
         guard isPerformanceModeEnabled else {
             return data
         }
-        
+
         // Reduce graph resolution by 50%, when performance mode is enabled
         return data.filter { $0.sequenceNumber % 5 == 0 }
     }
