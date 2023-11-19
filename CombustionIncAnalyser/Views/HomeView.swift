@@ -23,7 +23,7 @@ class HomeViewModel: ObservableObject {
 
     @Published private(set) var selectedFileURL: URL? = nil
     @Published private(set) var data: [CookTimelineRow] = []
-    
+
     var notes: [CookTimelineRow] {
         data.filter {
             $0.notes?.isEmpty == false
@@ -110,8 +110,9 @@ struct HomeView: View {
 
     @State private var noteHoveredTimestamp: Double? = nil
     @State private var graphAnnotationRequest: GraphAnnotationRequest? = nil
-    @State private var areSettingsVisible = false
     @State private var areNotesVisible = true
+    
+    @Environment(\.isSettingsVisible) private var isSettingsVisible: Binding<Bool>
     
     @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
 
@@ -130,7 +131,7 @@ struct HomeView: View {
     }
     
     func didTapOpenSettings() {
-        areSettingsVisible = true
+        isSettingsVisible.wrappedValue = false
     }
     
     @MainActor
@@ -217,7 +218,7 @@ struct HomeView: View {
             }
             .padding()
         })
-        .sheet(isPresented: $areSettingsVisible, content: {
+        .sheet(isPresented: isSettingsVisible, content: {
             SettingsView()
         })
         .toolbar {

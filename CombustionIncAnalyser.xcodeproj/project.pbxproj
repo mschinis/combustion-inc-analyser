@@ -23,6 +23,7 @@
 		CDB4B2082AFF94C1006E6597 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B2072AFF94C1006E6597 /* HomeView.swift */; };
 		CDB4B20A2AFFA95B006E6597 /* CookTimelineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B2092AFFA95B006E6597 /* CookTimelineRow.swift */; };
 		CDB4B20C2B016E70006E6597 /* CSVTemperatureParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B20B2B016E70006E6597 /* CSVTemperatureParser.swift */; };
+		CDB4B2122B09F0B7006E6597 /* SettingsVisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B2112B09F0B7006E6597 /* SettingsVisible.swift */; };
 		CDD3149D2B04EF6F00A557F8 /* SelectFileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3149C2B04EF6F00A557F8 /* SelectFileScreen.swift */; };
 		CDD314A02B05348100A557F8 /* AppSettingsEnabledCurves.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3149F2B05348100A557F8 /* AppSettingsEnabledCurves.swift */; };
 		CDD314A22B05349400A557F8 /* AppSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314A12B05349400A557F8 /* AppSettingsKeys.swift */; };
@@ -68,6 +69,7 @@
 		CDB4B2072AFF94C1006E6597 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CDB4B2092AFFA95B006E6597 /* CookTimelineRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookTimelineRow.swift; sourceTree = "<group>"; };
 		CDB4B20B2B016E70006E6597 /* CSVTemperatureParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVTemperatureParser.swift; sourceTree = "<group>"; };
+		CDB4B2112B09F0B7006E6597 /* SettingsVisible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVisible.swift; sourceTree = "<group>"; };
 		CDD3149C2B04EF6F00A557F8 /* SelectFileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFileScreen.swift; sourceTree = "<group>"; };
 		CDD3149F2B05348100A557F8 /* AppSettingsEnabledCurves.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsEnabledCurves.swift; sourceTree = "<group>"; };
 		CDD314A12B05349400A557F8 /* AppSettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsKeys.swift; sourceTree = "<group>"; };
@@ -131,8 +133,8 @@
 		CDB4B1D82AFF80D5006E6597 /* CombustionIncAnalyser */ = {
 			isa = PBXGroup;
 			children = (
-				CDB4B2062AFF9492006E6597 /* SwiftData */,
 				CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */,
+				CDB4B2062AFF9492006E6597 /* SwiftData */,
 				CDB4B20F2B016EE2006E6597 /* Views */,
 				CDB4B20E2B016ECA006E6597 /* Models */,
 				CDB4B20D2B016EBF006E6597 /* Utils */,
@@ -208,9 +210,18 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		CDB4B2102B09F093006E6597 /* EnvironmentKeys */ = {
+			isa = PBXGroup;
+			children = (
+				CDB4B2112B09F0B7006E6597 /* SettingsVisible.swift */,
+			);
+			path = EnvironmentKeys;
+			sourceTree = "<group>";
+		};
 		CDD3149E2B05346A00A557F8 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				CDB4B2102B09F093006E6597 /* EnvironmentKeys */,
 				CDD314A12B05349400A557F8 /* AppSettingsKeys.swift */,
 				CDD3149F2B05348100A557F8 /* AppSettingsEnabledCurves.swift */,
 				CD5F3EB82B03EB08001F3061 /* SettingsView.swift */,
@@ -388,6 +399,7 @@
 				CDD314A02B05348100A557F8 /* AppSettingsEnabledCurves.swift in Sources */,
 				CDD3149D2B04EF6F00A557F8 /* SelectFileScreen.swift in Sources */,
 				CD5F3EAE2B03AC61001F3061 /* GraphView.swift in Sources */,
+				CDB4B2122B09F0B7006E6597 /* SettingsVisible.swift in Sources */,
 				CD5F3EB92B03EB08001F3061 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

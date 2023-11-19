@@ -10,14 +10,23 @@ import SwiftData
 
 @main
 struct CombustionIncAnalyserApp: App {
-    
+    @State private var isSettingsVisible = false
+
     @StateObject private var homeViewModel = HomeViewModel()
     
     var body: some Scene {
         WindowGroup {
             HomeView(viewModel: homeViewModel)
+                .environment(\.isSettingsVisible, $isSettingsVisible)
         }
         .commands {
+            CommandGroup(after: .appSettings) {
+                Button("Settings...") {
+                    isSettingsVisible = true
+                }
+                .keyboardShortcut(",")
+            }
+            
             CommandGroup(after: .newItem) {
                 Button("Open") {
                     homeViewModel.didTapOpenFilepicker()
