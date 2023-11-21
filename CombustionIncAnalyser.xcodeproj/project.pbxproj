@@ -31,6 +31,11 @@
 		CDD314A22B05349400A557F8 /* AppSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314A12B05349400A557F8 /* AppSettingsKeys.swift */; };
 		CDD314A42B057E5400A557F8 /* TemperatureCurvesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314A32B057E5400A557F8 /* TemperatureCurvesView.swift */; };
 		CDD314A92B080ADA00A557F8 /* CSVDropDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314A82B080ADA00A557F8 /* CSVDropDestination.swift */; };
+		CDD314B02B0CE97C00A557F8 /* TemperatureCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314AF2B0CE97C00A557F8 /* TemperatureCurve.swift */; };
+		CDD314B22B0CF28200A557F8 /* GraphTimelinePosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314B12B0CF28200A557F8 /* GraphTimelinePosition.swift */; };
+		CDD314B42B0CF2BF00A557F8 /* ProbeNotInsertedRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314B32B0CF2BF00A557F8 /* ProbeNotInsertedRange.swift */; };
+		CDD314B72B0CF32500A557F8 /* GraphAnnotationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314B62B0CF32500A557F8 /* GraphAnnotationRequest.swift */; };
+		CDD314B92B0CF39500A557F8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314B82B0CF39500A557F8 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +84,11 @@
 		CDD314A12B05349400A557F8 /* AppSettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsKeys.swift; sourceTree = "<group>"; };
 		CDD314A32B057E5400A557F8 /* TemperatureCurvesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureCurvesView.swift; sourceTree = "<group>"; };
 		CDD314A82B080ADA00A557F8 /* CSVDropDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVDropDestination.swift; sourceTree = "<group>"; };
+		CDD314AF2B0CE97C00A557F8 /* TemperatureCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureCurve.swift; sourceTree = "<group>"; };
+		CDD314B12B0CF28200A557F8 /* GraphTimelinePosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTimelinePosition.swift; sourceTree = "<group>"; };
+		CDD314B32B0CF2BF00A557F8 /* ProbeNotInsertedRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProbeNotInsertedRange.swift; sourceTree = "<group>"; };
+		CDD314B62B0CF32500A557F8 /* GraphAnnotationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphAnnotationRequest.swift; sourceTree = "<group>"; };
+		CDD314B82B0CF39500A557F8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +210,10 @@
 				CDB4B2092AFFA95B006E6597 /* CookTimelineRow.swift */,
 				CDB4B2172B0A058B006E6597 /* TemperatureReading.swift */,
 				CDB4B2192B0A2CCA006E6597 /* TemperatureUnit.swift */,
+				CDD314AF2B0CE97C00A557F8 /* TemperatureCurve.swift */,
+				CDD314B12B0CF28200A557F8 /* GraphTimelinePosition.swift */,
+				CDD314B32B0CF2BF00A557F8 /* ProbeNotInsertedRange.swift */,
+				CDD314B62B0CF32500A557F8 /* GraphAnnotationRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -210,7 +224,7 @@
 				CDD314A52B07A36A00A557F8 /* Graph */,
 				CDD314A62B07A38800A557F8 /* Notes */,
 				CDD3149E2B05346A00A557F8 /* Settings */,
-				CDB4B2072AFF94C1006E6597 /* HomeView.swift */,
+				CDD314B52B0CF31000A557F8 /* Home */,
 				CDD3149C2B04EF6F00A557F8 /* SelectFileScreen.swift */,
 			);
 			path = Views;
@@ -258,6 +272,15 @@
 				CDD314A82B080ADA00A557F8 /* CSVDropDestination.swift */,
 			);
 			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		CDD314B52B0CF31000A557F8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CDB4B2072AFF94C1006E6597 /* HomeView.swift */,
+				CDD314B82B0CF39500A557F8 /* HomeViewModel.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,20 +414,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDD314A42B057E5400A557F8 /* TemperatureCurvesView.swift in Sources */,
+				CDD314B42B0CF2BF00A557F8 /* ProbeNotInsertedRange.swift in Sources */,
 				CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */,
 				CD5F3EB42B03D4BB001F3061 /* TimeInterval.swift in Sources */,
 				CD5F3EB62B03DF96001F3061 /* NotesView.swift in Sources */,
 				CDB4B2082AFF94C1006E6597 /* HomeView.swift in Sources */,
 				CDB4B20A2AFFA95B006E6597 /* CookTimelineRow.swift in Sources */,
+				CDD314B22B0CF28200A557F8 /* GraphTimelinePosition.swift in Sources */,
+				CDD314B72B0CF32500A557F8 /* GraphAnnotationRequest.swift in Sources */,
 				CDD314A92B080ADA00A557F8 /* CSVDropDestination.swift in Sources */,
 				CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */,
 				CDB4B20C2B016E70006E6597 /* CSVTemperatureParser.swift in Sources */,
 				CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */,
 				CDD314A22B05349400A557F8 /* AppSettingsKeys.swift in Sources */,
 				CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureExporter.swift in Sources */,
+				CDD314B02B0CE97C00A557F8 /* TemperatureCurve.swift in Sources */,
 				CDB4B21A2B0A2CCA006E6597 /* TemperatureUnit.swift in Sources */,
 				CDD314A02B05348100A557F8 /* AppSettingsEnabledCurves.swift in Sources */,
 				CDB4B2182B0A058B006E6597 /* TemperatureReading.swift in Sources */,
+				CDD314B92B0CF39500A557F8 /* HomeViewModel.swift in Sources */,
 				CDD3149D2B04EF6F00A557F8 /* SelectFileScreen.swift in Sources */,
 				CD5F3EAE2B03AC61001F3061 /* GraphView.swift in Sources */,
 				CDB4B2122B09F0B7006E6597 /* SettingsVisible.swift in Sources */,

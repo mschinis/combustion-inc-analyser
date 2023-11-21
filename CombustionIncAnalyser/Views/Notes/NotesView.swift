@@ -38,7 +38,7 @@ struct NotesView: View {
                             Button(action: {
                                 graphAnnotationRequest = .init(
                                     sequenceNumber: row.sequenceNumber,
-                                    text: row.notes ?? ""
+                                    note: row.notes ?? ""
                                 )
                             }) {
                                 Image(systemName: "pencil")

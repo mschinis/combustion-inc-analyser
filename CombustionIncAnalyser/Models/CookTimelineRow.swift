@@ -81,13 +81,6 @@ struct CookTimelineRow: Codable, Identifiable {
         TimeInterval(timestamp)
     }
     
-    // A computed date, which helps us format the date correctly
-    // TODO: Change Date() with actual date of the cook
-//    var date: Date {
-//        let dayComponent = Calendar.current.startOfDay(for: Date())
-//        return dayComponent.addingTimeInterval(TimeInterval(timestamp))
-//    }
-
     enum CodingKeys: String, CodingKey, CaseIterable {
         case timestamp = "Timestamp"
         case sessionID = "SessionID"
@@ -322,6 +315,7 @@ extension CookTimelineRow {
         self.notes = dictionary[CodingKeys.notes.rawValue] as? String
     }
     
+    /// Converts this object into a dictionary, in order to convert it back to CSV, when saving.
     var serializedDictionary: [String: String] {
         var encoder = JSONEncoder()
         let dictionary = (try? JSONSerialization.jsonObject(with: JSONEncoder().encode(self))) as? [String: Any] ?? [:]

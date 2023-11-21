@@ -8,32 +8,22 @@
 import Charts
 import SwiftUI
 
-/// Used to indicate the position of where the graph or note is being hovered on
-struct GraphTimelinePosition {
-    var x: Float
-    var data: CookTimelineRow
-}
-
-struct NotInsertedRange: Identifiable {
-    var id: String {
-        "\(lower)_\(upper)"
-    }
-
-    var lower: Double
-    var upper: Double
-}
-
-
 struct GraphView: View {
+    /// List of enabled curves to be displayed on the graph
     var enabledCurves: AppSettingsEnabledCurves
+    /// The preferred unit of temperature from the settings
     var temperatureUnit: TemperatureUnit
-
+    /// The data to render on the chart
     var data: [CookTimelineRow]
+    /// List of notes to display
     var notes: [CookTimelineRow]
-
+    
+    /// The note that is currently being hovered on
     @Binding var noteHoverPosition: GraphTimelinePosition?
+    /// A temporary variable which stores the note creation/editing payload
     @Binding var graphAnnotationRequest: GraphAnnotationRequest?
 
+    /// The current position of the mouse over the graph, with the associated data to display
     @State private var graphHoverPosition: GraphTimelinePosition? = nil
 
     @AppStorage(AppSettingsKeys.graphsNotes.rawValue) private var isGraphNotesEnabled: Bool = true
@@ -51,7 +41,11 @@ struct GraphView: View {
     }
 
     typealias NotInsertedTemp = (lower: Double, upper: Double, isCompleted: Bool)
-    private var _notInsertedRanges: [NotInsertedRange] {
+
+    /// Calculates the range at which the probe was not inserted, by looking at the PredictionState property from the csv.
+    /// If the setting is disabled via settings, this returns an empty array.
+    /// If the setting is enabled, it generates an array of lower/upper bounds that indicates the times where the probe is removed
+    private var _notInsertedRanges: [ProbeNotInsertedRange] {
         guard isGraphsProbeNotInsertedEnabled else {
             return []
         }
@@ -93,7 +87,7 @@ struct GraphView: View {
                 }
             }
             .map { temp in
-                NotInsertedRange(lower: temp.lower, upper: temp.upper)
+                ProbeNotInsertedRange(lower: temp.lower, upper: temp.upper)
             }
     }
 
@@ -122,39 +116,37 @@ struct GraphView: View {
         )
     }
     
-    var chartColors: KeyValuePairs<String, Color> {
-        return [
-            "Core Temperature": Color.blue,
-            "Suface Temperature": Color.yellow,
-            "Ambient Temperature": Color.red,
-            "Probe not inserted": Color.gray.opacity(0.2),
-            "T1 (Tip)": Color.orange,
-            "T2": Color.purple,
-            "T3": Color.cyan,
-            "T4": Color.teal,
-            "T5": Color.mint,
-            "T6": Color.pink,
-            "T7": Color.brown,
-            "T8 (Handle)": Color.black
-        ]
-    }
-    
-    func shouldGraphHoverAnnotation(arraySize: Int, currentPosition: Int) -> Bool {
+    /// Controls whether the location of the annotation view should be at the left or the right of the rule mark line
+    ///
+    /// - Parameters:
+    ///   - currentPosition: The current position of the rule mark/line
+    /// - Returns: True when the rulemark is at the last 20% of the time axis, false when it's at the first 80%
+    func isRuleMarkTowardsEnd(currentPosition: Int) -> Bool {
         let distance = Double(data.count) - Double(currentPosition)
         let percentage = distance / Double(data.count)
         
-        return percentage < 0.2
+        return percentage > 0.2
     }
-
+    
+    /// Creates a label to be used in the graph annotation, for each temperature, and formats the temperature to two decimal places
+    /// - Parameters:
+    ///   - label: Label to be displayed in bold
+    ///   - value: Value to be formatted
+    /// - Returns: The formatted string
     func formatAnnotationTemperature(label: String, value: Float) -> AttributedString {
         let formattedValue = String(format: "%.2f", value)
         return try! AttributedString(markdown: "**\(label):** \(formattedValue)°")
     }
     
-    func annotationView(for x: Float, data: CookTimelineRow) -> some View {
+    /// Returns a view to be used as an annotation, displaying the temperatures on the graph
+    /// - Parameters:
+    ///   - time: The time variable, which should as the first metric
+    ///   - data: The probe temperatures which correspond to the time
+    /// - Returns: The view to display in the annotation
+    func annotationView(for time: Float, data: CookTimelineRow) -> some View {
         VStack(alignment: .leading) {
-            Text("**Time:** \(TimeInterval(x).hourMinuteFormat())")
-
+            Text("**Time:** \(TimeInterval(time).hourMinuteFormat())")
+            
             if enabledCurves.core {
                 Text(
                     formatAnnotationTemperature(
@@ -163,6 +155,7 @@ struct GraphView: View {
                     )
                 )
             }
+
             if enabledCurves.surface {
                 Text(
                     formatAnnotationTemperature(
@@ -261,6 +254,7 @@ struct GraphView: View {
                 )
             }
 
+            // Highlight the part of the graph where the probe is not inserted in the meat
             ForEach(_notInsertedRanges) {
                     RectangleMark(
                         xStart: .value("X1", $0.lower),
@@ -270,6 +264,7 @@ struct GraphView: View {
                     .opacity(0.1)
             }
             
+            // Add an icon to the chart, for each created note.
             if isGraphNotesEnabled {
                 ForEach(notes) {
                     PointMark(
@@ -291,7 +286,7 @@ struct GraphView: View {
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
                     .foregroundStyle(.gray.opacity(0.8))
                     .annotation(
-                        position: shouldGraphHoverAnnotation(arraySize: data.count, currentPosition: noteHoverPosition.data.sequenceNumber) ? .leading : .trailing,
+                        position: isRuleMarkTowardsEnd(currentPosition: noteHoverPosition.data.sequenceNumber) ? .trailing : .leading,
                         alignment: .center,
                         spacing: 16
                     ) {
@@ -306,7 +301,7 @@ struct GraphView: View {
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
                     .foregroundStyle(.yellow.opacity(0.8))
                     .annotation(
-                        position: shouldGraphHoverAnnotation(arraySize: data.count, currentPosition: graphHoverPosition.data.sequenceNumber) ? .leading : .trailing,
+                        position: isRuleMarkTowardsEnd(currentPosition: graphHoverPosition.data.sequenceNumber) ? .trailing : .leading,
                         alignment: .center,
                         spacing: 16
                     ) {
@@ -314,7 +309,10 @@ struct GraphView: View {
                     }
             }
         }
-        .chartForegroundStyleScale(chartColors)
+        // Map the curve to the correct color
+        .chartForegroundStyleScale(mapping: { (plottable: TemperatureCurve) -> Color in
+            plottable.color
+        })
         // Get mouse position over the graph
         .chartOverlay { proxy in
             Color.clear

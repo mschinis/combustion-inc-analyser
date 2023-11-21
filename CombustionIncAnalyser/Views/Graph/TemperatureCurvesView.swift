@@ -9,111 +9,71 @@ import Charts
 import SwiftUI
 
 struct TemperatureCurvesView: ChartContent {
+    /// The temperature unit being used right now
     var temperatureUnit: TemperatureUnit
+    /// The temperature graph curves which are enabled
     var enabledCurves: AppSettingsEnabledCurves
+    /// The parsed csv row which should be rendered
     var row: CookTimelineRow
-
+    
+    /// Returns a LineMark object for the specified temperature curve.
+    ///
+    /// - Parameters:
+    ///   - series: The series of the given value
+    ///   - value: The "y" value on the graph, for the given series
+    /// - Returns: LineMark view to be used onthe chart
+    func lineMark(series: TemperatureCurve, value: TemperatureReading) -> some ChartContent {
+        LineMark(
+            x: .value("Time", row.timestamp),
+            y: .value(series.rawValue, value.value(for: temperatureUnit)),
+            series: .value(series.rawValue, series)
+        )
+        .foregroundStyle(by: .value("Series", series))
+    }
+    
     var body: some ChartContent {
         if enabledCurves.core {
-            // Core temperature graph
-            LineMark(
-                x: .value("Timestamp", row.timestamp),
-                y: .value("Core Temperature", row.virtualCoreTemperature.value(for: temperatureUnit)),
-                series: .value("Core Temperature", "A")
-            )
-            .foregroundStyle(.blue)
+            lineMark(series: .core, value: row.virtualCoreTemperature)
         }
 
         if enabledCurves.surface {
-            // Surface temperature graph
-            LineMark(
-                x: .value("Timestamp", row.timestamp),
-                y: .value("Suface Temperature", row.virtualSurfaceTemperature.value(for: temperatureUnit)),
-                series: .value("Surface Temperature", "B")
-            )
-            .foregroundStyle(.yellow)
+            lineMark(series: .surface, value: row.virtualSurfaceTemperature)
         }
         
         if enabledCurves.ambient {
-            // Ambient temperature graph
-            LineMark(
-                x: .value("Timestamp", row.timestamp),
-                y: .value("Ambient Temperature", row.virtualAmbientTemperature.value(for: temperatureUnit)),
-                series: .value("Ambient Temperature", "C")
-            )
-            .foregroundStyle(.red)
+            lineMark(series: .ambient, value: row.virtualAmbientTemperature)
         }
         
         if enabledCurves.t1 {
-            LineMark(
-                x: .value("Timestamp", row.timestamp),
-                y: .value("T1", row.t1.value(for: temperatureUnit)),
-                series: .value("T1", "T1")
-            )
-            .foregroundStyle(.orange)
+            lineMark(series: .t1, value: row.t1)
         }
         
         if enabledCurves.t2 {
-            LineMark(
-                x: .value("Timestamp", row.timestamp),
-                y: .value("T2", row.t2.value(for: temperatureUnit)),
-                series: .value("T2", "T2")
-            )
-            .foregroundStyle(.purple)
+            lineMark(series: .t2, value: row.t2)
         }
         
         if enabledCurves.t3 {
-            LineMark(
-                x: .value("Timestamp", row.timestamp),
-                y: .value("T3", row.t3.value(for: temperatureUnit)),
-                series: .value("T3", "T3")
-            )
-            .foregroundStyle(.cyan)
+            lineMark(series: .t3, value: row.t3)
         }
-        
+
         if enabledCurves.t4 {
-            LineMark(
-                x: .value("Timestamp", row.timestamp),
-                y: .value("T4", row.t4.value(for: temperatureUnit)),
-                series: .value("T4", "T4")
-            )
-            .foregroundStyle(.teal)
+            lineMark(series: .t4, value: row.t4)
         }
         
         if enabledCurves.t5 {
-            LineMark(
-                x: .value("Timestamp", row.timestamp),
-                y: .value("T5", row.t5.value(for: temperatureUnit)),
-                series: .value("T5", "T5")
-            )
-            .foregroundStyle(.mint)
+            lineMark(series: .t5, value: row.t5)
         }
         
         if enabledCurves.t6 {
-            LineMark(
-                x: .value("Timestamp", row.timestamp),
-                y: .value("T6", row.t6.value(for: temperatureUnit)),
-                series: .value("T6", "T6")
-            )
-            .foregroundStyle(.pink)
+            lineMark(series: .t6, value: row.t6)
         }
         
         if enabledCurves.t7 {
-            LineMark(
-                x: .value("Timestamp", row.timestamp),
-                y: .value("T7", row.t7.value(for: temperatureUnit)),
-                series: .value("T7", "T7")
-            )
-            .foregroundStyle(.brown)
+            lineMark(series: .t7, value: row.t7)
         }
         
         if enabledCurves.t8 {
-            LineMark(
-                x: .value("Timestamp", row.timestamp),
-                y: .value("T8", row.t8.value(for: temperatureUnit)),
-                series: .value("T8", "T8")
-            )
-            .foregroundStyle(.black)
+            lineMark(series: .t8, value: row.t8)
         }
     }
 }

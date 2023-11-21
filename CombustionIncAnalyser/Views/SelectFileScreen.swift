@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SelectFileScreen: View {
+    /// Callback indicating that a file was selected or drag/dropped
     var didSelectFile: (URL) -> Void
+    /// Callback indicating that the user tapped on the UI, to open a file
     var didTapOpenFilePicker: () -> Void
 
     var body: some View {

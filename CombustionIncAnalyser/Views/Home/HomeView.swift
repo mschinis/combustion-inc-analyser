@@ -8,112 +8,19 @@
 import SwiftUI
 import Charts
 
-struct GraphAnnotationRequest: Identifiable {
-    var id: Int {
-        sequenceNumber
-    }
-
-    var sequenceNumber: Int
-    var text: String = ""
-}
-
-class HomeViewModel: ObservableObject {
-    private(set) var fileInfo: String = ""
-    private(set) var csvParser: CSVTemperatureParser!
-
-    @Published private(set) var selectedFileURL: URL? = nil
-    @Published private(set) var data: [CookTimelineRow] = []
-
-    var notes: [CookTimelineRow] {
-        data.filter {
-            $0.notes?.isEmpty == false
-        }
-    }
-
-    func didTapOpenFilepicker() {
-        let panel = NSOpenPanel()
-
-        panel.allowsMultipleSelection = false
-        panel.canChooseDirectories = false
-        panel.allowedContentTypes = [
-            .init(filenameExtension: "csv")!
-        ]
-
-        if panel.runModal() == .OK, let url = panel.url {
-            self.didSelect(file: url)
-        }
-    }
-
-    func didSelect(file: URL) {
-        do {
-            self.selectedFileURL = file
-
-            let contents = (try String(contentsOf: file))
-                // Some CSV exports contain "\r\n" for each new CSV line, while others contain just "\n".
-                // Replace all the \r\n occurences with a "\n" which is a more widely accepted format.
-                .replacingOccurrences(of: "\r\n", with: "\n")
-
-            // Separate cook information from the remaining temperature data
-            let fileSegments = contents.split(separator: "\n\n").map { String($0) }
-            let fileInfo = fileSegments[0]
-            let temperatureInfo = fileSegments[1]
-
-            self.fileInfo = fileInfo
-            self.csvParser = CSVTemperatureParser(temperatureInfo)
-            self.data = csvParser.parse()
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func didAddAnnotation(sequenceNumber: Int, text: String) {
-        guard let index = data.firstIndex(where: { $0.sequenceNumber == sequenceNumber }) else {
-            return
-        }
-
-        var row = data[index]
-        row.notes = text
-
-        data[index] = row
-    }
-    
-    func didRemoveAnnotation(sequenceNumber: Int) {
-        guard let index = data.firstIndex(where: { $0.sequenceNumber == sequenceNumber }) else {
-            return
-        }
-
-        var row = data[index]
-        row.notes = nil
-
-        data[index] = row
-    }
-    
-    func didTapSave() {
-        guard let selectedFileURL else {
-            return
-        }
-
-        CSVTemperatureExporter(
-            url: selectedFileURL,
-            fileInfo: fileInfo,
-            headers: csvParser.headers,
-            data: data
-        )
-        .save()
-    }
-}
 
 struct HomeView: View {
     @StateObject private var viewModel: HomeViewModel
-
-    @State private var graphHoverPosition: GraphTimelinePosition? = nil
-
+    
+    /// The note being hovered over, at the right side of the sidebar
     @State private var noteHoverPosition: GraphTimelinePosition? = nil
+    /// The note being created/edited
     @State private var graphAnnotationRequest: GraphAnnotationRequest? = nil
-    @State private var areNotesVisible = true
-    
+    /// Controls the visibility of the notes sidebar
+    @State private var isNotesSidebarVisible = true
+    /// Controls the visibility of the settings sheet
     @Environment(\.isSettingsVisible) private var isSettingsVisible: Binding<Bool>
-    
+
     @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
     @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
 
@@ -125,17 +32,21 @@ struct HomeView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
+    /// Changes the state of visibility of the notes
     func didTapToggleNotes() {
         withAnimation {
-            areNotesVisible.toggle()
+            isNotesSidebarVisible.toggle()
         }
     }
     
+    /// Changes the state of the settings view visibility
     func didTapOpenSettings() {
         isSettingsVisible.wrappedValue = true
     }
     
     @MainActor
+    /// Generates an image out of the current chart being displayed
+    /// - Returns: The generated image
     private func generateGraphSnapshot() -> CGImage? {
         let renderer = ImageRenderer(
             content: chartView
@@ -148,7 +59,8 @@ struct HomeView: View {
             
         return renderer.cgImage
     }
-
+    
+    /// The chart view being displayed
     var chartView: some View {
         GraphView(
             enabledCurves: enabledCurves,
@@ -161,7 +73,8 @@ struct HomeView: View {
         )
         .padding()
     }
-
+    
+    /// The notes sidebar view
     var notesView: some View {
         NotesView(
             notes: viewModel.notes,
@@ -169,8 +82,8 @@ struct HomeView: View {
             graphAnnotationRequest: $graphAnnotationRequest,
             didTapRemoveAnnotation: viewModel.didRemoveAnnotation(sequenceNumber:)
         )
-        .frame(width: areNotesVisible ? 300 : 0)
-        .opacity(areNotesVisible ? 1 : 0)
+        .frame(width: isNotesSidebarVisible ? 300 : 0)
+        .opacity(isNotesSidebarVisible ? 1 : 0)
     }
 
     var body: some View {
@@ -196,9 +109,9 @@ struct HomeView: View {
 
                 TextEditor(
                     text: Binding(get: {
-                        item.text
+                        item.note
                     }, set: { newValue in
-                        graphAnnotationRequest?.text = newValue
+                        graphAnnotationRequest?.note = newValue
                     })
                 )
                 .frame(width: 300, height: 200)
@@ -208,7 +121,7 @@ struct HomeView: View {
                         // Update graph
                         viewModel.didAddAnnotation(
                             sequenceNumber: item.sequenceNumber,
-                            text: item.text
+                            text: item.note
                         )
                     
                         // Close the sheet
