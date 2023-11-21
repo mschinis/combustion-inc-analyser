@@ -80,6 +80,7 @@ struct SettingsView: View {
 
                     Text("Performance mode reduces graph resolution\nslightly in order to improve performance.")
                         .font(.subheadline)
+                        .fixedSize()
                 } header: {
                     Text("Other")
                         .bold()

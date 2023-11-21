@@ -8,9 +8,9 @@
 import Charts
 import SwiftUI
 
-struct GraphHoverPosition {
+/// Used to indicate the position of where the graph or note is being hovered on
+struct GraphTimelinePosition {
     var x: Float
-
     var data: CookTimelineRow
 }
 
@@ -31,10 +31,10 @@ struct GraphView: View {
     var data: [CookTimelineRow]
     var notes: [CookTimelineRow]
 
-    @Binding var noteHoveredTimestamp: Double?
+    @Binding var noteHoverPosition: GraphTimelinePosition?
     @Binding var graphAnnotationRequest: GraphAnnotationRequest?
 
-    @State private var graphHoverPosition: GraphHoverPosition? = nil
+    @State private var graphHoverPosition: GraphTimelinePosition? = nil
 
     @AppStorage(AppSettingsKeys.graphsNotes.rawValue) private var isGraphNotesEnabled: Bool = true
     @AppStorage(AppSettingsKeys.graphsProbeNotInserted.rawValue) private var isGraphsProbeNotInsertedEnabled: Bool = true
@@ -102,7 +102,7 @@ struct GraphView: View {
     ///
     /// - Parameter x: The horizontal position where the user is hovering over the graph
     /// - Returns: The information of where we should highlight the graph
-    func value(x: Float) -> GraphHoverPosition? {
+    func value(x: Float) -> GraphTimelinePosition? {
         // Round to the closest 5th second, since the data is structured as such
         let closestValue = Double(round(x / 5) * 5)
         
@@ -115,7 +115,7 @@ struct GraphView: View {
             return nil
         }
 
-        return GraphHoverPosition(
+        return GraphTimelinePosition(
             x: x,
 
             data: row
@@ -123,54 +123,6 @@ struct GraphView: View {
     }
     
     var chartColors: KeyValuePairs<String, Color> {
-//        var colors: [Color] = []
-//        
-//        if enabledCurves.ambient {
-//            colors.append(Color.blue)
-//        }
-//        
-//        if enabledCurves.surface {
-//            colors.append(Color.yellow)
-//        }
-//        
-//        if enabledCurves.ambient {
-//            colors.append(Color.red)
-//        }
-//        
-//        if enabledCurves.t1 {
-//            colors.append(Color.orange)
-//        }
-//        
-//        if enabledCurves.t2 {
-//            colors.append(Color.purple)
-//        }
-//        
-//        if enabledCurves.t3 {
-//            colors.append(Color.cyan)
-//        }
-//        
-//        if enabledCurves.t4 {
-//            colors.append(Color.teal)
-//        }
-//        
-//        if enabledCurves.t5 {
-//            colors.append(Color.mint)
-//        }
-//        
-//        if enabledCurves.t6 {
-//            colors.append(Color.pink)
-//        }
-//        
-//        if enabledCurves.t7 {
-//            colors.append(Color.brown)
-//        }
-//        
-//        if enabledCurves.t8 {
-//            colors.append(Color.black)
-//        }
-
-        
-        
         return [
             "Core Temperature": Color.blue,
             "Suface Temperature": Color.yellow,
@@ -197,6 +149,106 @@ struct GraphView: View {
     func formatAnnotationTemperature(label: String, value: Float) -> AttributedString {
         let formattedValue = String(format: "%.2f", value)
         return try! AttributedString(markdown: "**\(label):** \(formattedValue)°")
+    }
+    
+    func annotationView(for x: Float, data: CookTimelineRow) -> some View {
+        VStack(alignment: .leading) {
+            Text("**Time:** \(TimeInterval(x).hourMinuteFormat())")
+
+            if enabledCurves.core {
+                Text(
+                    formatAnnotationTemperature(
+                        label: "Core",
+                        value: data.virtualCoreTemperature.value(for: temperatureUnit)
+                    )
+                )
+            }
+            if enabledCurves.surface {
+                Text(
+                    formatAnnotationTemperature(
+                        label: "Surface",
+                        value: data.virtualSurfaceTemperature.value(for: temperatureUnit)
+                    )
+                )
+            }
+            if enabledCurves.ambient {
+                Text(
+                    formatAnnotationTemperature(
+                        label: "Ambient",
+                        value: data.virtualAmbientTemperature.value(for: temperatureUnit)
+                    )
+                )
+            }
+            if enabledCurves.t1 {
+                Text(
+                    formatAnnotationTemperature(
+                        label: "T1 (Tip)",
+                        value: data.t1.value(for: temperatureUnit)
+                    )
+                )
+            }
+            if enabledCurves.t2 {
+                Text(
+                    formatAnnotationTemperature(
+                        label: "T2",
+                        value: data.t2.value(for: temperatureUnit)
+                    )
+                )
+            }
+            if enabledCurves.t3 {
+                Text(
+                    formatAnnotationTemperature(
+                        label: "T3",
+                        value: data.t3.value(for: temperatureUnit)
+                    )
+                )
+            }
+            if enabledCurves.t4 {
+                Text(
+                    formatAnnotationTemperature(
+                        label: "T4",
+                        value: data.t4.value(for: temperatureUnit)
+                    )
+                )
+            }
+            if enabledCurves.t5 {
+                Text(
+                    formatAnnotationTemperature(
+                        label: "T5",
+                        value: data.t5.value(for: temperatureUnit)
+                    )
+                )
+            }
+            if enabledCurves.t6 {
+                Text(
+                    formatAnnotationTemperature(
+                        label: "T6",
+                        value: data.t6.value(for: temperatureUnit)
+                    )
+                )
+            }
+            if enabledCurves.t7 {
+                Text(
+                    formatAnnotationTemperature(
+                        label: "T7",
+                        value: data.t7.value(for: temperatureUnit)
+                    )
+                )
+            }
+            if enabledCurves.t8 {
+                Text(
+                    formatAnnotationTemperature(
+                        label: "T8 (Handle)",
+                        value: data.t8.value(for: temperatureUnit)
+                    )
+                )
+            }
+        }
+        .padding()
+        .background(
+            .regularMaterial
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 16))
     }
     
     var body: some View {
@@ -233,11 +285,18 @@ struct GraphView: View {
                 }
             }
             
-            
-            if let noteHoveredTimestamp {
-                RuleMark(x: .value("X", noteHoveredTimestamp))
+            // When a note is hovered, this displays a vertical line indicating where the note was placed
+            if let noteHoverPosition {
+                RuleMark(x: .value("X", noteHoverPosition.x))
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
                     .foregroundStyle(.gray.opacity(0.8))
+                    .annotation(
+                        position: shouldGraphHoverAnnotation(arraySize: data.count, currentPosition: noteHoverPosition.data.sequenceNumber) ? .leading : .trailing,
+                        alignment: .center,
+                        spacing: 16
+                    ) {
+                        annotationView(for: noteHoverPosition.x, data: noteHoverPosition.data)
+                    }
             }
 
             // Show the points on the graph being hovered over.
@@ -246,104 +305,12 @@ struct GraphView: View {
                 RuleMark(x: .value("X", graphHoverPosition.x))
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
                     .foregroundStyle(.yellow.opacity(0.8))
-                    .annotation(position: shouldGraphHoverAnnotation(arraySize: data.count, currentPosition: graphHoverPosition.data.sequenceNumber) ? .leading : .trailing, alignment: .center, spacing: 16) {
-                        VStack(alignment: .leading) {
-                            Text("**Time:** \(TimeInterval(graphHoverPosition.x).hourMinuteFormat())")
-
-                            if enabledCurves.core {
-                                Text(
-                                    formatAnnotationTemperature(
-                                        label: "Core",
-                                        value: graphHoverPosition.data.virtualCoreTemperature.value(for: temperatureUnit)
-                                    )
-                                )
-                            }
-                            if enabledCurves.surface {
-                                Text(
-                                    formatAnnotationTemperature(
-                                        label: "Surface",
-                                        value: graphHoverPosition.data.virtualSurfaceTemperature.value(for: temperatureUnit)
-                                    )
-                                )
-                            }
-                            if enabledCurves.ambient {
-                                Text(
-                                    formatAnnotationTemperature(
-                                        label: "Ambient",
-                                        value: graphHoverPosition.data.virtualAmbientTemperature.value(for: temperatureUnit)
-                                    )
-                                )
-                            }
-                            if enabledCurves.t1 {
-                                Text(
-                                    formatAnnotationTemperature(
-                                        label: "T1 (Tip)",
-                                        value: graphHoverPosition.data.t1.value(for: temperatureUnit)
-                                    )
-                                )
-                            }
-                            if enabledCurves.t2 {
-                                Text(
-                                    formatAnnotationTemperature(
-                                        label: "T2",
-                                        value: graphHoverPosition.data.t2.value(for: temperatureUnit)
-                                    )
-                                )
-                            }
-                            if enabledCurves.t3 {
-                                Text(
-                                    formatAnnotationTemperature(
-                                        label: "T3",
-                                        value: graphHoverPosition.data.t3.value(for: temperatureUnit)
-                                    )
-                                )
-                            }
-                            if enabledCurves.t4 {
-                                Text(
-                                    formatAnnotationTemperature(
-                                        label: "T4",
-                                        value: graphHoverPosition.data.t4.value(for: temperatureUnit)
-                                    )
-                                )
-                            }
-                            if enabledCurves.t5 {
-                                Text(
-                                    formatAnnotationTemperature(
-                                        label: "T5",
-                                        value: graphHoverPosition.data.t5.value(for: temperatureUnit)
-                                    )
-                                )
-                            }
-                            if enabledCurves.t6 {
-                                Text(
-                                    formatAnnotationTemperature(
-                                        label: "T6",
-                                        value: graphHoverPosition.data.t6.value(for: temperatureUnit)
-                                    )
-                                )
-                            }
-                            if enabledCurves.t7 {
-                                Text(
-                                    formatAnnotationTemperature(
-                                        label: "T7",
-                                        value: graphHoverPosition.data.t7.value(for: temperatureUnit)
-                                    )
-                                )
-                            }
-                            if enabledCurves.t8 {
-                                Text(
-                                    formatAnnotationTemperature(
-                                        label: "T8 (Handle)",
-                                        value: graphHoverPosition.data.t8.value(for: temperatureUnit)
-                                    )
-                                )
-                            }
-                        }
-                        .padding()
-                        .background(
-                            .regularMaterial
-                        )
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .annotation(
+                        position: shouldGraphHoverAnnotation(arraySize: data.count, currentPosition: graphHoverPosition.data.sequenceNumber) ? .leading : .trailing,
+                        alignment: .center,
+                        spacing: 16
+                    ) {
+                        annotationView(for: graphHoverPosition.x, data: graphHoverPosition.data)
                     }
             }
         }
@@ -407,7 +374,7 @@ struct GraphView: View {
         temperatureUnit: .celsius,
         data: [],
         notes: [],
-        noteHoveredTimestamp: .constant(nil),
+        noteHoverPosition: .constant(nil),
         graphAnnotationRequest: .constant(nil)
     )
 }

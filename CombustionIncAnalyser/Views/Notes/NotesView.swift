@@ -11,7 +11,7 @@ struct NotesView: View {
     /// List of notes to be displayed
     var notes: [CookTimelineRow]
     
-    @Binding var noteHoveredTimestamp: Double?
+    @Binding var noteHoverPosition: GraphTimelinePosition?
     /// Set when the user tapped on edit button
     @Binding var graphAnnotationRequest: GraphAnnotationRequest?
     /// Called when the user tapped on delete button
@@ -55,9 +55,12 @@ struct NotesView: View {
                     }
                     .onHover(perform: { hovering in
                         if hovering {
-                            noteHoveredTimestamp = row.timestamp
+                            noteHoverPosition = GraphTimelinePosition(
+                                x: Float(row.timestamp),
+                                data: row
+                            )
                         } else {
-                            noteHoveredTimestamp = nil
+                            noteHoverPosition = nil
                         }
                     })
                 }
@@ -80,7 +83,7 @@ struct NotesView: View {
 #Preview {
     NotesView(
         notes: [],
-        noteHoveredTimestamp: .constant(nil),
+        noteHoverPosition: .constant(nil),
         graphAnnotationRequest: .constant(nil),
         didTapRemoveAnnotation: { _ in }
     )

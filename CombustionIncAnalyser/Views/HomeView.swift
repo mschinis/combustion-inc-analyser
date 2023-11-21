@@ -106,9 +106,9 @@ class HomeViewModel: ObservableObject {
 struct HomeView: View {
     @StateObject private var viewModel: HomeViewModel
 
-    @State private var graphHoverPosition: GraphHoverPosition? = nil
+    @State private var graphHoverPosition: GraphTimelinePosition? = nil
 
-    @State private var noteHoveredTimestamp: Double? = nil
+    @State private var noteHoverPosition: GraphTimelinePosition? = nil
     @State private var graphAnnotationRequest: GraphAnnotationRequest? = nil
     @State private var areNotesVisible = true
     
@@ -156,7 +156,7 @@ struct HomeView: View {
             
             data: viewModel.data,
             notes: viewModel.notes,
-            noteHoveredTimestamp: $noteHoveredTimestamp,
+            noteHoverPosition: $noteHoverPosition,
             graphAnnotationRequest: $graphAnnotationRequest
         )
         .padding()
@@ -165,7 +165,7 @@ struct HomeView: View {
     var notesView: some View {
         NotesView(
             notes: viewModel.notes,
-            noteHoveredTimestamp: $noteHoveredTimestamp,
+            noteHoverPosition: $noteHoverPosition,
             graphAnnotationRequest: $graphAnnotationRequest,
             didTapRemoveAnnotation: viewModel.didRemoveAnnotation(sequenceNumber:)
         )
