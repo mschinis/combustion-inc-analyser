@@ -6,7 +6,7 @@
 
 <img width="1775" alt="Screenshot 2023-11-21 at 8 52 23 PM" src="https://github.com/mschinis/combustion-inc-analyser/assets/771903/42fedd91-c626-4169-a786-f3fc53f9ec20">
 
-## Core functionality:
+## Core functionality
 
 1. View cook on your large screen
 2. Understand what goes on inside your meat, by looking at all your sensor's data
