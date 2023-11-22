@@ -94,12 +94,21 @@ struct HomeView: View {
                     didTapOpenFilePicker: viewModel.didTapOpenFilepicker
                 )
             } else {
-                HStack(alignment: .top) {
-                    chartView
+                ViewThatFits {
+                    HStack(alignment: .top) {
+                        chartView
 
-                    notesView
+                        notesView
+                    }
+                    .csvDropDestination(with: viewModel.didSelect(file:))
+                    
+                    VStack(alignment: .leading) {
+                        chartView
+                        
+                        notesView
+                    }
+                    .csvDropDestination(with: viewModel.didSelect(file:))
                 }
-                .csvDropDestination(with: viewModel.didSelect(file:))
             }
         }
         .fileImporter(

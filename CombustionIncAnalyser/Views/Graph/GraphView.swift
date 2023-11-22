@@ -316,6 +316,9 @@ struct GraphView: View {
         // Get mouse position over the graph
         .chartOverlay { proxy in
             Color.clear
+            #if os(macOS)
+                // On MacOS we have the ability to hover over the graph,
+                // so display the LineMark when the user hovers
                 .onContinuousHover { hoverPhase in
                     switch hoverPhase {
                     case .active(let cGPoint):
@@ -332,6 +335,33 @@ struct GraphView: View {
                         )
                     }
                 }
+            #else
+                // On iPadOS / iOS, we display the LineMark when the user touches and drags their finger
+                .contentShape(Rectangle())
+                .simultaneousGesture(
+                    SpatialTapGesture()
+                        .onEnded({ gestureInfo in
+                            
+                            let xPosition = proxy.value(atX: gestureInfo.location.x, as: Float.self)!
+                            
+                            if let tapPosition = value(x: xPosition) {
+                                self.graphAnnotationRequest = GraphAnnotationRequest(
+                                    sequenceNumber: tapPosition.data.sequenceNumber
+                                )
+                            }
+                        })
+                )
+                .simultaneousGesture(
+                    DragGesture()
+                        .onChanged({ gestureInfo in
+                            let location = gestureInfo.location
+
+                            let xPosition = proxy.value(atX: location.x, as: Float.self)!
+                            self.graphHoverPosition = value(x: xPosition)
+                        })
+                )
+            #endif
+                
         }
         .chartYAxis(content: {
             AxisMarks { value in
