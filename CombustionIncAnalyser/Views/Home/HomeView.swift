@@ -124,18 +124,20 @@ struct HomeView: View {
                 case .failure(let error):
                     print("Error:: \(error.localizedDescription)")
                 }
-                print("result", result)
             }
         // Annotation Sheet
         .sheet(item: $graphAnnotationRequest, content: { item in
+            // Make a copy of the annotation request and edit this, so we avoid rerendering the graph unnecessarily
+            var graphAnnotationRequestCopy = item
+            
             Form {
                 Text("Add new note")
 
                 TextEditor(
                     text: Binding(get: {
-                        item.note
+                        graphAnnotationRequestCopy.note
                     }, set: { newValue in
-                        graphAnnotationRequest?.note = newValue
+                        graphAnnotationRequestCopy.note = newValue
                     })
                 )
                 .frame(width: 300, height: 200)
@@ -145,9 +147,9 @@ struct HomeView: View {
                         // Update graph
                         viewModel.didAddAnnotation(
                             sequenceNumber: item.sequenceNumber,
-                            text: item.note
+                            text: graphAnnotationRequestCopy.note
                         )
-                    
+
                         // Close the sheet
                         self.graphAnnotationRequest = nil
                     })
