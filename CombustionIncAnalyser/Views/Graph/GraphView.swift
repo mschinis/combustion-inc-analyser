@@ -260,7 +260,7 @@ struct GraphView: View {
                         xStart: .value("X1", $0.lower),
                         xEnd: .value("X2", $0.upper)
                     )
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(by: .value("Probe not inserted", TemperatureChartPlottable.probeNotInserted))
                     .opacity(0.1)
             }
             
@@ -310,7 +310,7 @@ struct GraphView: View {
             }
         }
         // Map the curve to the correct color
-        .chartForegroundStyleScale(mapping: { (plottable: TemperatureCurve) -> Color in
+        .chartForegroundStyleScale(mapping: { (plottable: TemperatureChartPlottable) -> Color in
             plottable.color
         })
         // Get mouse position over the graph

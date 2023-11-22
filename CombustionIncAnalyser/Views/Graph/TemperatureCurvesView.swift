@@ -22,7 +22,7 @@ struct TemperatureCurvesView: ChartContent {
     ///   - series: The series of the given value
     ///   - value: The "y" value on the graph, for the given series
     /// - Returns: LineMark view to be used onthe chart
-    func lineMark(series: TemperatureCurve, value: TemperatureReading) -> some ChartContent {
+    func lineMark(series: TemperatureChartPlottable, value: TemperatureReading) -> some ChartContent {
         LineMark(
             x: .value("Time", row.timestamp),
             y: .value(series.rawValue, value.value(for: temperatureUnit)),

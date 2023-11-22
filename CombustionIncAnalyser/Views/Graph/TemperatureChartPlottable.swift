@@ -1,5 +1,5 @@
 //
-//  TemperatureCurve.swift
+//  TemperatureChartPlottable.swift
 //  CombustionIncAnalyser
 //
 //  Created by Michael Schinis on 21/11/2023.
@@ -9,8 +9,8 @@ import Charts
 import Foundation
 import SwiftUI
 
-/// Defines all possible temperature curves
-enum TemperatureCurve: String, Plottable {
+/// Defines all chart data and their associated colors, which are used as the legend at the bottom of the chart
+enum TemperatureChartPlottable: String, Plottable {
     case core = "Core Temperature"
     case surface = "Surface Temperature"
     case ambient = "Ambient Temperature"
@@ -23,6 +23,8 @@ enum TemperatureCurve: String, Plottable {
     case t6 = "T6"
     case t7 = "T7"
     case t8 = "T8 (Handle)"
+    
+    case probeNotInserted = "Probe removed"
     
     /// The color of the temperature curve
     var color: Color {
@@ -38,6 +40,7 @@ enum TemperatureCurve: String, Plottable {
         case .t6: return .pink
         case .t7: return .brown
         case .t8: return .black
+        case .probeNotInserted: return .gray
         }
     }
 }

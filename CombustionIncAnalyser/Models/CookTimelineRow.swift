@@ -317,7 +317,6 @@ extension CookTimelineRow {
     
     /// Converts this object into a dictionary, in order to convert it back to CSV, when saving.
     var serializedDictionary: [String: String] {
-        var encoder = JSONEncoder()
         let dictionary = (try? JSONSerialization.jsonObject(with: JSONEncoder().encode(self))) as? [String: Any] ?? [:]
         
         // Convert everything back to string, in order to save back to CSV
