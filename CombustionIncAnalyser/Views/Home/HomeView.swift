@@ -23,7 +23,7 @@ struct HomeView: View {
 
     @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
     @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
-
+    
     init() {
         self._viewModel = StateObject(wrappedValue: HomeViewModel())
     }
@@ -52,8 +52,8 @@ struct HomeView: View {
             content: chartView
                 .background(.white)
                 .frame(
-                    width: NSScreen.main?.frame.size.width,
-                    height: NSScreen.main?.frame.size.height
+                    width: 1920,
+                    height: 1080
                 )
         )
             
@@ -102,6 +102,21 @@ struct HomeView: View {
                 .csvDropDestination(with: viewModel.didSelect(file:))
             }
         }
+        .fileImporter(
+            isPresented: $viewModel.isFileImporterVisible,
+            
+            allowedContentTypes: [
+                .init(filenameExtension: "csv")!
+            ]
+        ) { result in
+                switch result {
+                case .success(let url):
+                    viewModel.didSelect(file: url)
+                case .failure(let error):
+                    print("Error:: \(error.localizedDescription)")
+                }
+                print("result", result)
+            }
         // Annotation Sheet
         .sheet(item: $graphAnnotationRequest, content: { item in
             Form {

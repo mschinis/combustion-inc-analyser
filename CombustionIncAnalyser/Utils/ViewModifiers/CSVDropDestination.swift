@@ -13,6 +13,9 @@ struct CSVDropDestination: ViewModifier {
 
     func body(content: Content) -> some View {
         content
+        #if os(macOS)
+        // For some reason iOS/iPadOS returns the actual contents of the file, when working with a droppable area
+        // so disabling this functionality on iOS/iPadOS
             .dropDestination(for: URL.self) { items, location in
                 if let fileURL = items.first, fileURL.absoluteString.hasSuffix(".csv") {
                     didDropCSVFile(fileURL)
@@ -21,6 +24,7 @@ struct CSVDropDestination: ViewModifier {
                     return false
                 }
             }
+        #endif
     }
 }
 

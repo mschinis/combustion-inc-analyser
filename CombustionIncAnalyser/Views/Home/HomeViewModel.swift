@@ -15,6 +15,7 @@ class HomeViewModel: ObservableObject {
 
     @Published private(set) var selectedFileURL: URL? = nil
     @Published private(set) var data: [CookTimelineRow] = []
+    @Published var isFileImporterVisible = false
 
     var notes: [CookTimelineRow] {
         data.filter {
@@ -22,22 +23,40 @@ class HomeViewModel: ObservableObject {
         }
     }
 
+    #if os(macOS)
     func didTapOpenFilepicker() {
-        let panel = NSOpenPanel()
-
-        panel.allowsMultipleSelection = false
-        panel.canChooseDirectories = false
-        panel.allowedContentTypes = [
-            .init(filenameExtension: "csv")!
-        ]
-
-        if panel.runModal() == .OK, let url = panel.url {
-            self.didSelect(file: url)
-        }
+        isFileImporterVisible = true
+//        let panel = NSOpenPanel()
+//
+//        panel.allowsMultipleSelection = false
+//        panel.canChooseDirectories = false
+//        panel.allowedContentTypes = [
+//            .init(filenameExtension: "csv")!
+//        ]
+//
+//        if panel.runModal() == .OK, let url = panel.url {
+//            self.didSelect(file: url)
+//        }
     }
+    #else
+    func didTapOpenFilepicker() {
+        isFileImporterVisible = true
+    }
+    #endif
 
     func didSelect(file: URL) {
+        // Stop accessing the file with security scope, if opening another file
+        if let selectedFileURL {
+            selectedFileURL.stopAccessingSecurityScopedResource()
+        }
+
+        // Load the selected file
         do {
+            let isAccessAllowed = file.startAccessingSecurityScopedResource()
+            guard isAccessAllowed else {
+                return
+            }
+
             self.selectedFileURL = file
 
             let contents = (try String(contentsOf: file))
