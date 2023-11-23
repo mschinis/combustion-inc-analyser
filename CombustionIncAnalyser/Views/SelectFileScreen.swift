@@ -69,7 +69,8 @@ struct SelectFileScreen: View {
                         )
                         .padding(.bottom)
                     
-                    Text("**Tap to choose a file** and get started.")
+                    Text("**Tap to select a file** and get started.")
+                        .multilineTextAlignment(.center)
                         .font(.title)
                         .padding(.top)
                 }

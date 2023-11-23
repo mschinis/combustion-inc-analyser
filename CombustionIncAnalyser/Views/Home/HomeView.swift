@@ -82,7 +82,6 @@ struct HomeView: View {
             graphAnnotationRequest: $graphAnnotationRequest,
             didTapRemoveAnnotation: viewModel.didRemoveAnnotation(sequenceNumber:)
         )
-        .frame(width: isNotesSidebarVisible ? 300 : 0)
         .opacity(isNotesSidebarVisible ? 1 : 0)
     }
 
@@ -97,11 +96,20 @@ struct HomeView: View {
                 ViewThatFits {
                     HStack(alignment: .top) {
                         chartView
+                        // The minimum width, forces the notes to wrap underneath the chart,
+                        // when the window is small on MacOS, or on iPad portrait mode
+                        // On iPhone, remove the minimum width.
+                        #if os(macOS)
+                        .frame(minWidth: 700)
+                        #else
+                        .frame(minWidth: UIDevice.current.userInterfaceIdiom == .phone ? nil : 700)
+                        #endif
 
                         notesView
+                            .frame(width: 350)
                     }
                     .csvDropDestination(with: viewModel.didSelect(file:))
-                    
+
                     VStack(alignment: .leading) {
                         chartView
                         
@@ -201,15 +209,6 @@ struct HomeView: View {
                 })
                 .disabled(viewModel.selectedFileURL == nil)
                 .help("Open settings")
-            }
-            
-            // Toggle notes button
-            ToolbarItem(id: "notes_sidebar", placement: .primaryAction) {
-                Button(action: didTapToggleNotes, label: {
-                    Image(systemName: "note.text")
-                })
-                .disabled(viewModel.selectedFileURL == nil)
-                .help("Toggle notes sidebar")
             }
         }
     }

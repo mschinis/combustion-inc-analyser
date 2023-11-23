@@ -121,11 +121,15 @@ struct GraphView: View {
     /// - Parameters:
     ///   - currentPosition: The current position of the rule mark/line
     /// - Returns: True when the rulemark is at the last 20% of the time axis, false when it's at the first 80%
-    func isRuleMarkTowardsEnd(currentPosition: Int) -> Bool {
-        let distance = Double(data.count) - Double(currentPosition)
+    func isRuleMarkAnnotationTrailing(ruleMarkPosition: Int) -> Bool {
+        let distance = Double(data.count) - Double(ruleMarkPosition)
         let percentage = distance / Double(data.count)
         
-        return percentage > 0.2
+        if Device.current.isDevice(.iPhone) {
+            return percentage > 0.5
+        } else {
+            return percentage > 0.25
+        }
     }
     
     /// Creates a label to be used in the graph annotation, for each temperature, and formats the temperature to two decimal places
@@ -238,10 +242,7 @@ struct GraphView: View {
             }
         }
         .padding()
-        .background(
-            .regularMaterial
-        )
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .annotationBackground()
     }
     
     var body: some View {
@@ -286,7 +287,7 @@ struct GraphView: View {
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
                     .foregroundStyle(.gray.opacity(0.8))
                     .annotation(
-                        position: isRuleMarkTowardsEnd(currentPosition: noteHoverPosition.data.sequenceNumber) ? .trailing : .leading,
+                        position: isRuleMarkAnnotationTrailing(ruleMarkPosition: noteHoverPosition.data.sequenceNumber) ? .trailing : .leading,
                         alignment: .center,
                         spacing: 16
                     ) {
@@ -301,7 +302,7 @@ struct GraphView: View {
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
                     .foregroundStyle(.yellow.opacity(0.8))
                     .annotation(
-                        position: isRuleMarkTowardsEnd(currentPosition: graphHoverPosition.data.sequenceNumber) ? .trailing : .leading,
+                        position: isRuleMarkAnnotationTrailing(ruleMarkPosition: graphHoverPosition.data.sequenceNumber) ? .trailing : .leading,
                         alignment: .center,
                         spacing: 16
                     ) {
@@ -392,7 +393,6 @@ struct GraphView: View {
         })
         .chartXAxisLabel("Time", alignment: .center)
         .chartYAxisLabel("Temperature (\(temperatureUnit.rawValue.capitalized))")
-        .padding()
     }
 }
 
