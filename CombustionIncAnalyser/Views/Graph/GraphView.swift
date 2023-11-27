@@ -342,7 +342,6 @@ struct GraphView: View {
                 .simultaneousGesture(
                     SpatialTapGesture()
                         .onEnded({ gestureInfo in
-                            
                             let xPosition = proxy.value(atX: gestureInfo.location.x, as: Float.self)!
                             
                             if let tapPosition = value(x: xPosition) {
@@ -360,9 +359,11 @@ struct GraphView: View {
                             let xPosition = proxy.value(atX: location.x, as: Float.self)!
                             self.graphHoverPosition = value(x: xPosition)
                         })
+                        .onEnded({ _ in
+                            self.graphHoverPosition = nil
+                        })
                 )
             #endif
-                
         }
         .chartYAxis(content: {
             AxisMarks { value in
