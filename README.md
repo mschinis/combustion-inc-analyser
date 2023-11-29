@@ -27,11 +27,7 @@ This is why we created the Combustion Inc Analyser! With apple cross-compatibili
 
 - iOS 16.0 +
 - iPadOS 16.0 +
-- MacOS 13.0 +
-
-## Requirements
-
-This app supports MacOS Catalina or later, on Intel and M1+ series machines
+- MacOS 13.0 + (Intel or M1+)
 
 ## Download
 
