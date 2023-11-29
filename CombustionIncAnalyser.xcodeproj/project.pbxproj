@@ -14,6 +14,7 @@
 		CD5F3EB92B03EB08001F3061 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EB82B03EB08001F3061 /* SettingsView.swift */; };
 		CD67A19B2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD67A19A2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift */; };
 		CD67A19D2B0F9750008053FF /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD67A19C2B0F9750008053FF /* Device.swift */; };
+		CD8427302B17CE0400DA293E /* MacOSPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84272F2B17CE0400DA293E /* MacOSPadding.swift */; };
 		CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */; };
 		CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */; };
 		CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DD2AFF80D5006E6597 /* SwiftDataItem.swift */; };
@@ -65,6 +66,7 @@
 		CD5F3EB82B03EB08001F3061 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CD67A19A2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationBackgroundViewModifier.swift; sourceTree = "<group>"; };
 		CD67A19C2B0F9750008053FF /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		CD84272F2B17CE0400DA293E /* MacOSPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSPadding.swift; sourceTree = "<group>"; };
 		CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombustionIncAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserApp.swift; sourceTree = "<group>"; };
 		CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContentView.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				CDD314A82B080ADA00A557F8 /* CSVDropDestination.swift */,
+				CD84272F2B17CE0400DA293E /* MacOSPadding.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */,
 				CD5F3EB42B03D4BB001F3061 /* TimeInterval.swift in Sources */,
 				CD5F3EB62B03DF96001F3061 /* NotesView.swift in Sources */,
+				CD8427302B17CE0400DA293E /* MacOSPadding.swift in Sources */,
 				CDB4B2082AFF94C1006E6597 /* HomeView.swift in Sources */,
 				CDB4B20A2AFFA95B006E6597 /* CookTimelineRow.swift in Sources */,
 				CDD314B22B0CF28200A557F8 /* GraphTimelinePosition.swift in Sources */,

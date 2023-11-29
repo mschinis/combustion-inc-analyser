@@ -21,10 +21,7 @@ struct SettingsView: View {
     @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
 
     var body: some View {
-        VStack {
-            Text("Settings")
-                .font(.title2)
-
+        NavigationStack {
             Form {
                 Section {
                     Toggle("Core Temperature", isOn: $enabledCurves.core)
@@ -34,8 +31,6 @@ struct SettingsView: View {
                     Text("Temperature curves")
                         .bold()
                 }
-
-                Spacer().frame(height: 16)
 
                 Section {
                     Toggle("T1 (Tip)", isOn: $enabledCurves.t1)
@@ -49,9 +44,9 @@ struct SettingsView: View {
                 } header: {
                     Text("Advanced temperature curves")
                         .bold()
+                        .macPadding(.top, 16)
                 }
-
-                Spacer().frame(height: 16)
+                
                 
                 Section {
                     Toggle("Show note indicators", isOn: $isGraphsNotesEnabled)
@@ -59,9 +54,9 @@ struct SettingsView: View {
                 } header: {
                     Text("Graph settings")
                         .bold()
+                        .macPadding(.top, 16)
                 }
-
-                Spacer().frame(height: 16)
+                
 
                 Section {
                     Picker(selection: $temperatureUnit) {
@@ -72,23 +67,27 @@ struct SettingsView: View {
                         Text("Temperature Unit")
                     }
 
-                    Toggle("Performance Mode", isOn: $isPerformanceModeEnabled)
-                    
-                    Text("Recommended, especially for long cooks.")
-                        .font(.subheadline)
-                        .bold()
+                    VStack(alignment: .leading) {
+                        Toggle("Performance Mode", isOn: $isPerformanceModeEnabled)
 
-                    Text("Performance mode reduces graph resolution\nslightly in order to improve performance.")
-                        .font(.subheadline)
-                        .fixedSize()
+                        Text("Recommended, especially for long cooks.")
+                            .font(.subheadline)
+                            .bold()
+
+                        Text("Performance mode reduces graph resolution\nslightly in order to improve performance.")
+                            .font(.subheadline)
+                            .fixedSize()
+                    }
                 } header: {
                     Text("Other")
                         .bold()
+                        .macPadding(.top, 16)
                 }
+                
             }
-            .padding(8)
+            .navigationTitle("Settings")
+            .macPadding(8)
         }
-        .padding()
     }
 }
 

@@ -180,36 +180,38 @@ struct HomeView: View {
         .sheet(item: $graphAnnotationRequest, content: { item in
             // Make a copy of the annotation request and edit this, so we avoid rerendering the graph unnecessarily
             var graphAnnotationRequestCopy = item
-            
-            Form {
-                Text("Add new note")
 
-                TextEditor(
-                    text: Binding(get: {
-                        graphAnnotationRequestCopy.note
-                    }, set: { newValue in
-                        graphAnnotationRequestCopy.note = newValue
-                    })
-                )
-                .frame(width: 300, height: 200)
+            NavigationStack {
+                Form {
+                    TextEditor(
+                        text: Binding(get: {
+                            graphAnnotationRequestCopy.note
+                        }, set: { newValue in
+                            graphAnnotationRequestCopy.note = newValue
+                        })
+                    )
+                    .frame(width: 300, height: 200)
 
-                HStack {
-                    Button("OK", action: {
-                        // Update graph
-                        viewModel.didAddAnnotation(
-                            sequenceNumber: item.sequenceNumber,
-                            text: graphAnnotationRequestCopy.note
-                        )
+                    HStack {
+                        Button("OK", action: {
+                            // Update graph
+                            viewModel.didAddAnnotation(
+                                sequenceNumber: item.sequenceNumber,
+                                text: graphAnnotationRequestCopy.note
+                            )
 
-                        // Close the sheet
-                        self.graphAnnotationRequest = nil
-                    })
-                    Button("Cancel", role: .cancel) {
-                        self.graphAnnotationRequest = nil
+                            // Close the sheet
+                            self.graphAnnotationRequest = nil
+                        })
+
+                        Button("Cancel", role: .cancel) {
+                            self.graphAnnotationRequest = nil
+                        }
                     }
                 }
+                .navigationTitle("Add new note")
+                .macPadding()
             }
-            .padding()
         })
         .sheet(isPresented: isSettingsVisible, content: {
             SettingsView()
