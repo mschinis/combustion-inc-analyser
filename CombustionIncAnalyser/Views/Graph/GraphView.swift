@@ -121,11 +121,15 @@ struct GraphView: View {
     /// - Parameters:
     ///   - currentPosition: The current position of the rule mark/line
     /// - Returns: True when the rulemark is at the last 20% of the time axis, false when it's at the first 80%
-    func isRuleMarkTowardsEnd(currentPosition: Int) -> Bool {
-        let distance = Double(data.count) - Double(currentPosition)
+    func isRuleMarkAnnotationTrailing(ruleMarkPosition: Int) -> Bool {
+        let distance = Double(data.count) - Double(ruleMarkPosition)
         let percentage = distance / Double(data.count)
         
-        return percentage > 0.2
+        if Device.current.isDevice(.iPhone) {
+            return percentage > 0.5
+        } else {
+            return percentage > 0.25
+        }
     }
     
     /// Creates a label to be used in the graph annotation, for each temperature, and formats the temperature to two decimal places
@@ -238,10 +242,7 @@ struct GraphView: View {
             }
         }
         .padding()
-        .background(
-            .regularMaterial
-        )
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .annotationBackground()
     }
     
     var body: some View {
@@ -286,7 +287,7 @@ struct GraphView: View {
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
                     .foregroundStyle(.gray.opacity(0.8))
                     .annotation(
-                        position: isRuleMarkTowardsEnd(currentPosition: noteHoverPosition.data.sequenceNumber) ? .trailing : .leading,
+                        position: isRuleMarkAnnotationTrailing(ruleMarkPosition: noteHoverPosition.data.sequenceNumber) ? .trailing : .leading,
                         alignment: .center,
                         spacing: 16
                     ) {
@@ -301,7 +302,7 @@ struct GraphView: View {
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [3]))
                     .foregroundStyle(.yellow.opacity(0.8))
                     .annotation(
-                        position: isRuleMarkTowardsEnd(currentPosition: graphHoverPosition.data.sequenceNumber) ? .trailing : .leading,
+                        position: isRuleMarkAnnotationTrailing(ruleMarkPosition: graphHoverPosition.data.sequenceNumber) ? .trailing : .leading,
                         alignment: .center,
                         spacing: 16
                     ) {
@@ -316,6 +317,9 @@ struct GraphView: View {
         // Get mouse position over the graph
         .chartOverlay { proxy in
             Color.clear
+            #if os(macOS)
+                // On MacOS we have the ability to hover over the graph,
+                // so display the LineMark when the user hovers
                 .onContinuousHover { hoverPhase in
                     switch hoverPhase {
                     case .active(let cGPoint):
@@ -332,6 +336,34 @@ struct GraphView: View {
                         )
                     }
                 }
+            #else
+                // On iPadOS / iOS, we display the LineMark when the user touches and drags their finger
+                .contentShape(Rectangle())
+                .simultaneousGesture(
+                    SpatialTapGesture()
+                        .onEnded({ gestureInfo in
+                            let xPosition = proxy.value(atX: gestureInfo.location.x, as: Float.self)!
+                            
+                            if let tapPosition = value(x: xPosition) {
+                                self.graphAnnotationRequest = GraphAnnotationRequest(
+                                    sequenceNumber: tapPosition.data.sequenceNumber
+                                )
+                            }
+                        })
+                )
+                .simultaneousGesture(
+                    DragGesture()
+                        .onChanged({ gestureInfo in
+                            let location = gestureInfo.location
+
+                            let xPosition = proxy.value(atX: location.x, as: Float.self)!
+                            self.graphHoverPosition = value(x: xPosition)
+                        })
+                        .onEnded({ _ in
+                            self.graphHoverPosition = nil
+                        })
+                )
+            #endif
         }
         .chartYAxis(content: {
             AxisMarks { value in
@@ -342,12 +374,11 @@ struct GraphView: View {
                         Text("\(temp)°")
                     }
                 }
-                
             }
         })
         .chartXAxis(content: {
             AxisMarks(
-                values: .stride(by: 900)
+                values: .stride(by: 900) // 15 minutes
             ) { value in
                 if let interval = value.as(TimeInterval.self) {
                     AxisGridLine()
@@ -362,7 +393,6 @@ struct GraphView: View {
         })
         .chartXAxisLabel("Time", alignment: .center)
         .chartYAxisLabel("Temperature (\(temperatureUnit.rawValue.capitalized))")
-        .padding()
     }
 }
 

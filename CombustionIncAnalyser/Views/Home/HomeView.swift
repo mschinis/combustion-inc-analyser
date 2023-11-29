@@ -23,7 +23,7 @@ struct HomeView: View {
 
     @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
     @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
-
+    
     init() {
         self._viewModel = StateObject(wrappedValue: HomeViewModel())
     }
@@ -52,8 +52,8 @@ struct HomeView: View {
             content: chartView
                 .background(.white)
                 .frame(
-                    width: NSScreen.main?.frame.size.width,
-                    height: NSScreen.main?.frame.size.height
+                    width: 1920,
+                    height: 1080
                 )
         )
             
@@ -82,110 +82,140 @@ struct HomeView: View {
             graphAnnotationRequest: $graphAnnotationRequest,
             didTapRemoveAnnotation: viewModel.didRemoveAnnotation(sequenceNumber:)
         )
-        .frame(width: isNotesSidebarVisible ? 300 : 0)
         .opacity(isNotesSidebarVisible ? 1 : 0)
     }
 
     var body: some View {
-        ZStack {
+        NavigationStack {
             if viewModel.data.isEmpty {
                 SelectFileScreen(
                     didSelectFile: viewModel.didSelect(file:),
                     didTapOpenFilePicker: viewModel.didTapOpenFilepicker
                 )
             } else {
-                HStack(alignment: .top) {
-                    chartView
+                ViewThatFits {
+                    HStack(alignment: .top) {
+                        chartView
+                        // The minimum width, forces the notes to wrap underneath the chart,
+                        // when the window is small on MacOS, or on iPad portrait mode
+                        // On iPhone, remove the minimum width.
+                        #if os(macOS)
+                        .frame(minWidth: 700)
+                        #else
+                        .frame(minWidth: UIDevice.current.userInterfaceIdiom == .phone ? nil : 700)
+                        #endif
 
-                    notesView
+                        notesView
+                            .frame(width: 350)
+                    }
+                    .csvDropDestination(with: viewModel.didSelect(file:))
+
+                    VStack(alignment: .leading) {
+                        chartView
+                        
+                        notesView
+                    }
+                    .csvDropDestination(with: viewModel.didSelect(file:))
                 }
-                .csvDropDestination(with: viewModel.didSelect(file:))
-            }
-        }
-        // Annotation Sheet
-        .sheet(item: $graphAnnotationRequest, content: { item in
-            Form {
-                Text("Add new note")
+                .toolbar {
+                    #if os(macOS)
+                    // Show currently open filename at the top on MacOS.
+                    // On iOS, it looks ugly, so removing it.
+                    if let selectedFileURL = viewModel.selectedFileURL {
+                        ToolbarItem(placement: .automatic) {
+                            Text(selectedFileURL.lastPathComponent)
+                        }
+                    }
+                    #endif
 
-                TextEditor(
-                    text: Binding(get: {
-                        item.note
-                    }, set: { newValue in
-                        graphAnnotationRequest?.note = newValue
-                    })
-                )
-                .frame(width: 300, height: 200)
+                    ToolbarItem(id: "save_file", placement: .primaryAction) {
+                        Button(action: viewModel.didTapSave, label: {
+                            Image(systemName: "scribble")
+                        })
+                        .disabled(viewModel.selectedFileURL == nil)
+                        .help("Save file")
+                    }
 
-                HStack {
-                    Button("OK", action: {
-                        // Update graph
-                        viewModel.didAddAnnotation(
-                            sequenceNumber: item.sequenceNumber,
-                            text: item.note
-                        )
-                    
-                        // Close the sheet
-                        self.graphAnnotationRequest = nil
-                    })
-                    Button("Cancel", role: .cancel) {
-                        self.graphAnnotationRequest = nil
+                    // Share graph button
+                    ToolbarItem(id: "share", placement: .primaryAction) {
+                        ShareLink(
+                            item: Image(decorative: generateGraphSnapshot()!, scale: 1),
+                            preview: SharePreview(
+                                "Combustion Inc Analyser Export",
+                                image: Image(decorative: generateGraphSnapshot()!, scale: 1)
+                            )
+                        ) {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                        .disabled(viewModel.selectedFileURL == nil)
+                        .help("Share graph")
+                    }
+
+                    // Toggle notes button
+                    ToolbarItem(id: "settings", placement: .primaryAction) {
+                        Button(action: didTapOpenSettings, label: {
+                            Image(systemName: "gear")
+                        })
+                        .disabled(viewModel.selectedFileURL == nil)
+                        .help("Open settings")
                     }
                 }
             }
-            .padding()
+        }
+        .fileImporter(
+            isPresented: $viewModel.isFileImporterVisible,
+            
+            allowedContentTypes: [
+                .init(filenameExtension: "csv")!
+            ]
+        ) { result in
+                switch result {
+                case .success(let url):
+                    viewModel.didSelect(file: url)
+                case .failure(let error):
+                    print("Error:: \(error.localizedDescription)")
+                }
+            }
+        // Annotation Sheet
+        .sheet(item: $graphAnnotationRequest, content: { item in
+            // Make a copy of the annotation request and edit this, so we avoid rerendering the graph unnecessarily
+            var graphAnnotationRequestCopy = item
+
+            NavigationStack {
+                Form {
+                    TextEditor(
+                        text: Binding(get: {
+                            graphAnnotationRequestCopy.note
+                        }, set: { newValue in
+                            graphAnnotationRequestCopy.note = newValue
+                        })
+                    )
+                    .frame(width: 300, height: 200)
+
+                    HStack {
+                        Button("OK", action: {
+                            // Update graph
+                            viewModel.didAddAnnotation(
+                                sequenceNumber: item.sequenceNumber,
+                                text: graphAnnotationRequestCopy.note
+                            )
+
+                            // Close the sheet
+                            self.graphAnnotationRequest = nil
+                        })
+
+                        Button("Cancel", role: .cancel) {
+                            self.graphAnnotationRequest = nil
+                        }
+                    }
+                }
+                .navigationTitle("Add new note")
+                .macPadding()
+            }
         })
         .sheet(isPresented: isSettingsVisible, content: {
             SettingsView()
         })
-        .toolbar {
-            // Show currently open filename at the top
-            if let selectedFileURL = viewModel.selectedFileURL {
-                ToolbarItem(placement: .automatic) {
-                    Text(selectedFileURL.lastPathComponent)
-                }
-            }
-
-            ToolbarItem(id: "save_file", placement: .primaryAction) {
-                Button(action: viewModel.didTapSave, label: {
-                    Image(systemName: "scribble")
-                })
-                .disabled(viewModel.selectedFileURL == nil)
-                .help("Save file")
-            }
-
-            // Share graph button
-            ToolbarItem(id: "share", placement: .primaryAction) {
-                ShareLink(
-                    item: Image(decorative: generateGraphSnapshot()!, scale: 1),
-                    preview: SharePreview(
-                        "Combustion Inc Analyser Export",
-                        image: Image(decorative: generateGraphSnapshot()!, scale: 1)
-                    )
-                ) {
-                    Image(systemName: "square.and.arrow.up")
-                }
-                .disabled(viewModel.selectedFileURL == nil)
-                .help("Share graph")
-            }
-
-            // Toggle notes button
-            ToolbarItem(id: "settings", placement: .primaryAction) {
-                Button(action: didTapOpenSettings, label: {
-                    Image(systemName: "gear")
-                })
-                .disabled(viewModel.selectedFileURL == nil)
-                .help("Open settings")
-            }
-            
-            // Toggle notes button
-            ToolbarItem(id: "notes_sidebar", placement: .primaryAction) {
-                Button(action: didTapToggleNotes, label: {
-                    Image(systemName: "note.text")
-                })
-                .disabled(viewModel.selectedFileURL == nil)
-                .help("Toggle notes sidebar")
-            }
-        }
     }
 }
 

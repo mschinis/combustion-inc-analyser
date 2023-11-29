@@ -18,6 +18,7 @@ struct CombustionIncAnalyserApp: App {
         WindowGroup {
             HomeView(viewModel: homeViewModel)
                 .environment(\.isSettingsVisible, $isSettingsVisible)
+            
         }
         .commands {
             CommandGroup(after: .appSettings) {
