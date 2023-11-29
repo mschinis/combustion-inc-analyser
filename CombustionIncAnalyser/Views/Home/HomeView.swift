@@ -86,7 +86,7 @@ struct HomeView: View {
     }
 
     var body: some View {
-        ZStack {
+        NavigationStack {
             if viewModel.data.isEmpty {
                 SelectFileScreen(
                     didSelectFile: viewModel.didSelect(file:),
@@ -116,6 +116,49 @@ struct HomeView: View {
                         notesView
                     }
                     .csvDropDestination(with: viewModel.didSelect(file:))
+                }
+                .toolbar {
+                    #if os(macOS)
+                    // Show currently open filename at the top on MacOS.
+                    // On iOS, it looks ugly, so removing it.
+                    if let selectedFileURL = viewModel.selectedFileURL {
+                        ToolbarItem(placement: .automatic) {
+                            Text(selectedFileURL.lastPathComponent)
+                        }
+                    }
+                    #endif
+
+                    ToolbarItem(id: "save_file", placement: .primaryAction) {
+                        Button(action: viewModel.didTapSave, label: {
+                            Image(systemName: "scribble")
+                        })
+                        .disabled(viewModel.selectedFileURL == nil)
+                        .help("Save file")
+                    }
+
+                    // Share graph button
+                    ToolbarItem(id: "share", placement: .primaryAction) {
+                        ShareLink(
+                            item: Image(decorative: generateGraphSnapshot()!, scale: 1),
+                            preview: SharePreview(
+                                "Combustion Inc Analyser Export",
+                                image: Image(decorative: generateGraphSnapshot()!, scale: 1)
+                            )
+                        ) {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                        .disabled(viewModel.selectedFileURL == nil)
+                        .help("Share graph")
+                    }
+
+                    // Toggle notes button
+                    ToolbarItem(id: "settings", placement: .primaryAction) {
+                        Button(action: didTapOpenSettings, label: {
+                            Image(systemName: "gear")
+                        })
+                        .disabled(viewModel.selectedFileURL == nil)
+                        .help("Open settings")
+                    }
                 }
             }
         }
@@ -171,46 +214,6 @@ struct HomeView: View {
         .sheet(isPresented: isSettingsVisible, content: {
             SettingsView()
         })
-        .toolbar {
-            // Show currently open filename at the top
-            if let selectedFileURL = viewModel.selectedFileURL {
-                ToolbarItem(placement: .automatic) {
-                    Text(selectedFileURL.lastPathComponent)
-                }
-            }
-
-            ToolbarItem(id: "save_file", placement: .primaryAction) {
-                Button(action: viewModel.didTapSave, label: {
-                    Image(systemName: "scribble")
-                })
-                .disabled(viewModel.selectedFileURL == nil)
-                .help("Save file")
-            }
-
-            // Share graph button
-            ToolbarItem(id: "share", placement: .primaryAction) {
-                ShareLink(
-                    item: Image(decorative: generateGraphSnapshot()!, scale: 1),
-                    preview: SharePreview(
-                        "Combustion Inc Analyser Export",
-                        image: Image(decorative: generateGraphSnapshot()!, scale: 1)
-                    )
-                ) {
-                    Image(systemName: "square.and.arrow.up")
-                }
-                .disabled(viewModel.selectedFileURL == nil)
-                .help("Share graph")
-            }
-
-            // Toggle notes button
-            ToolbarItem(id: "settings", placement: .primaryAction) {
-                Button(action: didTapOpenSettings, label: {
-                    Image(systemName: "gear")
-                })
-                .disabled(viewModel.selectedFileURL == nil)
-                .help("Open settings")
-            }
-        }
     }
 }
 

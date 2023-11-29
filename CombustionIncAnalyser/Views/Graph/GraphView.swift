@@ -374,12 +374,11 @@ struct GraphView: View {
                         Text("\(temp)°")
                     }
                 }
-                
             }
         })
         .chartXAxis(content: {
             AxisMarks(
-                values: .stride(by: 900)
+                values: .stride(by: 900) // 15 minutes
             ) { value in
                 if let interval = value.as(TimeInterval.self) {
                     AxisGridLine()
