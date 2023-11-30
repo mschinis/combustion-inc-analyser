@@ -127,6 +127,14 @@ struct HomeView: View {
                         }
                     }
                     #endif
+                    
+                    ToolbarItem(id: "share_csv", placement: .primaryAction) {
+                        Button(action: viewModel.didTapUploadCSVFile, label: {
+                            Image(systemName: "icloud.and.arrow.up")
+                        })
+                        .disabled(viewModel.selectedFileURL == nil)
+                        .help("Share CSV file")
+                    }
 
                     ToolbarItem(id: "save_file", placement: .primaryAction) {
                         Button(action: viewModel.didTapSave, label: {

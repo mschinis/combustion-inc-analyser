@@ -5,7 +5,7 @@
 //  Created by Michael Schinis on 21/11/2023.
 //
 
-
+import FirebaseStorage
 import Foundation
 import SwiftUI
 
@@ -16,6 +16,8 @@ class HomeViewModel: ObservableObject {
     @Published private(set) var selectedFileURL: URL? = nil
     @Published private(set) var data: [CookTimelineRow] = []
     @Published var isFileImporterVisible = false
+    
+    @Published private(set) var uploadFileLoadingState: LoadingState<URL> = .idle
 
     var notes: [CookTimelineRow] {
         data.filter {
@@ -25,6 +27,57 @@ class HomeViewModel: ObservableObject {
 
     func didTapOpenFilepicker() {
         isFileImporterVisible = true
+    }
+    
+    func didTapUploadCSVFile() {
+        self.uploadFileLoadingState = .idle
+        
+        guard let selectedFileURL else {
+            return
+        }
+
+        // Build the path to the CSV file
+        let storage = Storage.storage()
+        let root = storage.reference(withPath: "uploads")
+        let fileRef = root.child(selectedFileURL.lastPathComponent)
+        
+        // Build the file metadata
+        let fileMetadata = StorageMetadata()
+        fileMetadata.contentType = "text/csv"
+        
+        // Build the CSV contents
+        let csvOutput = CSVTemperatureExporter(
+            url: selectedFileURL,
+            fileInfo: fileInfo,
+            headers: csvParser.headers,
+            data: data
+        )
+        .output()
+
+        guard let csvData = csvOutput.data(using: .utf8) else {
+            return
+        }
+        
+        self.uploadFileLoadingState = .loading
+
+        fileRef.putData(csvData, metadata: fileMetadata) { _, error in
+            if let error {
+                self.uploadFileLoadingState = .failed(error)
+                return
+            }
+            
+            fileRef.downloadURL { result in
+                switch result {
+                case let .success(url):
+                    // Copy link to pasteboard
+                    Pasteboard.general.set(string: url.absoluteString)
+                    // Update loading state
+                    self.uploadFileLoadingState = .success(url)
+                case let .failure(error):
+                    self.uploadFileLoadingState = .failed(error)
+                }
+            }
+        }
     }
     
     /// Ensure the file we're trying to open is already security scoped on macOS.

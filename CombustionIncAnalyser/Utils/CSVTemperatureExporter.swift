@@ -21,7 +21,7 @@ class CSVTemperatureExporter {
         self.data = data
     }
 
-    func save() {
+    func output() -> String {
         let strHeaders = headers.joined(separator: ",")
         let strData = data.map { row in
             let rowData = row.serializedDictionary
@@ -33,8 +33,13 @@ class CSVTemperatureExporter {
         }
     
         let fileInfoWithHeaders = [fileInfo, strHeaders].joined(separator: "\n\n")
-        let outputData = ([fileInfoWithHeaders] + strData).joined(separator: "\n")
-        
+
+        return ([fileInfoWithHeaders] + strData).joined(separator: "\n")
+    }
+    
+    func save() {
+        let outputData = output()
+
         do {
             try outputData.write(to: url, atomically: false, encoding: .utf8)
         } catch {

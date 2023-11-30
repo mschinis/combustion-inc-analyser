@@ -20,6 +20,8 @@
 		CD8427372B188F5600DA293E /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CD8427362B188F5600DA293E /* FirebaseFirestoreSwift */; };
 		CD8427392B188F5600DA293E /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = CD8427382B188F5600DA293E /* FirebaseInstallations */; };
 		CD84273B2B188F5600DA293E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CD84273A2B188F5600DA293E /* FirebaseStorage */; };
+		CD84273D2B18BE9700DA293E /* Pasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84273C2B18BE9700DA293E /* Pasteboard.swift */; };
+		CD84273F2B18BEDE00DA293E /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84273E2B18BEDE00DA293E /* LoadingState.swift */; };
 		CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */; };
 		CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */; };
 		CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DD2AFF80D5006E6597 /* SwiftDataItem.swift */; };
@@ -73,6 +75,8 @@
 		CD67A19C2B0F9750008053FF /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		CD84272F2B17CE0400DA293E /* MacOSPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSPadding.swift; sourceTree = "<group>"; };
 		CD8427312B188E5900DA293E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CD84273C2B18BE9700DA293E /* Pasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pasteboard.swift; sourceTree = "<group>"; };
+		CD84273E2B18BEDE00DA293E /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
 		CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombustionIncAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserApp.swift; sourceTree = "<group>"; };
 		CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContentView.swift; sourceTree = "<group>"; };
@@ -226,6 +230,8 @@
 				CDB4B20B2B016E70006E6597 /* CSVTemperatureParser.swift */,
 				CD5F3EA92B02C8BB001F3061 /* CSVTemperatureExporter.swift */,
 				CD67A19C2B0F9750008053FF /* Device.swift */,
+				CD84273C2B18BE9700DA293E /* Pasteboard.swift */,
+				CD84273E2B18BEDE00DA293E /* LoadingState.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -454,7 +460,9 @@
 				CDD314A42B057E5400A557F8 /* TemperatureCurvesView.swift in Sources */,
 				CDD314B42B0CF2BF00A557F8 /* ProbeNotInsertedRange.swift in Sources */,
 				CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */,
+				CD84273F2B18BEDE00DA293E /* LoadingState.swift in Sources */,
 				CD5F3EB42B03D4BB001F3061 /* TimeInterval.swift in Sources */,
+				CD84273D2B18BE9700DA293E /* Pasteboard.swift in Sources */,
 				CD5F3EB62B03DF96001F3061 /* NotesView.swift in Sources */,
 				CD8427302B17CE0400DA293E /* MacOSPadding.swift in Sources */,
 				CDB4B2082AFF94C1006E6597 /* HomeView.swift in Sources */,

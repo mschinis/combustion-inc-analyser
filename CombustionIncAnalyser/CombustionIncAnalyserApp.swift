@@ -16,6 +16,7 @@ struct CombustionIncAnalyserApp: App {
     @StateObject private var homeViewModel = HomeViewModel()
 
     init() {
+        // We use Firebase to allow users to share their CSV data with us
         FirebaseApp.configure()
     }
 
@@ -23,7 +24,6 @@ struct CombustionIncAnalyserApp: App {
         WindowGroup {
             HomeView(viewModel: homeViewModel)
                 .environment(\.isSettingsVisible, $isSettingsVisible)
-            
         }
         .commands {
             CommandGroup(after: .appSettings) {
