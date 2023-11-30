@@ -7,13 +7,18 @@
 
 import SwiftUI
 import SwiftData
+import FirebaseCore
 
 @main
 struct CombustionIncAnalyserApp: App {
     @State private var isSettingsVisible = false
 
     @StateObject private var homeViewModel = HomeViewModel()
-    
+
+    init() {
+        FirebaseApp.configure()
+    }
+
     var body: some Scene {
         WindowGroup {
             HomeView(viewModel: homeViewModel)
