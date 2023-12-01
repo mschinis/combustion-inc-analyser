@@ -22,8 +22,8 @@
 		CD84273B2B188F5600DA293E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CD84273A2B188F5600DA293E /* FirebaseStorage */; };
 		CD84273D2B18BE9700DA293E /* Pasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84273C2B18BE9700DA293E /* Pasteboard.swift */; };
 		CD84273F2B18BEDE00DA293E /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84273E2B18BEDE00DA293E /* LoadingState.swift */; };
-		CD8427412B19149800DA293E /* ActivityStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8427402B19149800DA293E /* ActivityStatus.swift */; };
-		CD8427432B19291300DA293E /* ActivityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8427422B19291300DA293E /* ActivityMessage.swift */; };
+		CD8427412B19149800DA293E /* PopupMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8427402B19149800DA293E /* PopupMessageView.swift */; };
+		CD8427432B19291300DA293E /* PopupMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8427422B19291300DA293E /* PopupMessage.swift */; };
 		CD8427462B19308200DA293E /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = CD8427452B19308200DA293E /* PopupView */; };
 		CD8427492B19ED8600DA293E /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8427482B19ED8600DA293E /* AsyncButton.swift */; };
 		CD84274B2B19FB3500DA293E /* HomeToolbarContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84274A2B19FB3500DA293E /* HomeToolbarContent.swift */; };
@@ -83,8 +83,8 @@
 		CD8427312B188E5900DA293E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD84273C2B18BE9700DA293E /* Pasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pasteboard.swift; sourceTree = "<group>"; };
 		CD84273E2B18BEDE00DA293E /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
-		CD8427402B19149800DA293E /* ActivityStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStatus.swift; sourceTree = "<group>"; };
-		CD8427422B19291300DA293E /* ActivityMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMessage.swift; sourceTree = "<group>"; };
+		CD8427402B19149800DA293E /* PopupMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupMessageView.swift; sourceTree = "<group>"; };
+		CD8427422B19291300DA293E /* PopupMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupMessage.swift; sourceTree = "<group>"; };
 		CD8427482B19ED8600DA293E /* AsyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
 		CD84274A2B19FB3500DA293E /* HomeToolbarContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeToolbarContent.swift; sourceTree = "<group>"; };
 		CD84274C2B19FEC800DA293E /* GraphAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphAnnotationView.swift; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				CD8427482B19ED8600DA293E /* AsyncButton.swift */,
-				CD8427402B19149800DA293E /* ActivityStatus.swift */,
+				CD8427402B19149800DA293E /* PopupMessageView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -287,7 +287,7 @@
 		CDB4B2102B09F093006E6597 /* EnvironmentKeys */ = {
 			isa = PBXGroup;
 			children = (
-				CD8427422B19291300DA293E /* ActivityMessage.swift */,
+				CD8427422B19291300DA293E /* PopupMessage.swift */,
 				CDB4B2112B09F0B7006E6597 /* SettingsVisible.swift */,
 			);
 			path = EnvironmentKeys;
@@ -484,7 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD8427412B19149800DA293E /* ActivityStatus.swift in Sources */,
+				CD8427412B19149800DA293E /* PopupMessageView.swift in Sources */,
 				CDD314A42B057E5400A557F8 /* TemperatureCurvesView.swift in Sources */,
 				CDD314B42B0CF2BF00A557F8 /* ProbeNotInsertedRange.swift in Sources */,
 				CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */,
@@ -495,7 +495,7 @@
 				CD5F3EB62B03DF96001F3061 /* NotesView.swift in Sources */,
 				CD8427302B17CE0400DA293E /* MacOSPadding.swift in Sources */,
 				CDB4B2082AFF94C1006E6597 /* HomeView.swift in Sources */,
-				CD8427432B19291300DA293E /* ActivityMessage.swift in Sources */,
+				CD8427432B19291300DA293E /* PopupMessage.swift in Sources */,
 				CDB4B20A2AFFA95B006E6597 /* CookTimelineRow.swift in Sources */,
 				CDD314B22B0CF28200A557F8 /* GraphTimelinePosition.swift in Sources */,
 				CD67A19B2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift in Sources */,

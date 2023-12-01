@@ -15,7 +15,7 @@ struct CombustionIncAnalyserApp: App {
     @State private var isSettingsVisible = false
 
     @StateObject private var homeViewModel = HomeViewModel()
-    @State private var activityStatusMessage: ActivityStatusMessage?
+    @State private var popupMessage: PopupMessage?
 
     init() {
         // We use Firebase to allow users to share their CSV data with us
@@ -26,10 +26,10 @@ struct CombustionIncAnalyserApp: App {
         WindowGroup {
             HomeView(viewModel: homeViewModel)
                 .environment(\.isSettingsVisible, $isSettingsVisible)
-                .environment(\.activityStatusMessage, $activityStatusMessage)
-                .popup(item: $activityStatusMessage) { item in
-                    ActivityStatus(
-                        status: item
+                .environment(\.popupMessage, $popupMessage)
+                .popup(item: $popupMessage) { item in
+                    PopupMessageView(
+                        message: item
                     )
                     .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 0)
                     .shadow(color: .black.opacity(0.16), radius: 24, x: 0, y: 0)
@@ -40,36 +40,6 @@ struct CombustionIncAnalyserApp: App {
                         .autohideIn(2)
                         .position(.top)
                 }
-
-            
-            
-//                .overlay {
-//                    if let activityStatusMessage {
-//                        ActivityStatus(
-//                            status: activityStatusMessage
-//                        )
-//                        .animation(.easeIn, value: activityStatusMessage)
-//                        .onAppear(perform: {
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                                self.activityStatusMessage = nil
-//                            }
-//                        })
-//                    } else {
-//                        EmptyView()
-//                    }
-//                    ActivityStatus(
-//                        status: activityStatusMessage ?? .init(state: .success, description: "")
-//                    )
-//                    .opacity(activityStatusMessage == nil ? 0 : 1)
-//                    .animation(.easeIn, value: activityStatusMessage)
-//                    .onAppear(perform: {
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-////                            withAnimation {
-//                                self.activityStatusMessage = nil
-////                            }
-//                        }
-//                    })
-//                }
         }
         .commands {
             CommandGroup(after: .appSettings) {

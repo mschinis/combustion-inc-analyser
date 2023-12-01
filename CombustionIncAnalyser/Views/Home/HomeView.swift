@@ -21,7 +21,7 @@ struct HomeView: View {
     /// Controls the visibility of the settings sheet
     @Environment(\.isSettingsVisible) private var isSettingsVisible: Binding<Bool>
     
-    @Environment(\.activityStatusMessage) private var activityStatusMessage: Binding<ActivityStatusMessage?>
+    @Environment(\.popupMessage) private var popupMessage: Binding<PopupMessage?>
 
     @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
     @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
@@ -69,13 +69,13 @@ struct HomeView: View {
         do {
             let _ = try await viewModel.uploadCSVFile()
 
-            activityStatusMessage.wrappedValue = .init(
+            popupMessage.wrappedValue = .init(
                 state: .success,
                 title: "File uploaded",
                 description: "Link copied to clipboard"
             )
         } catch {
-            activityStatusMessage.wrappedValue = .init(
+            popupMessage.wrappedValue = .init(
                 state: .success,
                 title: "File uploaded",
                 description: "Link copied to clipboard"
@@ -91,8 +91,8 @@ struct HomeView: View {
         case .success(let url):
             viewModel.didSelect(file: url)
         case .failure(let error):
-            self.activityStatusMessage.wrappedValue = .init(
-                state: .failed,
+            self.popupMessage.wrappedValue = .init(
+                state: .error,
                 title: "Error loading file",
                 description: error.localizedDescription
             )
