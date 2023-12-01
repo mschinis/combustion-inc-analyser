@@ -5,9 +5,9 @@
 //  Created by Michael Schinis on 11/11/2023.
 //
 
+import FirebaseAuth
 import SwiftUI
 import Charts
-
 
 struct HomeView: View {
     @StateObject private var viewModel: HomeViewModel
@@ -20,6 +20,8 @@ struct HomeView: View {
     @State private var isNotesSidebarVisible = true
     /// Controls the visibility of the settings sheet
     @Environment(\.isSettingsVisible) private var isSettingsVisible: Binding<Bool>
+    
+    @Environment(\.activityStatusMessage) private var activityStatusMessage: Binding<ActivityStatusMessage?>
 
     @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
     @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
@@ -60,6 +62,43 @@ struct HomeView: View {
         return renderer.cgImage
     }
     
+    @MainActor
+    /// Callback when the user taps on upload CSV button.
+    /// Shows success/error message depending on the result of the operation
+    func didTapUploadCSV() async {
+        do {
+            let _ = try await viewModel.uploadCSVFile()
+
+            activityStatusMessage.wrappedValue = .init(
+                state: .success,
+                title: "File uploaded",
+                description: "Link copied to clipboard"
+            )
+        } catch {
+            activityStatusMessage.wrappedValue = .init(
+                state: .success,
+                title: "File uploaded",
+                description: "Link copied to clipboard"
+            )
+        }
+    }
+    
+    /// Result callback from file importer.
+    ///
+    /// - Parameter result: The result of the file importer
+    func onFilePickerCompletion(_ result: Result<URL, Error>) {
+        switch result {
+        case .success(let url):
+            viewModel.didSelect(file: url)
+        case .failure(let error):
+            self.activityStatusMessage.wrappedValue = .init(
+                state: .failed,
+                title: "Error loading file",
+                description: error.localizedDescription
+            )
+        }
+    }
+    
     /// The chart view being displayed
     var chartView: some View {
         GraphView(
@@ -94,6 +133,7 @@ struct HomeView: View {
                 )
             } else {
                 ViewThatFits {
+                    // Horizontal View
                     HStack(alignment: .top) {
                         chartView
                         // The minimum width, forces the notes to wrap underneath the chart,
@@ -110,117 +150,43 @@ struct HomeView: View {
                     }
                     .csvDropDestination(with: viewModel.didSelect(file:))
 
+                    // Vertical view, when the sidebar doesn't fit side by side.
                     VStack(alignment: .leading) {
                         chartView
-                        
                         notesView
                     }
                     .csvDropDestination(with: viewModel.didSelect(file:))
                 }
                 .toolbar {
-                    #if os(macOS)
-                    // Show currently open filename at the top on MacOS.
-                    // On iOS, it looks ugly, so removing it.
-                    if let selectedFileURL = viewModel.selectedFileURL {
-                        ToolbarItem(placement: .automatic) {
-                            Text(selectedFileURL.lastPathComponent)
-                        }
-                    }
-                    #endif
-                    
-                    ToolbarItem(id: "share_csv", placement: .primaryAction) {
-                        Button(action: viewModel.didTapUploadCSVFile, label: {
-                            Image(systemName: "icloud.and.arrow.up")
-                        })
-                        .disabled(viewModel.selectedFileURL == nil)
-                        .help("Share CSV file")
-                    }
-
-                    ToolbarItem(id: "save_file", placement: .primaryAction) {
-                        Button(action: viewModel.didTapSave, label: {
-                            Image(systemName: "scribble")
-                        })
-                        .disabled(viewModel.selectedFileURL == nil)
-                        .help("Save file")
-                    }
-
-                    // Share graph button
-                    ToolbarItem(id: "share", placement: .primaryAction) {
-                        ShareLink(
-                            item: Image(decorative: generateGraphSnapshot()!, scale: 1),
-                            preview: SharePreview(
-                                "Combustion Inc Analyser Export",
-                                image: Image(decorative: generateGraphSnapshot()!, scale: 1)
-                            )
-                        ) {
-                            Image(systemName: "square.and.arrow.up")
-                        }
-                        .disabled(viewModel.selectedFileURL == nil)
-                        .help("Share graph")
-                    }
-
-                    // Toggle notes button
-                    ToolbarItem(id: "settings", placement: .primaryAction) {
-                        Button(action: didTapOpenSettings, label: {
-                            Image(systemName: "gear")
-                        })
-                        .disabled(viewModel.selectedFileURL == nil)
-                        .help("Open settings")
-                    }
+                    HomeToolbarContent(
+                        fileURL: viewModel.selectedFileURL,
+                        shareGraphImage: generateGraphSnapshot()!,
+                        didTapUploadFile: didTapUploadCSV,
+                        didTapSaveFile: viewModel.didTapSave,
+                        didTapSettings: didTapOpenSettings
+                    )
                 }
             }
         }
+        // Select file popup
         .fileImporter(
             isPresented: $viewModel.isFileImporterVisible,
-            
             allowedContentTypes: [
                 .init(filenameExtension: "csv")!
-            ]
-        ) { result in
-                switch result {
-                case .success(let url):
-                    viewModel.didSelect(file: url)
-                case .failure(let error):
-                    print("Error:: \(error.localizedDescription)")
-                }
-            }
-        // Annotation Sheet
+            ],
+            onCompletion: onFilePickerCompletion(_:)
+        )
+        // Create/Edit Annotation sheet
         .sheet(item: $graphAnnotationRequest, content: { item in
-            // Make a copy of the annotation request and edit this, so we avoid rerendering the graph unnecessarily
-            var graphAnnotationRequestCopy = item
-
-            NavigationStack {
-                Form {
-                    TextEditor(
-                        text: Binding(get: {
-                            graphAnnotationRequestCopy.note
-                        }, set: { newValue in
-                            graphAnnotationRequestCopy.note = newValue
-                        })
-                    )
-                    .frame(width: 300, height: 200)
-
-                    HStack {
-                        Button("OK", action: {
-                            // Update graph
-                            viewModel.didAddAnnotation(
-                                sequenceNumber: item.sequenceNumber,
-                                text: graphAnnotationRequestCopy.note
-                            )
-
-                            // Close the sheet
-                            self.graphAnnotationRequest = nil
-                        })
-
-                        Button("Cancel", role: .cancel) {
-                            self.graphAnnotationRequest = nil
-                        }
-                    }
+            GraphAnnotationView(
+                annotationRequest: item,
+                didSubmit: viewModel.didAddAnnotation(sequenceNumber:text:),
+                didDismiss: {
+                    self.graphAnnotationRequest = nil
                 }
-                .navigationTitle("Add new note")
-                .macPadding()
-            }
+            )
         })
+        // Settings sheet
         .sheet(isPresented: isSettingsVisible, content: {
             SettingsView()
         })

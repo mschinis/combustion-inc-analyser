@@ -22,6 +22,12 @@
 		CD84273B2B188F5600DA293E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CD84273A2B188F5600DA293E /* FirebaseStorage */; };
 		CD84273D2B18BE9700DA293E /* Pasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84273C2B18BE9700DA293E /* Pasteboard.swift */; };
 		CD84273F2B18BEDE00DA293E /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84273E2B18BEDE00DA293E /* LoadingState.swift */; };
+		CD8427412B19149800DA293E /* ActivityStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8427402B19149800DA293E /* ActivityStatus.swift */; };
+		CD8427432B19291300DA293E /* ActivityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8427422B19291300DA293E /* ActivityMessage.swift */; };
+		CD8427462B19308200DA293E /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = CD8427452B19308200DA293E /* PopupView */; };
+		CD8427492B19ED8600DA293E /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8427482B19ED8600DA293E /* AsyncButton.swift */; };
+		CD84274B2B19FB3500DA293E /* HomeToolbarContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84274A2B19FB3500DA293E /* HomeToolbarContent.swift */; };
+		CD84274D2B19FEC800DA293E /* GraphAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84274C2B19FEC800DA293E /* GraphAnnotationView.swift */; };
 		CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */; };
 		CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */; };
 		CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DD2AFF80D5006E6597 /* SwiftDataItem.swift */; };
@@ -77,6 +83,11 @@
 		CD8427312B188E5900DA293E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD84273C2B18BE9700DA293E /* Pasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pasteboard.swift; sourceTree = "<group>"; };
 		CD84273E2B18BEDE00DA293E /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
+		CD8427402B19149800DA293E /* ActivityStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStatus.swift; sourceTree = "<group>"; };
+		CD8427422B19291300DA293E /* ActivityMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMessage.swift; sourceTree = "<group>"; };
+		CD8427482B19ED8600DA293E /* AsyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
+		CD84274A2B19FB3500DA293E /* HomeToolbarContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeToolbarContent.swift; sourceTree = "<group>"; };
+		CD84274C2B19FEC800DA293E /* GraphAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphAnnotationView.swift; sourceTree = "<group>"; };
 		CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombustionIncAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserApp.swift; sourceTree = "<group>"; };
 		CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContentView.swift; sourceTree = "<group>"; };
@@ -114,6 +125,7 @@
 			files = (
 				CD8427392B188F5600DA293E /* FirebaseInstallations in Frameworks */,
 				CD84273B2B188F5600DA293E /* FirebaseStorage in Frameworks */,
+				CD8427462B19308200DA293E /* PopupView in Frameworks */,
 				CD8427352B188F5600DA293E /* FirebaseAuth in Frameworks */,
 				CD8427372B188F5600DA293E /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -150,6 +162,15 @@
 				CD67A19A2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift */,
 			);
 			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		CD8427472B19ED7B00DA293E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CD8427482B19ED8600DA293E /* AsyncButton.swift */,
+				CD8427402B19149800DA293E /* ActivityStatus.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		CDB4B1CD2AFF80D5006E6597 = {
@@ -225,6 +246,7 @@
 		CDB4B20D2B016EBF006E6597 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CDB4B2102B09F093006E6597 /* EnvironmentKeys */,
 				CDD314A72B080ABC00A557F8 /* ViewModifiers */,
 				CD5F3EB22B03D4B1001F3061 /* Extensions */,
 				CDB4B20B2B016E70006E6597 /* CSVTemperatureParser.swift */,
@@ -252,6 +274,7 @@
 		CDB4B20F2B016EE2006E6597 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD8427472B19ED7B00DA293E /* Components */,
 				CDD314A52B07A36A00A557F8 /* Graph */,
 				CDD314A62B07A38800A557F8 /* Notes */,
 				CDD3149E2B05346A00A557F8 /* Settings */,
@@ -264,6 +287,7 @@
 		CDB4B2102B09F093006E6597 /* EnvironmentKeys */ = {
 			isa = PBXGroup;
 			children = (
+				CD8427422B19291300DA293E /* ActivityMessage.swift */,
 				CDB4B2112B09F0B7006E6597 /* SettingsVisible.swift */,
 			);
 			path = EnvironmentKeys;
@@ -272,7 +296,6 @@
 		CDD3149E2B05346A00A557F8 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				CDB4B2102B09F093006E6597 /* EnvironmentKeys */,
 				CDD314A12B05349400A557F8 /* AppSettingsKeys.swift */,
 				CDD3149F2B05348100A557F8 /* AppSettingsEnabledCurves.swift */,
 				CD5F3EB82B03EB08001F3061 /* SettingsView.swift */,
@@ -311,8 +334,10 @@
 		CDD314B52B0CF31000A557F8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CD84274A2B19FB3500DA293E /* HomeToolbarContent.swift */,
 				CDB4B2072AFF94C1006E6597 /* HomeView.swift */,
 				CDD314B82B0CF39500A557F8 /* HomeViewModel.swift */,
+				CD84274C2B19FEC800DA293E /* GraphAnnotationView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -338,6 +363,7 @@
 				CD8427362B188F5600DA293E /* FirebaseFirestoreSwift */,
 				CD8427382B188F5600DA293E /* FirebaseInstallations */,
 				CD84273A2B188F5600DA293E /* FirebaseStorage */,
+				CD8427452B19308200DA293E /* PopupView */,
 			);
 			productName = CombustionIncAnalyser;
 			productReference = CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */;
@@ -413,6 +439,7 @@
 			mainGroup = CDB4B1CD2AFF80D5006E6597;
 			packageReferences = (
 				CD8427332B188F5600DA293E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CD8427442B19308200DA293E /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
 			productRefGroup = CDB4B1D72AFF80D5006E6597 /* Products */;
 			projectDirPath = "";
@@ -457,15 +484,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD8427412B19149800DA293E /* ActivityStatus.swift in Sources */,
 				CDD314A42B057E5400A557F8 /* TemperatureCurvesView.swift in Sources */,
 				CDD314B42B0CF2BF00A557F8 /* ProbeNotInsertedRange.swift in Sources */,
 				CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */,
 				CD84273F2B18BEDE00DA293E /* LoadingState.swift in Sources */,
 				CD5F3EB42B03D4BB001F3061 /* TimeInterval.swift in Sources */,
+				CD8427492B19ED8600DA293E /* AsyncButton.swift in Sources */,
 				CD84273D2B18BE9700DA293E /* Pasteboard.swift in Sources */,
 				CD5F3EB62B03DF96001F3061 /* NotesView.swift in Sources */,
 				CD8427302B17CE0400DA293E /* MacOSPadding.swift in Sources */,
 				CDB4B2082AFF94C1006E6597 /* HomeView.swift in Sources */,
+				CD8427432B19291300DA293E /* ActivityMessage.swift in Sources */,
 				CDB4B20A2AFFA95B006E6597 /* CookTimelineRow.swift in Sources */,
 				CDD314B22B0CF28200A557F8 /* GraphTimelinePosition.swift in Sources */,
 				CD67A19B2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift in Sources */,
@@ -477,8 +507,10 @@
 				CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */,
 				CDD314A22B05349400A557F8 /* AppSettingsKeys.swift in Sources */,
 				CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureExporter.swift in Sources */,
+				CD84274B2B19FB3500DA293E /* HomeToolbarContent.swift in Sources */,
 				CDD314B02B0CE97C00A557F8 /* TemperatureChartPlottable.swift in Sources */,
 				CDB4B21A2B0A2CCA006E6597 /* TemperatureUnit.swift in Sources */,
+				CD84274D2B19FEC800DA293E /* GraphAnnotationView.swift in Sources */,
 				CDD314A02B05348100A557F8 /* AppSettingsEnabledCurves.swift in Sources */,
 				CDB4B2182B0A058B006E6597 /* TemperatureReading.swift in Sources */,
 				CDD314B92B0CF39500A557F8 /* HomeViewModel.swift in Sources */,
@@ -667,6 +699,10 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-no_warn_duplicate_libraries",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.opensourcerer.CombustionIncAnalyser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -707,6 +743,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = io.opensourcerer.CombustionIncAnalyser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -854,6 +891,14 @@
 				minimumVersion = 10.18.0;
 			};
 		};
+		CD8427442B19308200DA293E /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -876,6 +921,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CD8427332B188F5600DA293E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		CD8427452B19308200DA293E /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD8427442B19308200DA293E /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

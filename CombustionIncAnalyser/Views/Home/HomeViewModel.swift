@@ -9,6 +9,11 @@ import FirebaseStorage
 import Foundation
 import SwiftUI
 
+enum CSVUploadError: Error {
+    case noFileSelected
+    case dataCannotBeCreated
+}
+
 class HomeViewModel: ObservableObject {
     private(set) var fileInfo: String = ""
     private(set) var csvParser: CSVTemperatureParser!
@@ -29,11 +34,12 @@ class HomeViewModel: ObservableObject {
         isFileImporterVisible = true
     }
     
-    func didTapUploadCSVFile() {
+    @MainActor
+    func uploadCSVFile() async throws -> URL {
         self.uploadFileLoadingState = .idle
         
         guard let selectedFileURL else {
-            return
+            throw CSVUploadError.noFileSelected
         }
 
         // Build the path to the CSV file
@@ -55,28 +61,23 @@ class HomeViewModel: ObservableObject {
         .output()
 
         guard let csvData = csvOutput.data(using: .utf8) else {
-            return
+            throw CSVUploadError.dataCannotBeCreated
         }
-        
+
         self.uploadFileLoadingState = .loading
 
-        fileRef.putData(csvData, metadata: fileMetadata) { _, error in
-            if let error {
-                self.uploadFileLoadingState = .failed(error)
-                return
-            }
+        do {
+            let _ = try await fileRef.putDataAsync(csvData, metadata: fileMetadata)
+            let url = try await fileRef.downloadURL()
+
+            Pasteboard.general.set(string: url.absoluteString)
+            // Update loading state
+            self.uploadFileLoadingState = .success(url)
             
-            fileRef.downloadURL { result in
-                switch result {
-                case let .success(url):
-                    // Copy link to pasteboard
-                    Pasteboard.general.set(string: url.absoluteString)
-                    // Update loading state
-                    self.uploadFileLoadingState = .success(url)
-                case let .failure(error):
-                    self.uploadFileLoadingState = .failed(error)
-                }
-            }
+            return url
+        } catch {
+            self.uploadFileLoadingState = .failed(error)
+            throw error
         }
     }
     
