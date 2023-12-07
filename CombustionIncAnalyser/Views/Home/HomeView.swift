@@ -18,10 +18,15 @@ struct HomeView: View {
     @State private var graphAnnotationRequest: GraphAnnotationRequest? = nil
     /// Controls the visibility of the notes sidebar
     @State private var isNotesSidebarVisible = true
-    /// Controls the visibility of the settings sheet
-    @Environment(\.isSettingsVisible) private var isSettingsVisible: Binding<Bool>
     
+    @State private var isAuthPromptVisible = false
+    /// Controls the visibility of the settings sheet
+//    @Environment(\.isSettingsVisible) private var isSettingsVisible: Binding<Bool>
+    /// Controls whether a popup should be shown or not
     @Environment(\.popupMessage) private var popupMessage: Binding<PopupMessage?>
+
+    
+    @Environment(\.openCrossCompatibleWindow) private var openCrossCompatibleWindow
 
     @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
     @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
@@ -43,7 +48,7 @@ struct HomeView: View {
     
     /// Changes the state of the settings view visibility
     func didTapOpenSettings() {
-        isSettingsVisible.wrappedValue = true
+        openCrossCompatibleWindow(.settings)
     }
     
     @MainActor
@@ -66,6 +71,11 @@ struct HomeView: View {
     /// Callback when the user taps on upload CSV button.
     /// Shows success/error message depending on the result of the operation
     func didTapUploadCSV() async {
+
+        isAuthPromptVisible = true
+        
+        return
+
         do {
             let _ = try await viewModel.uploadCSVFile()
 
@@ -186,9 +196,8 @@ struct HomeView: View {
                 }
             )
         })
-        // Settings sheet
-        .sheet(isPresented: isSettingsVisible, content: {
-            SettingsView()
+        .sheet(isPresented: $isAuthPromptVisible, content: {
+            AuthPromptView()
         })
     }
 }

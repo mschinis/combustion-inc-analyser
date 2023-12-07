@@ -20,6 +20,8 @@ struct SettingsView: View {
     @AppStorage(AppSettingsKeys.performanceMode.rawValue) private var isPerformanceModeEnabled: Bool = true
     @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
 
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -83,8 +85,9 @@ struct SettingsView: View {
                         .bold()
                         .macPadding(.top, 16)
                 }
-                
             }
+            .macPadding()
+            .macWrappedScrollview()
             .navigationTitle("Settings")
             .macPadding(8)
         }

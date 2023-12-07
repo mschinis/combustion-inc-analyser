@@ -28,6 +28,11 @@
 		CD8427492B19ED8600DA293E /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8427482B19ED8600DA293E /* AsyncButton.swift */; };
 		CD84274B2B19FB3500DA293E /* HomeToolbarContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84274A2B19FB3500DA293E /* HomeToolbarContent.swift */; };
 		CD84274D2B19FEC800DA293E /* GraphAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84274C2B19FEC800DA293E /* GraphAnnotationView.swift */; };
+		CD8427512B1A0F1A00DA293E /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8427502B1A0F1A00DA293E /* AuthView.swift */; };
+		CD8427542B1A0F2C00DA293E /* AuthPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8427532B1A0F2C00DA293E /* AuthPromptView.swift */; };
+		CD91AFF72B1FD918000D6E19 /* UploadPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91AFF62B1FD918000D6E19 /* UploadPrompt.swift */; };
+		CD91AFF92B224F05000D6E19 /* MacOSWrappedScrollview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91AFF82B224F05000D6E19 /* MacOSWrappedScrollview.swift */; };
+		CD91AFFB2B225720000D6E19 /* OpenCrossCompatibleWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91AFFA2B225720000D6E19 /* OpenCrossCompatibleWindow.swift */; };
 		CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */; };
 		CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */; };
 		CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DD2AFF80D5006E6597 /* SwiftDataItem.swift */; };
@@ -88,6 +93,11 @@
 		CD8427482B19ED8600DA293E /* AsyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
 		CD84274A2B19FB3500DA293E /* HomeToolbarContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeToolbarContent.swift; sourceTree = "<group>"; };
 		CD84274C2B19FEC800DA293E /* GraphAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphAnnotationView.swift; sourceTree = "<group>"; };
+		CD8427502B1A0F1A00DA293E /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		CD8427532B1A0F2C00DA293E /* AuthPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPromptView.swift; sourceTree = "<group>"; };
+		CD91AFF62B1FD918000D6E19 /* UploadPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPrompt.swift; sourceTree = "<group>"; };
+		CD91AFF82B224F05000D6E19 /* MacOSWrappedScrollview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSWrappedScrollview.swift; sourceTree = "<group>"; };
+		CD91AFFA2B225720000D6E19 /* OpenCrossCompatibleWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCrossCompatibleWindow.swift; sourceTree = "<group>"; };
 		CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombustionIncAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserApp.swift; sourceTree = "<group>"; };
 		CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContentView.swift; sourceTree = "<group>"; };
@@ -171,6 +181,15 @@
 				CD8427402B19149800DA293E /* PopupMessageView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		CD84274F2B1A0EFE00DA293E /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				CD8427502B1A0F1A00DA293E /* AuthView.swift */,
+				CD8427532B1A0F2C00DA293E /* AuthPromptView.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		CDB4B1CD2AFF80D5006E6597 = {
@@ -274,11 +293,12 @@
 		CDB4B20F2B016EE2006E6597 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD84274F2B1A0EFE00DA293E /* Auth */,
 				CD8427472B19ED7B00DA293E /* Components */,
 				CDD314A52B07A36A00A557F8 /* Graph */,
+				CDD314B52B0CF31000A557F8 /* Home */,
 				CDD314A62B07A38800A557F8 /* Notes */,
 				CDD3149E2B05346A00A557F8 /* Settings */,
-				CDD314B52B0CF31000A557F8 /* Home */,
 				CDD3149C2B04EF6F00A557F8 /* SelectFileScreen.swift */,
 			);
 			path = Views;
@@ -289,6 +309,7 @@
 			children = (
 				CD8427422B19291300DA293E /* PopupMessage.swift */,
 				CDB4B2112B09F0B7006E6597 /* SettingsVisible.swift */,
+				CD91AFFA2B225720000D6E19 /* OpenCrossCompatibleWindow.swift */,
 			);
 			path = EnvironmentKeys;
 			sourceTree = "<group>";
@@ -327,6 +348,7 @@
 			children = (
 				CDD314A82B080ADA00A557F8 /* CSVDropDestination.swift */,
 				CD84272F2B17CE0400DA293E /* MacOSPadding.swift */,
+				CD91AFF82B224F05000D6E19 /* MacOSWrappedScrollview.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -338,6 +360,7 @@
 				CDB4B2072AFF94C1006E6597 /* HomeView.swift */,
 				CDD314B82B0CF39500A557F8 /* HomeViewModel.swift */,
 				CD84274C2B19FEC800DA293E /* GraphAnnotationView.swift */,
+				CD91AFF62B1FD918000D6E19 /* UploadPrompt.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -486,6 +509,7 @@
 			files = (
 				CD8427412B19149800DA293E /* PopupMessageView.swift in Sources */,
 				CDD314A42B057E5400A557F8 /* TemperatureCurvesView.swift in Sources */,
+				CD91AFF72B1FD918000D6E19 /* UploadPrompt.swift in Sources */,
 				CDD314B42B0CF2BF00A557F8 /* ProbeNotInsertedRange.swift in Sources */,
 				CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */,
 				CD84273F2B18BEDE00DA293E /* LoadingState.swift in Sources */,
@@ -497,14 +521,17 @@
 				CDB4B2082AFF94C1006E6597 /* HomeView.swift in Sources */,
 				CD8427432B19291300DA293E /* PopupMessage.swift in Sources */,
 				CDB4B20A2AFFA95B006E6597 /* CookTimelineRow.swift in Sources */,
+				CD91AFFB2B225720000D6E19 /* OpenCrossCompatibleWindow.swift in Sources */,
 				CDD314B22B0CF28200A557F8 /* GraphTimelinePosition.swift in Sources */,
 				CD67A19B2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift in Sources */,
 				CDD314B72B0CF32500A557F8 /* GraphAnnotationRequest.swift in Sources */,
+				CD91AFF92B224F05000D6E19 /* MacOSWrappedScrollview.swift in Sources */,
 				CDD314A92B080ADA00A557F8 /* CSVDropDestination.swift in Sources */,
 				CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */,
 				CDB4B20C2B016E70006E6597 /* CSVTemperatureParser.swift in Sources */,
 				CD67A19D2B0F9750008053FF /* Device.swift in Sources */,
 				CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */,
+				CD8427512B1A0F1A00DA293E /* AuthView.swift in Sources */,
 				CDD314A22B05349400A557F8 /* AppSettingsKeys.swift in Sources */,
 				CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureExporter.swift in Sources */,
 				CD84274B2B19FB3500DA293E /* HomeToolbarContent.swift in Sources */,
@@ -517,6 +544,7 @@
 				CDD3149D2B04EF6F00A557F8 /* SelectFileScreen.swift in Sources */,
 				CD5F3EAE2B03AC61001F3061 /* GraphView.swift in Sources */,
 				CDB4B2122B09F0B7006E6597 /* SettingsVisible.swift in Sources */,
+				CD8427542B1A0F2C00DA293E /* AuthPromptView.swift in Sources */,
 				CD5F3EB92B03EB08001F3061 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
