@@ -5,6 +5,7 @@
 //  Created by Michael Schinis on 11/11/2023.
 //
 
+import Factory
 import PopupView
 import SwiftUI
 import SwiftData
@@ -12,13 +13,16 @@ import FirebaseCore
 
 @main
 struct CombustionIncAnalyserApp: App {
-    @State private var isSettingsSheetVisible = false
+    @State private var crossCompatibleSheet: CrossCompatibleWindow?
 
     @StateObject private var homeViewModel = HomeViewModel()
+
     @State private var popupMessage: PopupMessage?
     
     @Environment(\.openWindow) private var openWindow
     
+//    @Injected(\.authService) private var authService: AuthService
+
     /// Opens:
     /// - a window on MacOS
     /// - a sheet on iOS
@@ -28,10 +32,7 @@ struct CombustionIncAnalyserApp: App {
         #if os(macOS)
         openWindow(id: window.rawValue)
         #else
-        switch window {
-        case .settings:
-            self.isSettingsSheetVisible = true
-        }
+        self.crossCompatibleSheet = window
         #endif
     }
     
@@ -42,27 +43,44 @@ struct CombustionIncAnalyserApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView(viewModel: homeViewModel)
-                .environment(\.openCrossCompatibleWindow, openCrossCompatibleWindow(_:))
-                .environment(\.popupMessage, $popupMessage)
-                .popup(item: $popupMessage) { item in
-                    PopupMessageView(
-                        message: item
-                    )
-                    .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 0)
-                    .shadow(color: .black.opacity(0.16), radius: 24, x: 0, y: 0)
-                } customize: {
-                    $0
-                        .type(.floater())
-                        .autohideIn(2)
-                        .position(.top)
-                }
-                #if os(iOS)
-                // Settings sheet
-                .sheet(isPresented: $isSettingsSheetVisible, content: {
+            TabView {
+                HomeView(viewModel: homeViewModel)
+                    .tabItem {
+                        Label(
+                            title: { Text("Analyse") },
+                            icon: { Image(systemName: "chart.xyaxis.line") }
+                        )
+                    }
+                
+                ListCloudView()
+                    .tabItem {
+                        Label(
+                            title: { Text("Cloud") },
+                            icon: { Image(systemName: "cloud") }
+                        )
+                    }
+            }
+            .environment(\.openCrossCompatibleWindow, openCrossCompatibleWindow(_:))
+            .environment(\.popupMessage, $popupMessage)
+            .popup(item: $popupMessage) { item in
+                PopupMessageView(
+                    message: item
+                )
+                .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 0)
+                .shadow(color: .black.opacity(0.16), radius: 24, x: 0, y: 0)
+            } customize: {
+                $0
+                    .type(.floater())
+                    .autohideIn(2)
+                    .position(.top)
+            }
+            // Settings sheet
+            .sheet(item: $crossCompatibleSheet, content: { type in
+                switch type {
+                case .settings:
                     SettingsView()
-                })
-                #endif
+                }
+            })
         }
         .commands {
             CommandGroup(after: .appSettings) {
@@ -70,6 +88,12 @@ struct CombustionIncAnalyserApp: App {
                     openCrossCompatibleWindow(.settings)
                 }
                 .keyboardShortcut(",")
+                
+                Button("Sign Out") {
+                    // Logout of firebase by grabbing the auth service programmatically
+                    let authService = Container.shared.authService()
+                    try? authService.logout()
+                }
             }
             
             CommandGroup(after: .newItem) {
@@ -85,9 +109,12 @@ struct CombustionIncAnalyserApp: App {
                 .keyboardShortcut("s")
             }
         }
-
+        
         WindowGroup("Settings", id: CrossCompatibleWindow.settings.rawValue) {
             SettingsView()
         }
+        #if os(macOS)
+        .windowResizability(.contentMinSize)
+        #endif
     }
 }

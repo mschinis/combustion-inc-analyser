@@ -5,7 +5,7 @@
 //  Created by Michael Schinis on 11/11/2023.
 //
 
-import FirebaseAuth
+import Factory
 import SwiftUI
 import Charts
 
@@ -18,18 +18,18 @@ struct HomeView: View {
     @State private var graphAnnotationRequest: GraphAnnotationRequest? = nil
     /// Controls the visibility of the notes sidebar
     @State private var isNotesSidebarVisible = true
-    
-    @State private var isAuthPromptVisible = false
-    /// Controls the visibility of the settings sheet
-//    @Environment(\.isSettingsVisible) private var isSettingsVisible: Binding<Bool>
+    /// Controls the visibility of the authentication page
+    @State private var isAuthVisible: Bool = false
     /// Controls whether a popup should be shown or not
     @Environment(\.popupMessage) private var popupMessage: Binding<PopupMessage?>
 
-    
     @Environment(\.openCrossCompatibleWindow) private var openCrossCompatibleWindow
 
     @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
     @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
+    
+    @Injected(\.authService) private var authService: AuthService
+    @Injected(\.cloudService) private var cloudService: CloudService
     
     init() {
         self._viewModel = StateObject(wrappedValue: HomeViewModel())
@@ -71,26 +71,47 @@ struct HomeView: View {
     /// Callback when the user taps on upload CSV button.
     /// Shows success/error message depending on the result of the operation
     func didTapUploadCSV() async {
+        guard let user = authService.user else {
+            isAuthVisible = true
+            return
+        }
 
-        isAuthPromptVisible = true
         
-        return
-
         do {
-            let _ = try await viewModel.uploadCSVFile()
-
-            popupMessage.wrappedValue = .init(
-                state: .success,
-                title: "File uploaded",
-                description: "Link copied to clipboard"
+            try await cloudService.upload(
+                data: CloudRecord(
+                    typeOfCook: "",
+                    cookingMethod: "",
+                    cookDetails: "",
+                    
+                    userId: user.uid,
+                    fileName: "lala"
+                ),
+                contents: "test,test"
             )
         } catch {
-            popupMessage.wrappedValue = .init(
-                state: .success,
-                title: "File uploaded",
-                description: "Link copied to clipboard"
-            )
+            
         }
+        
+
+        
+        
+        
+//        do {
+//            let _ = try await viewModel.uploadCSVFile()
+//
+//            popupMessage.wrappedValue = .init(
+//                state: .success,
+//                title: "File uploaded",
+//                description: "Link copied to clipboard"
+//            )
+//        } catch {
+//            popupMessage.wrappedValue = .init(
+//                state: .error,
+//                title: "File upload failed",
+//                description: "\(error.localizedDescription)"
+//            )
+//        }
     }
     
     /// Result callback from file importer.
@@ -196,8 +217,22 @@ struct HomeView: View {
                 }
             )
         })
-        .sheet(isPresented: $isAuthPromptVisible, content: {
-            AuthPromptView()
+        .sheet(isPresented: $isAuthVisible, content: {
+            AuthView(
+                viewModel: AuthViewModel(
+                    authorizationSuccess: { user in
+                        isAuthVisible = false
+                        popupMessage.wrappedValue = .init(
+                            state: .success,
+                            title: "Logged in",
+                            description: "Try uploading your file again"
+                        )
+                    },
+                    authorizationError: { error in
+                        print("Error:: \(error.localizedDescription)")
+                    }
+                )
+            )
         })
     }
 }

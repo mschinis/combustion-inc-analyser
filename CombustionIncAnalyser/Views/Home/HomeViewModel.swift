@@ -9,11 +9,6 @@ import FirebaseStorage
 import Foundation
 import SwiftUI
 
-enum CSVUploadError: Error {
-    case noFileSelected
-    case dataCannotBeCreated
-}
-
 class HomeViewModel: ObservableObject {
     private(set) var fileInfo: String = ""
     private(set) var csvParser: CSVTemperatureParser!
@@ -24,6 +19,7 @@ class HomeViewModel: ObservableObject {
     
     @Published private(set) var uploadFileLoadingState: LoadingState<URL> = .idle
 
+    
     var notes: [CookTimelineRow] {
         data.filter {
             $0.notes?.isEmpty == false
@@ -39,7 +35,7 @@ class HomeViewModel: ObservableObject {
         self.uploadFileLoadingState = .idle
         
         guard let selectedFileURL else {
-            throw CSVUploadError.noFileSelected
+            throw CloudServiceError.noFileSelected
         }
 
         // Build the path to the CSV file
@@ -61,7 +57,7 @@ class HomeViewModel: ObservableObject {
         .output()
 
         guard let csvData = csvOutput.data(using: .utf8) else {
-            throw CSVUploadError.dataCannotBeCreated
+            throw CloudServiceError.dataCannotBeCreated
         }
 
         self.uploadFileLoadingState = .loading

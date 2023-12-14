@@ -39,4 +39,12 @@ enum LoadingState<Value> {
         default: return false
         }
     }
+    
+    /// Convenience variable for checking if the loading state is loaded
+    var isLoaded: Bool {
+        switch self {
+        case .success: return true
+        default: return false
+        }
+    }
 }

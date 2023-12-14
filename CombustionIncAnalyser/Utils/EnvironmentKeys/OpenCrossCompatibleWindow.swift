@@ -8,7 +8,11 @@
 import Foundation
 import SwiftUI
 
-enum CrossCompatibleWindow: String {
+enum CrossCompatibleWindow: String, Identifiable {
+    var id: String {
+        rawValue
+    }
+    
     case settings
 }
 

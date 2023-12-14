@@ -54,6 +54,10 @@ struct AsyncButton<Label: View>: View {
 
                     if showProgressView {
                         ProgressView()
+                        #if os(macOS)
+                            // MacOS should have a smaller progress bar, than usual, since .default is too large
+                            .controlSize(.small)
+                        #endif
                     }
                 }
             }
