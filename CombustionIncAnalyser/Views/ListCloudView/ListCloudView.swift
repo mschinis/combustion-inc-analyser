@@ -37,6 +37,16 @@ class ListCloudViewModel: ObservableObject {
             self.loadingState = .failed(error)
         }
     }
+    
+    @MainActor
+    func logout() {
+        do {
+            try authService.logout()
+            loadingState = .failed(ListError.notLoggedIn)
+        } catch {
+            print("CloudList:: Failed logging")
+        }
+    }
 }
 
 struct ListCloudView: View {
@@ -55,6 +65,13 @@ struct ListCloudView: View {
                 ProgressView()
             case .success(let records):
                 ListCloudViewLoaded(records: records)
+                    .toolbar {
+                        ToolbarItem {
+                            Button("Logout", systemImage: "person.slash") {
+                                viewModel.logout()
+                            }
+                        }
+                    }
             case .failed(let error as ListCloudViewModel.ListError) where error == .notLoggedIn:
                 AuthView(
                     viewModel: .init(authorizationSuccess: { _ in

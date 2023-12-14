@@ -76,7 +76,6 @@ struct HomeView: View {
             return
         }
 
-        
         do {
             try await cloudService.upload(
                 data: CloudRecord(

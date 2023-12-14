@@ -10,6 +10,8 @@ import SwiftUI
 struct ListCloudViewRow: View {
     var record: CloudRecord
 
+    @State private var areDetailsVisible = false
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -21,10 +23,37 @@ struct ListCloudViewRow: View {
             
             Spacer()
 
-            Button(action: {}, label: {
+            Button(action: {
+                areDetailsVisible = true
+            }, label: {
                 Image(systemName: "info.circle")
             })
         }
+        .alert("Cook details", isPresented: $areDetailsVisible) {
+            Button {
+                // TODO: Load csv file
+            } label: {
+                Text("Analyse")
+            }
+
+            
+            Button(role: .cancel) {
+                areDetailsVisible = false
+            } label: {
+                Text("Close")
+            }
+        } message: {
+            Text(
+                """
+                Last updated: \(record.updatedAt.formatted())
+                
+                \(record.typeOfCook)
+                \(record.cookingMethod)
+                \n\(record.cookDetails)
+                """
+            )
+        }
+
     }
 }
 
