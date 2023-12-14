@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EA92B02C8BB001F3061 /* CSVTemperatureExporter.swift */; };
+		CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EA92B02C8BB001F3061 /* CSVTemperatureSerializer.swift */; };
 		CD5F3EAE2B03AC61001F3061 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EAD2B03AC61001F3061 /* GraphView.swift */; };
 		CD5F3EB42B03D4BB001F3061 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EB32B03D4BB001F3061 /* TimeInterval.swift */; };
 		CD5F3EB62B03DF96001F3061 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EB52B03DF96001F3061 /* NotesView.swift */; };
@@ -85,7 +85,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CD5F3EA92B02C8BB001F3061 /* CSVTemperatureExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVTemperatureExporter.swift; sourceTree = "<group>"; };
+		CD5F3EA92B02C8BB001F3061 /* CSVTemperatureSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVTemperatureSerializer.swift; sourceTree = "<group>"; };
 		CD5F3EAD2B03AC61001F3061 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		CD5F3EB32B03D4BB001F3061 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		CD5F3EB52B03DF96001F3061 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
@@ -325,7 +325,7 @@
 				CDD314A72B080ABC00A557F8 /* ViewModifiers */,
 				CD5F3EB22B03D4B1001F3061 /* Extensions */,
 				CDB4B20B2B016E70006E6597 /* CSVTemperatureParser.swift */,
-				CD5F3EA92B02C8BB001F3061 /* CSVTemperatureExporter.swift */,
+				CD5F3EA92B02C8BB001F3061 /* CSVTemperatureSerializer.swift */,
 				CD67A19C2B0F9750008053FF /* Device.swift */,
 				CD84273C2B18BE9700DA293E /* Pasteboard.swift */,
 				CD84273E2B18BEDE00DA293E /* LoadingState.swift */,
@@ -598,7 +598,7 @@
 				CD91B0152B2B9083000D6E19 /* ListCloudViewRow.swift in Sources */,
 				CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */,
 				CDD314A22B05349400A557F8 /* AppSettingsKeys.swift in Sources */,
-				CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureExporter.swift in Sources */,
+				CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureSerializer.swift in Sources */,
 				CD84274B2B19FB3500DA293E /* HomeToolbarContent.swift in Sources */,
 				CDD314B02B0CE97C00A557F8 /* TemperatureChartPlottable.swift in Sources */,
 				CDB4B21A2B0A2CCA006E6597 /* TemperatureUnit.swift in Sources */,

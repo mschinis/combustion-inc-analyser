@@ -192,7 +192,7 @@ struct HomeView: View {
                         fileURL: viewModel.selectedFileURL,
                         shareGraphImage: generateGraphSnapshot()!,
                         didTapUploadFile: didTapUploadCSV,
-                        didTapSaveFile: viewModel.didTapSave,
+                        didTapSaveFile: viewModel.didTapSaveLocally,
                         didTapSettings: didTapOpenSettings
                     )
                 }

@@ -11,15 +11,24 @@ import SwiftUI
 
 class HomeViewModel: ObservableObject {
     private(set) var fileInfo: String = ""
-    private(set) var csvParser: CSVTemperatureParser!
+    private(set) var headers: [String] = []
 
     @Published private(set) var selectedFileURL: URL? = nil
     @Published private(set) var data: [CookTimelineRow] = []
     @Published var isFileImporterVisible = false
     
     @Published private(set) var uploadFileLoadingState: LoadingState<URL> = .idle
-
     
+    var csvOutput: String {
+        CSVTemperatureSerializer(
+            fileInfo: fileInfo,
+            headers: headers,
+            data: data
+        )
+        .output()
+    }
+    
+    /// Filter out CSV rows which contain notes
     var notes: [CookTimelineRow] {
         data.filter {
             $0.notes?.isEmpty == false
@@ -47,15 +56,7 @@ class HomeViewModel: ObservableObject {
         let fileMetadata = StorageMetadata()
         fileMetadata.contentType = "text/csv"
         
-        // Build the CSV contents
-        let csvOutput = CSVTemperatureExporter(
-            url: selectedFileURL,
-            fileInfo: fileInfo,
-            headers: csvParser.headers,
-            data: data
-        )
-        .output()
-
+        // Grab the csv output string and upload it
         guard let csvData = csvOutput.data(using: .utf8) else {
             throw CloudServiceError.dataCannotBeCreated
         }
@@ -116,10 +117,12 @@ class HomeViewModel: ObservableObject {
             let fileSegments = contents.split(separator: "\n\n").map { String($0) }
             let fileInfo = fileSegments[0]
             let temperatureInfo = fileSegments[1]
-
+            
+            let parser = CSVTemperatureParser(temperatureInfo)
+            
             self.fileInfo = fileInfo
-            self.csvParser = CSVTemperatureParser(temperatureInfo)
-            self.data = csvParser.parse()
+            self.headers = parser.headers
+            self.data = parser.parse()
         } catch {
             print(error.localizedDescription)
         }
@@ -147,17 +150,16 @@ class HomeViewModel: ObservableObject {
         data[index] = row
     }
     
-    func didTapSave() {
+    func didTapSaveLocally() {
         guard let selectedFileURL else {
             return
         }
 
-        CSVTemperatureExporter(
-            url: selectedFileURL,
-            fileInfo: fileInfo,
-            headers: csvParser.headers,
-            data: data
-        )
-        .save()
+        
+        do {
+            try csvOutput.write(to: selectedFileURL, atomically: false, encoding: .utf8)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }

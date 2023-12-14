@@ -30,14 +30,14 @@ struct HomeToolbarContent: ToolbarContent {
                 systemImageName: "icloud.and.arrow.up",
                 action: didTapUploadFile
             )
-            .help("Upload file")
+            .help("Upload file to cloud")
         }
 
         ToolbarItem(id: "save_file", placement: .primaryAction) {
             Button(action: didTapSaveFile, label: {
                 Image(systemName: "scribble")
             })
-            .help("Save file")
+            .help("Save file locally")
         }
 
         // Share graph button

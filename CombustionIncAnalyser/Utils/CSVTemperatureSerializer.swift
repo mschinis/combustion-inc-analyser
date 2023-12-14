@@ -1,5 +1,5 @@
 //
-//  CSVTemperatureExporter.swift
+//  CSVTemperatureSerializer.swift
 //  CombustionIncAnalyser
 //
 //  Created by Michael Schinis on 13/11/2023.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-class CSVTemperatureExporter {
-    private var url: URL
+class CSVTemperatureSerializer {
+//    private var url: URL
 
     private var fileInfo: String
     private var headers: [String]
     private var data: [CookTimelineRow]
     
-    init(url: URL, fileInfo: String, headers: [String], data: [CookTimelineRow]) {
-        self.url = url
+    init(/*url: URL, */fileInfo: String, headers: [String], data: [CookTimelineRow]) {
+//        self.url = url
         self.fileInfo = fileInfo
         self.headers = headers
         self.data = data
@@ -37,13 +37,13 @@ class CSVTemperatureExporter {
         return ([fileInfoWithHeaders] + strData).joined(separator: "\n")
     }
     
-    func save() {
-        let outputData = output()
-
-        do {
-            try outputData.write(to: url, atomically: false, encoding: .utf8)
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
+//    func save() {
+//        let outputData = output()
+//
+//        do {
+//            try outputData.write(to: url, atomically: false, encoding: .utf8)
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//    }
 }

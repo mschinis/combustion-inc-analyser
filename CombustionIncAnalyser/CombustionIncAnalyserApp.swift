@@ -103,7 +103,7 @@ struct CombustionIncAnalyserApp: App {
                 .keyboardShortcut("o")
                 
                 Button("Save") {
-                    homeViewModel.didTapSave()
+                    homeViewModel.didTapSaveLocally()
                 }
                 .disabled(homeViewModel.selectedFileURL == nil)
                 .keyboardShortcut("s")
