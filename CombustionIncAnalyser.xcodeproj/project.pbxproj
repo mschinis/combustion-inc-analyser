@@ -13,7 +13,7 @@
 		CD5F3EB62B03DF96001F3061 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EB52B03DF96001F3061 /* NotesView.swift */; };
 		CD5F3EB92B03EB08001F3061 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EB82B03EB08001F3061 /* SettingsView.swift */; };
 		CD67A19B2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD67A19A2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift */; };
-		CD67A19D2B0F9750008053FF /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD67A19C2B0F9750008053FF /* Device.swift */; };
+		CD67A19D2B0F9750008053FF /* CADevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD67A19C2B0F9750008053FF /* CADevice.swift */; };
 		CD8427302B17CE0400DA293E /* MacOSPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84272F2B17CE0400DA293E /* MacOSPadding.swift */; };
 		CD8427322B188E5900DA293E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD8427312B188E5900DA293E /* GoogleService-Info.plist */; };
 		CD8427352B188F5600DA293E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CD8427342B188F5600DA293E /* FirebaseAuth */; };
@@ -41,6 +41,9 @@
 		CD91B0112B2B37B4000D6E19 /* ListCloudViewLoaded.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91B0102B2B37B4000D6E19 /* ListCloudViewLoaded.swift */; };
 		CD91B0132B2B8C43000D6E19 /* ListCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91B0122B2B8C43000D6E19 /* ListCloudView.swift */; };
 		CD91B0152B2B9083000D6E19 /* ListCloudViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91B0142B2B9083000D6E19 /* ListCloudViewRow.swift */; };
+		CDB4891F2B84DAAD003E1F38 /* LiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4891E2B84DAAD003E1F38 /* LiveView.swift */; };
+		CDB489222B84DB38003E1F38 /* CombustionBLE in Frameworks */ = {isa = PBXBuildFile; productRef = CDB489212B84DB38003E1F38 /* CombustionBLE */; };
+		CDB489242B84E923003E1F38 /* LiveProbeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB489232B84E923003E1F38 /* LiveProbeView.swift */; };
 		CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */; };
 		CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */; };
 		CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DD2AFF80D5006E6597 /* SwiftDataItem.swift */; };
@@ -91,7 +94,7 @@
 		CD5F3EB52B03DF96001F3061 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		CD5F3EB82B03EB08001F3061 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CD67A19A2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationBackgroundViewModifier.swift; sourceTree = "<group>"; };
-		CD67A19C2B0F9750008053FF /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		CD67A19C2B0F9750008053FF /* CADevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CADevice.swift; sourceTree = "<group>"; };
 		CD84272F2B17CE0400DA293E /* MacOSPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSPadding.swift; sourceTree = "<group>"; };
 		CD8427312B188E5900DA293E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD84273C2B18BE9700DA293E /* Pasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pasteboard.swift; sourceTree = "<group>"; };
@@ -114,6 +117,8 @@
 		CD91B0102B2B37B4000D6E19 /* ListCloudViewLoaded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCloudViewLoaded.swift; sourceTree = "<group>"; };
 		CD91B0122B2B8C43000D6E19 /* ListCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCloudView.swift; sourceTree = "<group>"; };
 		CD91B0142B2B9083000D6E19 /* ListCloudViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCloudViewRow.swift; sourceTree = "<group>"; };
+		CDB4891E2B84DAAD003E1F38 /* LiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveView.swift; sourceTree = "<group>"; };
+		CDB489232B84E923003E1F38 /* LiveProbeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveProbeView.swift; sourceTree = "<group>"; };
 		CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombustionIncAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserApp.swift; sourceTree = "<group>"; };
 		CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContentView.swift; sourceTree = "<group>"; };
@@ -155,6 +160,7 @@
 				CD91B0062B29C97F000D6E19 /* Factory in Frameworks */,
 				CD8427352B188F5600DA293E /* FirebaseAuth in Frameworks */,
 				CD8427372B188F5600DA293E /* FirebaseFirestoreSwift in Frameworks */,
+				CDB489222B84DB38003E1F38 /* CombustionBLE in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +251,15 @@
 			path = ListCloudView;
 			sourceTree = "<group>";
 		};
+		CDB4891D2B84DAA6003E1F38 /* LiveView */ = {
+			isa = PBXGroup;
+			children = (
+				CDB4891E2B84DAAD003E1F38 /* LiveView.swift */,
+				CDB489232B84E923003E1F38 /* LiveProbeView.swift */,
+			);
+			path = LiveView;
+			sourceTree = "<group>";
+		};
 		CDB4B1CD2AFF80D5006E6597 = {
 			isa = PBXGroup;
 			children = (
@@ -326,7 +341,7 @@
 				CD5F3EB22B03D4B1001F3061 /* Extensions */,
 				CDB4B20B2B016E70006E6597 /* CSVTemperatureParser.swift */,
 				CD5F3EA92B02C8BB001F3061 /* CSVTemperatureSerializer.swift */,
-				CD67A19C2B0F9750008053FF /* Device.swift */,
+				CD67A19C2B0F9750008053FF /* CADevice.swift */,
 				CD84273C2B18BE9700DA293E /* Pasteboard.swift */,
 				CD84273E2B18BEDE00DA293E /* LoadingState.swift */,
 			);
@@ -349,6 +364,7 @@
 		CDB4B20F2B016EE2006E6597 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CDB4891D2B84DAA6003E1F38 /* LiveView */,
 				CD84274F2B1A0EFE00DA293E /* Auth */,
 				CD91B00A2B29FBE5000D6E19 /* CloudUploadView */,
 				CD91B00F2B2B379C000D6E19 /* ListCloudView */,
@@ -445,6 +461,7 @@
 				CD84273A2B188F5600DA293E /* FirebaseStorage */,
 				CD8427452B19308200DA293E /* PopupView */,
 				CD91B0052B29C97F000D6E19 /* Factory */,
+				CDB489212B84DB38003E1F38 /* CombustionBLE */,
 			);
 			productName = CombustionIncAnalyser;
 			productReference = CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */;
@@ -522,6 +539,7 @@
 				CD8427332B188F5600DA293E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				CD8427442B19308200DA293E /* XCRemoteSwiftPackageReference "PopupView" */,
 				CD91B0042B29C97F000D6E19 /* XCRemoteSwiftPackageReference "Factory" */,
+				CDB489202B84DB38003E1F38 /* XCRemoteSwiftPackageReference "combustion-ios-ble" */,
 			);
 			productRefGroup = CDB4B1D72AFF80D5006E6597 /* Products */;
 			projectDirPath = "";
@@ -594,17 +612,19 @@
 				CD91AFFE2B28B400000D6E19 /* AuthViewModel.swift in Sources */,
 				CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */,
 				CDB4B20C2B016E70006E6597 /* CSVTemperatureParser.swift in Sources */,
-				CD67A19D2B0F9750008053FF /* Device.swift in Sources */,
+				CD67A19D2B0F9750008053FF /* CADevice.swift in Sources */,
 				CD91B0152B2B9083000D6E19 /* ListCloudViewRow.swift in Sources */,
 				CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */,
 				CDD314A22B05349400A557F8 /* AppSettingsKeys.swift in Sources */,
 				CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureSerializer.swift in Sources */,
+				CDB489242B84E923003E1F38 /* LiveProbeView.swift in Sources */,
 				CD84274B2B19FB3500DA293E /* HomeToolbarContent.swift in Sources */,
 				CDD314B02B0CE97C00A557F8 /* TemperatureChartPlottable.swift in Sources */,
 				CDB4B21A2B0A2CCA006E6597 /* TemperatureUnit.swift in Sources */,
 				CD84274D2B19FEC800DA293E /* GraphAnnotationView.swift in Sources */,
 				CDD314A02B05348100A557F8 /* AppSettingsEnabledCurves.swift in Sources */,
 				CDB4B2182B0A058B006E6597 /* TemperatureReading.swift in Sources */,
+				CDB4891F2B84DAAD003E1F38 /* LiveView.swift in Sources */,
 				CDD314B92B0CF39500A557F8 /* HomeViewModel.swift in Sources */,
 				CDD3149D2B04EF6F00A557F8 /* SelectFileScreen.swift in Sources */,
 				CD5F3EAE2B03AC61001F3061 /* GraphView.swift in Sources */,
@@ -1004,6 +1024,14 @@
 				minimumVersion = 2.3.1;
 			};
 		};
+		CDB489202B84DB38003E1F38 /* XCRemoteSwiftPackageReference "combustion-ios-ble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mschinis/combustion-ios-ble";
+			requirement = {
+				branch = "mschinis-patch-1";
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1036,6 +1064,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CD91B0042B29C97F000D6E19 /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
+		};
+		CDB489212B84DB38003E1F38 /* CombustionBLE */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDB489202B84DB38003E1F38 /* XCRemoteSwiftPackageReference "combustion-ios-ble" */;
+			productName = CombustionBLE;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -16,6 +16,8 @@ struct CombustionIncAnalyserApp: App {
     @State private var crossCompatibleSheet: CrossCompatibleWindow?
 
     @StateObject private var homeViewModel = HomeViewModel()
+    
+    @StateObject private var liveViewModel = LiveViewModel()
 
     @State private var popupMessage: PopupMessage?
     
@@ -51,6 +53,14 @@ struct CombustionIncAnalyserApp: App {
                             icon: { Image(systemName: "chart.xyaxis.line") }
                         )
                     }
+                
+//                LiveView(viewModel: liveViewModel)
+//                    .tabItem {
+//                        Label(
+//                            title: { Text("Live") },
+//                            icon: { Image(systemName: "chart.xyaxis.line") }
+//                        )
+//                    }
                 
                 ListCloudView()
                     .tabItem {

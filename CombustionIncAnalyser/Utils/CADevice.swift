@@ -1,5 +1,5 @@
 //
-//  Device.swift
+//  CADevice.swift
 //  CombustionIncAnalyser
 //
 //  Created by Michael Schinis on 23/11/2023.
@@ -11,12 +11,12 @@ import Foundation
 import UIKit
 #endif
 
-class Device {
+class CADevice {
     enum DeviceType {
         case iPhone, iPad, mac
     }
     
-    static var current = Device()
+    static var current = CADevice()
     
     func isDevice(_ device: DeviceType) -> Bool {
         #if os(macOS)
