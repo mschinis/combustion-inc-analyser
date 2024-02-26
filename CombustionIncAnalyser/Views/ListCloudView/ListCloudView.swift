@@ -5,6 +5,7 @@
 //  Created by Michael Schinis on 14/12/2023.
 //
 
+import Combine
 import Factory
 import SwiftUI
 
@@ -18,20 +19,31 @@ class ListCloudViewModel: ObservableObject {
     @Injected(\.authService) private var authService: AuthService
     @Injected(\.cloudService) private var cloudService: CloudService
     
+    private var subscribers: Set<AnyCancellable> = []
+
+    init() {
+        cloudService
+            .publisher
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                print("completion", completion)
+            } receiveValue: { records in
+                if let records {
+                    print("records", records)
+                    self.loadingState = .success(records)
+                }
+            }
+            .store(in: &subscribers)
+    }
+    
     @MainActor
     func load() async {
-        guard let user = authService.user else {
-            self.loadingState = .failed(ListError.notLoggedIn)
-
-            return
-        }
-        
         if loadingState.isIdle {
             self.loadingState = .loading
         }
 
         do {
-            let records = try await cloudService.find(by: user.uid)
+            let records = try await cloudService.findUserRecords()
             self.loadingState = .success(records)
         } catch {
             self.loadingState = .failed(error)

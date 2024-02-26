@@ -17,7 +17,7 @@ class HomeViewModel: ObservableObject {
     @Published private(set) var data: [CookTimelineRow] = []
     @Published var isFileImporterVisible = false
     
-    @Published private(set) var uploadFileLoadingState: LoadingState<URL> = .idle
+//    @Published private(set) var uploadFileLoadingState: LoadingState<URL> = .idle
     
     var csvOutput: String {
         CSVTemperatureSerializer(
@@ -39,44 +39,44 @@ class HomeViewModel: ObservableObject {
         isFileImporterVisible = true
     }
     
-    @MainActor
-    func uploadCSVFile() async throws -> URL {
-        self.uploadFileLoadingState = .idle
-        
-        guard let selectedFileURL else {
-            throw CloudServiceError.noFileSelected
-        }
-
-        // Build the path to the CSV file
-        let storage = Storage.storage()
-        let root = storage.reference(withPath: "uploads")
-        let fileRef = root.child(selectedFileURL.lastPathComponent)
-        
-        // Build the file metadata
-        let fileMetadata = StorageMetadata()
-        fileMetadata.contentType = "text/csv"
-        
-        // Grab the csv output string and upload it
-        guard let csvData = csvOutput.data(using: .utf8) else {
-            throw CloudServiceError.dataCannotBeCreated
-        }
-
-        self.uploadFileLoadingState = .loading
-
-        do {
-            let _ = try await fileRef.putDataAsync(csvData, metadata: fileMetadata)
-            let url = try await fileRef.downloadURL()
-
-            Pasteboard.general.set(string: url.absoluteString)
-            // Update loading state
-            self.uploadFileLoadingState = .success(url)
-            
-            return url
-        } catch {
-            self.uploadFileLoadingState = .failed(error)
-            throw error
-        }
-    }
+//    @MainActor
+//    func uploadCSVFile() async throws -> URL {
+//        self.uploadFileLoadingState = .idle
+//        
+//        guard let selectedFileURL else {
+//            throw CloudServiceError.noFileSelected
+//        }
+//
+//        // Build the path to the CSV file
+//        let storage = Storage.storage()
+//        let root = storage.reference(withPath: "uploads")
+//        let fileRef = root.child(selectedFileURL.lastPathComponent)
+//        
+//        // Build the file metadata
+//        let fileMetadata = StorageMetadata()
+//        fileMetadata.contentType = "text/csv"
+//        
+//        // Grab the csv output string and upload it
+//        guard let csvData = csvOutput.data(using: .utf8) else {
+//            throw CloudServiceError.dataCannotBeCreated
+//        }
+//
+//        self.uploadFileLoadingState = .loading
+//
+//        do {
+//            let _ = try await fileRef.putDataAsync(csvData, metadata: fileMetadata)
+//            let url = try await fileRef.downloadURL()
+//
+//            Pasteboard.general.set(string: url.absoluteString)
+//            // Update loading state
+//            self.uploadFileLoadingState = .success(url)
+//            
+//            return url
+//        } catch {
+//            self.uploadFileLoadingState = .failed(error)
+//            throw error
+//        }
+//    }
     
     /// Ensure the file we're trying to open is already security scoped on macOS.
     /// If it's not security scoped, we request from the filesystem to give us access.

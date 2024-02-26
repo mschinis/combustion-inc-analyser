@@ -21,5 +21,6 @@ extension Container {
         self {
             CloudService()
         }
+        .singleton
     }
 }

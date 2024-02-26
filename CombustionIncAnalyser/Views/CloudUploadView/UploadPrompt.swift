@@ -36,13 +36,19 @@ struct UploadPrompt: View {
 //    }
     
     @Environment(\.dismiss) private var dismiss
-
-    @State private var typeOfCook: String = ""
-    @State private var cookingMethod: String = ""
-    @State private var cookDetails: String = ""
+    
+    @State private var cloudRecord: CloudRecord = .init()
+    
+    var fileName: String
+    var csvContents: String
+    
+//    @State private var typeOfCook: String = ""
+//    @State private var cookingMethod: String = ""
+//    @State private var cookDetails: String = ""
     
     private var isFormInvalid: Bool {
-        typeOfCook
+        cloudRecord
+            .title
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .isEmpty
     }
@@ -59,19 +65,18 @@ struct UploadPrompt: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("", text: $typeOfCook, prompt: Text("What did you cook? *"))
-                    
-                    TextField("", text: $cookingMethod, prompt: Text("Cooking method"))
+                    TextField("", text: $cloudRecord.title, prompt: Text("Name your cook *"))
+//                    
+//                    TextField("", text: $cloudRecord.cookingMethod, prompt: Text("Cooking method"))
                 }
 
-                Section {
-                    TextEditor(text: $cookDetails)
-                } header: {
-                    Text("Overall cook notes")
-                }
+//                Section {
+//                    TextEditor(text: $cookDetails)
+//                } header: {
+//                    Text("Overall cook notes")
+//                }
 
-                Button("Submit", action: {})
-                    .disabled(isFormInvalid)
+                
                 
             }
             .navigationTitle("Session details")
@@ -82,6 +87,13 @@ struct UploadPrompt: View {
                 ToolbarItem(placement: .automatic) {
                     Button("Cancel", action: didTapDismiss)
                 }
+                
+                ToolbarItem(placement: .automatic) {
+                    Button("Upload", action: {
+                        
+                    })
+                    .disabled(isFormInvalid)
+                }
             }
             .macPadding()
         }
@@ -89,5 +101,5 @@ struct UploadPrompt: View {
 }
 
 #Preview {
-    UploadPrompt()
+    UploadPrompt(fileName: "", csvContents: "")
 }

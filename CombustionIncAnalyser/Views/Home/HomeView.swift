@@ -20,6 +20,9 @@ struct HomeView: View {
     @State private var isNotesSidebarVisible = true
     /// Controls the visibility of the authentication page
     @State private var isAuthVisible: Bool = false
+    /// Controls the visibility of the upload prompt
+    @State private var isUploadPromptVisible: Bool = false
+    
     /// Controls whether a popup should be shown or not
     @Environment(\.popupMessage) private var popupMessage: Binding<PopupMessage?>
 
@@ -76,21 +79,38 @@ struct HomeView: View {
             return
         }
 
-        do {
-            try await cloudService.upload(
-                data: CloudRecord(
-                    typeOfCook: "",
-                    cookingMethod: "",
-                    cookDetails: "",
-                    
-                    userId: user.uid,
-                    fileName: "lala"
-                ),
-                contents: "test,test"
-            )
-        } catch {
-            
-        }
+        isUploadPromptVisible = true
+        
+//        guard let user = authService.user else {
+//            isAuthVisible = true
+//            return
+//        }
+//
+//        do {
+//            try await cloudService.upload(
+//                data: CloudRecord(
+//                    typeOfCook: "",
+//                    cookingMethod: "",
+//                    cookDetails: "",
+//                    
+//                    userId: user.uid,
+//                    fileName: "lala"
+//                ),
+//                contents: "test,test"
+//            )
+//            
+//            popupMessage.wrappedValue = .init(
+//                state: .success,
+//                title: "File uploaded",
+//                description: "Link copied to clipboard"
+//            )
+//        } catch {
+//            popupMessage.wrappedValue = .init(
+//                state: .error,
+//                title: "File upload failed",
+//                description: "\(error.localizedDescription)"
+//            )
+//        }
         
 
         
@@ -206,6 +226,12 @@ struct HomeView: View {
             ],
             onCompletion: onFilePickerCompletion(_:)
         )
+        .sheet(isPresented: $isUploadPromptVisible, content: {
+            UploadPrompt(
+                fileName: viewModel.selectedFileURL?.lastPathComponent ?? "",
+                csvContents: viewModel.csvOutput
+            )
+        })
         // Create/Edit Annotation sheet
         .sheet(item: $graphAnnotationRequest, content: { item in
             GraphAnnotationView(
