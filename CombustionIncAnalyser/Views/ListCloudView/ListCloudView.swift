@@ -38,6 +38,11 @@ class ListCloudViewModel: ObservableObject {
     
     @MainActor
     func load() async {
+        guard authService.isLoggedIn else {
+            self.loadingState = .failed(ListCloudViewModel.ListError.notLoggedIn)
+            return
+        }
+        
         if loadingState.isIdle {
             self.loadingState = .loading
         }
@@ -75,6 +80,9 @@ struct ListCloudView: View {
                 Color.clear
             case .loading:
                 ProgressView()
+            case .success(let records) where records.isEmpty:
+                Text("You have no saved cooks")
+                    .font(.title)
             case .success(let records):
                 ListCloudViewLoaded(records: records)
                     .toolbar {
