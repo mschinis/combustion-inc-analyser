@@ -12,20 +12,9 @@ struct ListCloudViewRow: View {
     var record: CloudRecord
 
     @State private var areDetailsVisible = false
-    @State private var isDeleteDialogVisible = false
 
     @Injected(\.cloudService) private var cloudService: CloudService
-    
-    func delete(record: CloudRecord) {
-        Task {
-            do {
-                try await cloudService.delete(record: record)
-            } catch {
-                print("Error", error)
-            }
-        }
-    }
-    
+
     func download(record: CloudRecord) {
         Task {
             do {
@@ -58,25 +47,7 @@ struct ListCloudViewRow: View {
             }, label: {
                 Image(systemName: "info.circle")
             })
-            
-            Button(role: .destructive) {
-                isDeleteDialogVisible = true
-            } label: {
-                Image(systemName: "trash")
-            }
         }
-        .confirmationDialog(
-            "Confirm deletion",
-            isPresented: $isDeleteDialogVisible,
-            actions: {
-                Button("Confirm", role: .destructive) {
-                    delete(record: record)
-                }
-            },
-            message: {
-                Text("This action is irreversible and the cook and related notes will be permanently removed.")
-            }
-        )
         .alert("Cook details", isPresented: $areDetailsVisible) {
             Button {
                 // TODO: Load csv file
