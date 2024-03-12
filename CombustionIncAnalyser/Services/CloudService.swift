@@ -33,7 +33,7 @@ struct CloudRecord: Identifiable {
     var fileName: String = ""
 
     var filePath: String {
-        "uploads/\(userId)/\(uuid)/data.csv"
+        "cooks/uploads/\(userId)/\(uuid)/data.csv"
     }
 
     var updatedAt = Date()
@@ -134,9 +134,9 @@ class CloudService: ObservableObject {
     /// - Parameters:
     ///   - data: The record to upload
     ///   - contents: Contents of CSV file
-    func upload(data: CloudRecord, contents: String) async throws {
+    func upload(data: CloudRecord, contents: String) async throws -> URL {
         try await upload(record: data)
-        let _ = try await uploadCSV(filePath: data.filePath, contents: contents)
+        return try await uploadCSV(filePath: data.filePath, contents: contents)
     }
     
     /// Deletes the cloud record and associated csv data
@@ -185,8 +185,7 @@ class CloudService: ObservableObject {
 
         // Build the path to the CSV file
         let storage = Storage.storage()
-        let root = storage.reference(withPath: "cooks")
-        let fileRef = root.child(filePath)
+        let fileRef = storage.reference(withPath: filePath)
         
         // Build the file metadata
         let fileMetadata = StorageMetadata()

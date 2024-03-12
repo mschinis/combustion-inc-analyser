@@ -10,10 +10,6 @@ import Factory
 import SwiftUI
 
 class ListCloudViewModel: ObservableObject {
-    enum ListError: Error {
-        case notLoggedIn
-    }
-    
     @Published private(set) var loadingState: LoadingState<[CloudRecord]> = .idle
     
     @Injected(\.authService) private var authService: AuthService
@@ -39,7 +35,7 @@ class ListCloudViewModel: ObservableObject {
     @MainActor
     func load() async {
         guard authService.isLoggedIn else {
-            self.loadingState = .failed(ListCloudViewModel.ListError.notLoggedIn)
+            self.loadingState = .failed(AuthError.notLoggedIn)
             return
         }
         
@@ -59,7 +55,7 @@ class ListCloudViewModel: ObservableObject {
     func logout() {
         do {
             try authService.logout()
-            loadingState = .failed(ListError.notLoggedIn)
+            loadingState = .failed(AuthError.notLoggedIn)
         } catch {
             print("CloudList:: Failed logging")
         }
@@ -92,7 +88,7 @@ struct ListCloudView: View {
                             }
                         }
                     }
-            case .failed(let error as ListCloudViewModel.ListError) where error == .notLoggedIn:
+            case .failed(let error as AuthError) where error == .notLoggedIn:
                 AuthView(
                     viewModel: .init(authorizationSuccess: { _ in
                         Task {

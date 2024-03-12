@@ -48,3 +48,5 @@ enum LoadingState<Value> {
         }
     }
 }
+
+typealias LoadingStateWithoutValue = LoadingState<Void>

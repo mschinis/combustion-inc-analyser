@@ -5,6 +5,7 @@
 //  Created by Michael Schinis on 06/12/2023.
 //
 
+import Factory
 import SwiftUI
 
 struct UploadPrompt: View {
@@ -35,16 +36,18 @@ struct UploadPrompt: View {
 //        }
 //    }
     
+    
+    var csvOutput: String
+    @State private var cloudRecord: CloudRecord
+
+    @State private var loadingState: LoadingStateWithoutValue = .idle
+    
+    /// Controls whether a popup should be shown or not
+    @Environment(\.popupMessage) private var popupMessage: Binding<PopupMessage?>
+    /// Dismisses this view, when displayed as a sheet
     @Environment(\.dismiss) private var dismiss
     
-    @State private var cloudRecord: CloudRecord = .init()
-    
-    var fileName: String
-    var csvContents: String
-    
-//    @State private var typeOfCook: String = ""
-//    @State private var cookingMethod: String = ""
-//    @State private var cookDetails: String = ""
+    @Injected(\.cloudService) private var cloudService: CloudService
     
     private var isFormInvalid: Bool {
         cloudRecord
@@ -53,12 +56,36 @@ struct UploadPrompt: View {
             .isEmpty
     }
     
-    private func didTapSubmit() {
-        
+    private func didTapSubmit() async {
+        do {
+            let url = try await cloudService.upload(data: cloudRecord, contents: csvOutput)
+
+            Pasteboard.general.set(string: url.absoluteString)
+
+            popupMessage.wrappedValue = .init(
+                state: .success,
+                title: "File uploaded",
+                description: "Link copied to clipboard"
+            )
+
+            dismiss()
+        } catch {
+            popupMessage.wrappedValue = .init(
+                state: .error,
+                title: "File upload failed",
+                description: "\(error.localizedDescription)"
+            )
+        }
+    
     }
     
     private func didTapDismiss() {
         dismiss()
+    }
+    
+    init(cloudRecord: CloudRecord, csvOutput: String) {
+        self._cloudRecord = State(initialValue: cloudRecord)
+        self.csvOutput = csvOutput
     }
     
     var body: some View {
@@ -66,18 +93,7 @@ struct UploadPrompt: View {
             Form {
                 Section {
                     TextField("", text: $cloudRecord.title, prompt: Text("Name your cook *"))
-//                    
-//                    TextField("", text: $cloudRecord.cookingMethod, prompt: Text("Cooking method"))
                 }
-
-//                Section {
-//                    TextEditor(text: $cookDetails)
-//                } header: {
-//                    Text("Overall cook notes")
-//                }
-
-                
-                
             }
             .navigationTitle("Session details")
             #if os(iOS)
@@ -89,9 +105,9 @@ struct UploadPrompt: View {
                 }
                 
                 ToolbarItem(placement: .automatic) {
-                    Button("Upload", action: {
-                        
-                    })
+                    AsyncButton("Upload") {
+                        await didTapSubmit()
+                    }
                     .disabled(isFormInvalid)
                 }
             }
@@ -101,5 +117,5 @@ struct UploadPrompt: View {
 }
 
 #Preview {
-    UploadPrompt(fileName: "", csvContents: "")
+    UploadPrompt(cloudRecord: .init(), csvOutput: "")
 }

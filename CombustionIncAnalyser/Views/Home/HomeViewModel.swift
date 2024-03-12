@@ -5,6 +5,7 @@
 //  Created by Michael Schinis on 21/11/2023.
 //
 
+import Factory
 import FirebaseStorage
 import Foundation
 import SwiftUI
@@ -17,6 +18,9 @@ class HomeViewModel: ObservableObject {
     @Published private(set) var data: [CookTimelineRow] = []
     @Published var isFileImporterVisible = false
     
+    @Injected(\.authService) private var authService: AuthService
+    @Injected(\.cloudService) private var cloudService: CloudService
+
 //    @Published private(set) var uploadFileLoadingState: LoadingState<URL> = .idle
     
     var csvOutput: String {
@@ -155,11 +159,36 @@ class HomeViewModel: ObservableObject {
             return
         }
 
-        
         do {
             try csvOutput.write(to: selectedFileURL, atomically: false, encoding: .utf8)
         } catch {
             print(error.localizedDescription)
         }
     }
+    
+//    @MainActor
+//    func didTapSaveCloud(model: UploadPrompt.Model) async throws -> URL {
+//        self.uploadFileLoadingState = .idle
+//
+//        guard let selectedFileURL, let user = authService.user else {
+//            throw AuthError.notLoggedIn
+//        }
+//
+//        let cloudRecord = CloudRecord(
+//            title: model.title,
+//            
+//            userId: user.uid,
+//            fileName: selectedFileURL.lastPathComponent
+//        )
+//
+//        self.uploadFileLoadingState = .loading
+//        
+//        do {
+//            let url = try await cloudService.upload(data: cloudRecord, contents: csvOutput)
+//            self.uploadFileLoadingState = .success(url)
+//            return url
+//        } catch {
+//            throw error
+//        }
+//    }
 }

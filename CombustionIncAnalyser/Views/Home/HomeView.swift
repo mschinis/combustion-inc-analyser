@@ -9,6 +9,15 @@ import Factory
 import SwiftUI
 import Charts
 
+struct UploadPromptRequest: Identifiable {
+    var id: UUID {
+        cloudRecord.uuid
+    }
+
+    var cloudRecord: CloudRecord
+    var csvOutput: String
+}
+
 struct HomeView: View {
     @StateObject private var viewModel: HomeViewModel
     
@@ -21,13 +30,13 @@ struct HomeView: View {
     /// Controls the visibility of the authentication page
     @State private var isAuthVisible: Bool = false
     /// Controls the visibility of the upload prompt
-    @State private var isUploadPromptVisible: Bool = false
+    @State private var uploadPromptData: UploadPromptRequest? = nil
     
     /// Controls whether a popup should be shown or not
     @Environment(\.popupMessage) private var popupMessage: Binding<PopupMessage?>
-
+    
     @Environment(\.openCrossCompatibleWindow) private var openCrossCompatibleWindow
-
+    
     @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
     @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
     
@@ -66,35 +75,32 @@ struct HomeView: View {
                     height: 1080
                 )
         )
-            
+        
         return renderer.cgImage
     }
     
     @MainActor
-    /// Callback when the user taps on upload CSV button.
+    /// Callback when the user taps on upload CSV button on the navigation bar
     /// Shows success/error message depending on the result of the operation
     func didTapUploadCSV() async {
         guard let user = authService.user else {
             isAuthVisible = true
             return
         }
-
-        isUploadPromptVisible = true
         
-//        guard let user = authService.user else {
-//            isAuthVisible = true
-//            return
-//        }
-//
+        self.uploadPromptData = UploadPromptRequest(
+            cloudRecord: CloudRecord(
+                userId: user.uid,
+                fileName: viewModel.selectedFileURL?.lastPathComponent ?? ""
+            ),
+            csvOutput: viewModel.csvOutput
+        )
+        
 //        do {
-//            try await cloudService.upload(
+//            let _ = try await cloudService.upload(
 //                data: CloudRecord(
-//                    typeOfCook: "",
-//                    cookingMethod: "",
-//                    cookDetails: "",
-//                    
 //                    userId: user.uid,
-//                    fileName: "lala"
+//                    fileName: viewModel.selectedFileURL?.lastPathComponent ?? ""
 //                ),
 //                contents: "test,test"
 //            )
@@ -112,26 +118,111 @@ struct HomeView: View {
 //            )
 //        }
         
-
         
         
         
-//        do {
-//            let _ = try await viewModel.uploadCSVFile()
-//
-//            popupMessage.wrappedValue = .init(
-//                state: .success,
-//                title: "File uploaded",
-//                description: "Link copied to clipboard"
-//            )
-//        } catch {
-//            popupMessage.wrappedValue = .init(
-//                state: .error,
-//                title: "File upload failed",
-//                description: "\(error.localizedDescription)"
-//            )
-//        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //        guard let user = authService.user else {
+        //            isAuthVisible = true
+        //            return
+        //        }
+        //
+        //        isUploadPromptVisible = true
+        
+        //         CloudRecord(
+        ////            typeOfCook: "",
+        ////            cookingMethod: "",
+        ////            cookDetails: "",
+        //
+        //            userId: user.uid,
+        //            fileName: "lala"
+        //        )
+        
+        //    )
+        
     }
+    
+    //        guard let user = authService.user else {
+    //            isAuthVisible = true
+    //            return
+    //        }
+    //
+    //        do {
+    //            try await cloudService.upload(
+    //                data: CloudRecord(
+    //                    typeOfCook: "",
+    //                    cookingMethod: "",
+    //                    cookDetails: "",
+    //
+    //                    userId: user.uid,
+    //                    fileName: "lala"
+    //                ),
+    //                contents: "test,test"
+    //            )
+    //
+    //            popupMessage.wrappedValue = .init(
+    //                state: .success,
+    //                title: "File uploaded",
+    //                description: "Link copied to clipboard"
+    //            )
+    //        } catch {
+    //            popupMessage.wrappedValue = .init(
+    //                state: .error,
+    //                title: "File upload failed",
+    //                description: "\(error.localizedDescription)"
+    //            )
+    //        }
+    
+    
+    
+    
+    
+    //        do {
+    //            let _ = try await viewModel.uploadCSVFile()
+    //
+    //            popupMessage.wrappedValue = .init(
+    //                state: .success,
+    //                title: "File uploaded",
+    //                description: "Link copied to clipboard"
+    //            )
+    //        } catch {
+    //            popupMessage.wrappedValue = .init(
+    //                state: .error,
+    //                title: "File upload failed",
+    //                description: "\(error.localizedDescription)"
+    //            )
+    //        }
+    
+    /// Called when the user has completed filling in the upload form
+    /// - Parameter model: The model containing the cloud record data
+    //    func didTapSaveFileCloud(model: UploadPrompt.Model) {
+    //        Task {
+    //            do {
+    //                let _ = try await viewModel.didTapSaveCloud(model: model)
+    //
+    //                popupMessage.wrappedValue = .init(
+    //                    state: .success,
+    //                    title: "File uploaded",
+    //                    description: "Link copied to clipboard"
+    //                )
+    //            } catch {
+    //                popupMessage.wrappedValue = .init(
+    //                    state: .error,
+    //                    title: "File upload failed",
+    //                    description: "\(error.localizedDescription)"
+    //                )
+    //            }
+    //        }
+    //    }
     
     /// Result callback from file importer.
     ///
@@ -173,7 +264,7 @@ struct HomeView: View {
         )
         .opacity(isNotesSidebarVisible ? 1 : 0)
     }
-
+    
     var body: some View {
         NavigationStack {
             if viewModel.data.isEmpty {
@@ -190,16 +281,16 @@ struct HomeView: View {
                         // when the window is small on MacOS, or on iPad portrait mode
                         // On iPhone, remove the minimum width.
                         #if os(macOS)
-                        .frame(minWidth: 700)
+                            .frame(minWidth: 700)
                         #else
-                        .frame(minWidth: UIDevice.current.userInterfaceIdiom == .phone ? nil : 700)
+                            .frame(minWidth: UIDevice.current.userInterfaceIdiom == .phone ? nil : 700)
                         #endif
-
+                        
                         notesView
                             .frame(width: 350)
                     }
                     .csvDropDestination(with: viewModel.didSelect(file:))
-
+                    
                     // Vertical view, when the sidebar doesn't fit side by side.
                     VStack(alignment: .leading) {
                         chartView
@@ -226,10 +317,10 @@ struct HomeView: View {
             ],
             onCompletion: onFilePickerCompletion(_:)
         )
-        .sheet(isPresented: $isUploadPromptVisible, content: {
+        .sheet(item: $uploadPromptData, content: { item in
             UploadPrompt(
-                fileName: viewModel.selectedFileURL?.lastPathComponent ?? "",
-                csvContents: viewModel.csvOutput
+                cloudRecord: item.cloudRecord,
+                csvOutput: item.csvOutput
             )
         })
         // Create/Edit Annotation sheet
