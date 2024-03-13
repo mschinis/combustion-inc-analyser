@@ -48,6 +48,7 @@
 		CDB489662BA25577003E1F38 /* FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB489652BA25577003E1F38 /* FileType.swift */; };
 		CDB489682BA255A1003E1F38 /* LocalFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB489672BA255A1003E1F38 /* LocalFile.swift */; };
 		CDB4896A2BA25851003E1F38 /* CloudFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB489692BA25851003E1F38 /* CloudFile.swift */; };
+		CDB4896D2BA25D83003E1F38 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4896C2BA25D83003E1F38 /* AppView.swift */; };
 		CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */; };
 		CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */; };
 		CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DD2AFF80D5006E6597 /* SwiftDataItem.swift */; };
@@ -127,6 +128,7 @@
 		CDB489652BA25577003E1F38 /* FileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileType.swift; sourceTree = "<group>"; };
 		CDB489672BA255A1003E1F38 /* LocalFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFile.swift; sourceTree = "<group>"; };
 		CDB489692BA25851003E1F38 /* CloudFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFile.swift; sourceTree = "<group>"; };
+		CDB4896C2BA25D83003E1F38 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombustionIncAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserApp.swift; sourceTree = "<group>"; };
 		CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContentView.swift; sourceTree = "<group>"; };
@@ -249,23 +251,23 @@
 			path = CloudUploadView;
 			sourceTree = "<group>";
 		};
-		CD91B00F2B2B379C000D6E19 /* ListCloudView */ = {
+		CD91B00F2B2B379C000D6E19 /* ListCloud */ = {
 			isa = PBXGroup;
 			children = (
 				CD91B0122B2B8C43000D6E19 /* ListCloudView.swift */,
 				CD91B0102B2B37B4000D6E19 /* ListCloudViewLoaded.swift */,
 				CD91B0142B2B9083000D6E19 /* ListCloudViewRow.swift */,
 			);
-			path = ListCloudView;
+			path = ListCloud;
 			sourceTree = "<group>";
 		};
-		CDB4891D2B84DAA6003E1F38 /* LiveView */ = {
+		CDB4891D2B84DAA6003E1F38 /* Live */ = {
 			isa = PBXGroup;
 			children = (
 				CDB4891E2B84DAAD003E1F38 /* LiveView.swift */,
 				CDB489232B84E923003E1F38 /* LiveProbeView.swift */,
 			);
-			path = LiveView;
+			path = Live;
 			sourceTree = "<group>";
 		};
 		CDB489612BA0DC84003E1F38 /* Errors */ = {
@@ -284,6 +286,14 @@
 				CDB489692BA25851003E1F38 /* CloudFile.swift */,
 			);
 			path = File;
+			sourceTree = "<group>";
+		};
+		CDB4896B2BA25D19003E1F38 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CDB4896C2BA25D83003E1F38 /* AppView.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		CDB4B1CD2AFF80D5006E6597 = {
@@ -392,13 +402,14 @@
 		CDB4B20F2B016EE2006E6597 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CDB4891D2B84DAA6003E1F38 /* LiveView */,
+				CDB4896B2BA25D19003E1F38 /* App */,
 				CD84274F2B1A0EFE00DA293E /* Auth */,
 				CD91B00A2B29FBE5000D6E19 /* CloudUploadView */,
-				CD91B00F2B2B379C000D6E19 /* ListCloudView */,
 				CD8427472B19ED7B00DA293E /* Components */,
 				CDD314A52B07A36A00A557F8 /* Graph */,
 				CDD314B52B0CF31000A557F8 /* Home */,
+				CDB4891D2B84DAA6003E1F38 /* Live */,
+				CD91B00F2B2B379C000D6E19 /* ListCloud */,
 				CDD314A62B07A38800A557F8 /* Notes */,
 				CDD3149E2B05346A00A557F8 /* Settings */,
 				CDD3149C2B04EF6F00A557F8 /* SelectFileScreen.swift */,
@@ -628,6 +639,7 @@
 				CD84273D2B18BE9700DA293E /* Pasteboard.swift in Sources */,
 				CD5F3EB62B03DF96001F3061 /* NotesView.swift in Sources */,
 				CDB489682BA255A1003E1F38 /* LocalFile.swift in Sources */,
+				CDB4896D2BA25D83003E1F38 /* AppView.swift in Sources */,
 				CD8427302B17CE0400DA293E /* MacOSPadding.swift in Sources */,
 				CDB4B2082AFF94C1006E6597 /* HomeView.swift in Sources */,
 				CD8427432B19291300DA293E /* PopupMessage.swift in Sources */,

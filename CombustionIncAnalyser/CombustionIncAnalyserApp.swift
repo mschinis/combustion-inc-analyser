@@ -45,52 +45,28 @@ struct CombustionIncAnalyserApp: App {
 
     var body: some Scene {
         WindowGroup {
-            TabView {
-                HomeView(viewModel: homeViewModel)
-                    .tabItem {
-                        Label(
-                            title: { Text("Analyse") },
-                            icon: { Image(systemName: "chart.xyaxis.line") }
-                        )
-                    }
-                
-//                LiveView(viewModel: liveViewModel)
-//                    .tabItem {
-//                        Label(
-//                            title: { Text("Live") },
-//                            icon: { Image(systemName: "chart.xyaxis.line") }
-//                        )
-//                    }
-                
-                ListCloudView()
-                    .tabItem {
-                        Label(
-                            title: { Text("Cloud") },
-                            icon: { Image(systemName: "cloud") }
-                        )
-                    }
-            }
-            .environment(\.openCrossCompatibleWindow, openCrossCompatibleWindow(_:))
-            .environment(\.popupMessage, $popupMessage)
-            .popup(item: $popupMessage) { item in
-                PopupMessageView(
-                    message: item
-                )
-                .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 0)
-                .shadow(color: .black.opacity(0.16), radius: 24, x: 0, y: 0)
-            } customize: {
-                $0
-                    .type(.floater())
-                    .autohideIn(2)
-                    .position(.top)
-            }
-            // Settings sheet
-            .sheet(item: $crossCompatibleSheet, content: { type in
-                switch type {
-                case .settings:
-                    SettingsView()
+            AppView(homeViewModel: homeViewModel)
+                .environment(\.openCrossCompatibleWindow, openCrossCompatibleWindow(_:))
+                .environment(\.popupMessage, $popupMessage)
+                .popup(item: $popupMessage) { item in
+                    PopupMessageView(
+                        message: item
+                    )
+                    .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 0)
+                    .shadow(color: .black.opacity(0.16), radius: 24, x: 0, y: 0)
+                } customize: {
+                    $0
+                        .type(.floater())
+                        .autohideIn(2)
+                        .position(.top)
                 }
-            })
+                // Settings sheet
+                .sheet(item: $crossCompatibleSheet, content: { type in
+                    switch type {
+                    case .settings:
+                        SettingsView()
+                    }
+                })
         }
         .commands {
             CommandGroup(after: .appSettings) {

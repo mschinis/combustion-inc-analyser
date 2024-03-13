@@ -10,9 +10,6 @@ import FirebaseStorage
 import Foundation
 import SwiftUI
 
-
-
-
 class HomeViewModel: ObservableObject {
     @Published var isFileImporterVisible = false
     
