@@ -28,6 +28,8 @@ protocol FileType {
     /// Removes a note annotation from data
     /// - Parameter sequenceNumber: Position of the note to remove
     mutating func didRemoveAnnotation(sequenceNumber: Int)
+    
+    mutating func parseAndUpdate(csv: String)
 }
 
 extension FileType {
@@ -67,5 +69,22 @@ extension FileType {
         row.notes = nil
 
         data[index] = row
+    }
+    
+    mutating func parseAndUpdate(csv: String) {
+        // Some CSV exports contain "\r\n" for each new CSV line, while others contain just "\n".
+        // Replace all the \r\n occurences with a "\n" which is a more widely accepted format.
+        let sanitizedCSV = csv.replacingOccurrences(of: "\r\n", with: "\n")
+
+        // Separate cook information from the remaining temperature data
+        let fileSegments = sanitizedCSV.split(separator: "\n\n").map { String($0) }
+        let fileInfo = fileSegments[0]
+        let temperatureInfo = fileSegments[1]
+        
+        let parser = CSVTemperatureParser(temperatureInfo)
+        
+        self.fileInfo = fileInfo
+        self.headers = parser.headers
+        self.data = parser.parse()
     }
 }

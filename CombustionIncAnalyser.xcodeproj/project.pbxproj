@@ -47,6 +47,7 @@
 		CDB489632BA0DC95003E1F38 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB489622BA0DC95003E1F38 /* AuthError.swift */; };
 		CDB489662BA25577003E1F38 /* FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB489652BA25577003E1F38 /* FileType.swift */; };
 		CDB489682BA255A1003E1F38 /* LocalFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB489672BA255A1003E1F38 /* LocalFile.swift */; };
+		CDB4896A2BA25851003E1F38 /* CloudFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB489692BA25851003E1F38 /* CloudFile.swift */; };
 		CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */; };
 		CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */; };
 		CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DD2AFF80D5006E6597 /* SwiftDataItem.swift */; };
@@ -125,6 +126,7 @@
 		CDB489622BA0DC95003E1F38 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		CDB489652BA25577003E1F38 /* FileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileType.swift; sourceTree = "<group>"; };
 		CDB489672BA255A1003E1F38 /* LocalFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFile.swift; sourceTree = "<group>"; };
+		CDB489692BA25851003E1F38 /* CloudFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFile.swift; sourceTree = "<group>"; };
 		CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombustionIncAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserApp.swift; sourceTree = "<group>"; };
 		CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContentView.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 			children = (
 				CDB489652BA25577003E1F38 /* FileType.swift */,
 				CDB489672BA255A1003E1F38 /* LocalFile.swift */,
+				CDB489692BA25851003E1F38 /* CloudFile.swift */,
 			);
 			path = File;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				CDD314A92B080ADA00A557F8 /* CSVDropDestination.swift in Sources */,
 				CD91AFFE2B28B400000D6E19 /* AuthViewModel.swift in Sources */,
 				CDB489662BA25577003E1F38 /* FileType.swift in Sources */,
+				CDB4896A2BA25851003E1F38 /* CloudFile.swift in Sources */,
 				CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */,
 				CDB4B20C2B016E70006E6597 /* CSVTemperatureParser.swift in Sources */,
 				CD67A19D2B0F9750008053FF /* CADevice.swift in Sources */,

@@ -29,21 +29,8 @@ struct LocalFile: FileType {
                 return
             }
 
-            let contents = (try String(contentsOf: fileURL))
-                // Some CSV exports contain "\r\n" for each new CSV line, while others contain just "\n".
-                // Replace all the \r\n occurences with a "\n" which is a more widely accepted format.
-                .replacingOccurrences(of: "\r\n", with: "\n")
-
-            // Separate cook information from the remaining temperature data
-            let fileSegments = contents.split(separator: "\n\n").map { String($0) }
-            let fileInfo = fileSegments[0]
-            let temperatureInfo = fileSegments[1]
-            
-            let parser = CSVTemperatureParser(temperatureInfo)
-            
-            self.fileInfo = fileInfo
-            self.headers = parser.headers
-            self.data = parser.parse()
+            let contents = try String(contentsOf: fileURL)
+            parseAndUpdate(csv: contents)
         } catch {
             print(error.localizedDescription)
         }
