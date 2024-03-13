@@ -15,7 +15,9 @@ struct ListCloudViewLoaded: View {
 
     @State private var recordToDelete: CloudRecord? = nil
     
-    func delete(record: CloudRecord) {
+    /// Handles deletion when the customer confirms deletion
+    /// - Parameter record: The record to delete
+    func didConfirmDeletion(record: CloudRecord) {
         Task {
             do {
                 try await cloudService.delete(record: record)
@@ -25,25 +27,55 @@ struct ListCloudViewLoaded: View {
         }
     }
     
+    func didTapDownload(record: CloudRecord) {
+        Task {
+            do {
+                try await cloudService.download(record: record)
+            } catch {
+                print("Error", error)
+            }
+        }
+    }
+    
+    /// Displays the delete confirmation dialog
+    /// - Parameter record: The record to delete
+    func didTapDelete(record: CloudRecord) {
+        self.recordToDelete = record
+    }
+    
+    /// Handles swipe to delete action
+    /// - Parameter indexSet: The index set of records to delete
+    func didTapDeleteSwipeAction(indexSet: IndexSet) {
+        for index in indexSet {
+            self.didTapDelete(record: records[index])
+        }
+    }
+
     var body: some View {
         List {
             ForEach(records) { record in
-                ListCloudViewRow(record: record)
-                    .contextMenu {
-                        Button(action: {
-                            self.recordToDelete = record
-                        }) {
-                            Text("Delete")
-                        }
+                Button {
+                    didTapDownload(record: record)
+                } label: {
+                    ListCloudViewRow(record: record)
+                }
+                .buttonStyle(.plain)
+                .contextMenu {
+                    Button {
+                        didTapDownload(record: record)
+                    } label: {
+                        Text("Download")
                     }
-            }
-            .onDelete { indexSet in
-                for index in indexSet {
-                    self.recordToDelete = records[index]
+
+                    Button{
+                        didTapDelete(record: record)
+                    } label: {
+                        Text("Delete")
+                    }
                 }
             }
+            .onDelete(perform: didTapDeleteSwipeAction(indexSet:))
         }
-        
         .confirmationDialog(
             "Confirm deletion",
             isPresented: Binding(get: {
@@ -55,7 +87,7 @@ struct ListCloudViewLoaded: View {
             }),
             actions: {
                 Button("Confirm", role: .destructive) {
-                    delete(record: recordToDelete!)
+                    didConfirmDeletion(record: recordToDelete!)
                 }
             },
             message: {
@@ -66,5 +98,11 @@ struct ListCloudViewLoaded: View {
 }
 
 #Preview {
-    ListCloudViewLoaded(records: [])
+    ListCloudViewLoaded(
+        records: [
+            .init(title: "Chicken"),
+            .init(title: "Beef"),
+            .init(title: "Phoenix")
+        ]
+    )
 }

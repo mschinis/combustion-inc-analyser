@@ -27,50 +27,45 @@ struct ListCloudViewRow: View {
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading) {
-                Text(record.title)
-                    .font(.headline)
-
-                Text(record.cookingMethod)
-            }
+            Text(record.title)
             
             Spacer()
 
-            Button(action: {
-                download(record: record)
-            }, label: {
-                Label("Load", systemImage: "envelope.open")
-            })
+//            Button(action: {
+//                download(record: record)
+//            }, label: {
+//                Label("Load", systemImage: "envelope.open")
+//            })
             
-            Button(action: {
-                areDetailsVisible = true
-            }, label: {
-                Image(systemName: "info.circle")
-            })
+//            Button(action: {
+//                areDetailsVisible = true
+//            }, label: {
+//                Image(systemName: "info.circle")
+//            })
         }
-        .alert("Cook details", isPresented: $areDetailsVisible) {
-            Button {
-                // TODO: Load csv file
-            } label: {
-                Text("Analyse")
-            }
-
-            Button(role: .cancel) {
-                areDetailsVisible = false
-            } label: {
-                Text("Close")
-            }
-        } message: {
-            Text(
-                """
-                Last updated: \(record.updatedAt.formatted())
-                
-                \(record.title)
-                \(record.cookingMethod)
-                \n\(record.cookDetails)
-                """
-            )
-        }
+//        .alert("Cook details", isPresented: $areDetailsVisible) {
+//            Button {
+//                // TODO: Load csv file
+//            } label: {
+//                Text("Analyse")
+//            }
+//
+//            Button(role: .cancel) {
+//                areDetailsVisible = false
+//            } label: {
+//                Text("Close")
+//            }
+//        } message: {
+//            Text(
+//                """
+//                Last updated: \(record.updatedAt.formatted())
+//                
+//                \(record.title)
+//                \(record.cookingMethod)
+//                \n\(record.cookDetails)
+//                """
+//            )
+//        }
 
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeToolbarContent: ToolbarContent {
-    var fileURL: URL?
+    var windowTitle: String?
     var shareGraphImage: CGImage
     var didTapUploadFile: () async -> Void
     var didTapSaveFile: () -> Void
@@ -18,9 +18,9 @@ struct HomeToolbarContent: ToolbarContent {
         #if os(macOS)
         // Show currently open filename at the top on MacOS.
         // On iOS, it looks ugly, so removing it.
-        if let fileURL {
+        if let windowTitle {
             ToolbarItem(placement: .automatic) {
-                Text(fileURL.lastPathComponent)
+                Text(windowTitle)
             }
         }
         #endif

@@ -115,4 +115,5 @@ struct ListCloudView: View {
 
 #Preview {
     ListCloudView()
+        .previewDisplayName("Logged out")
 }

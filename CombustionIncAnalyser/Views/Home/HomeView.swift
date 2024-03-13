@@ -83,7 +83,10 @@ struct HomeView: View {
     /// Callback when the user taps on upload CSV button on the navigation bar
     /// Shows success/error message depending on the result of the operation
     func didTapUploadCSV() async {
-        guard let user = authService.user else {
+        guard
+            let user = authService.user,
+            let localFile = viewModel.file as? LocalFile
+        else {
             isAuthVisible = true
             return
         }
@@ -91,138 +94,11 @@ struct HomeView: View {
         self.uploadPromptData = UploadPromptRequest(
             cloudRecord: CloudRecord(
                 userId: user.uid,
-                fileName: viewModel.selectedFileURL?.lastPathComponent ?? ""
+                fileName: localFile.fileURL.lastPathComponent
             ),
             csvOutput: viewModel.csvOutput
         )
-        
-//        do {
-//            let _ = try await cloudService.upload(
-//                data: CloudRecord(
-//                    userId: user.uid,
-//                    fileName: viewModel.selectedFileURL?.lastPathComponent ?? ""
-//                ),
-//                contents: "test,test"
-//            )
-//            
-//            popupMessage.wrappedValue = .init(
-//                state: .success,
-//                title: "File uploaded",
-//                description: "Link copied to clipboard"
-//            )
-//        } catch {
-//            popupMessage.wrappedValue = .init(
-//                state: .error,
-//                title: "File upload failed",
-//                description: "\(error.localizedDescription)"
-//            )
-//        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //        guard let user = authService.user else {
-        //            isAuthVisible = true
-        //            return
-        //        }
-        //
-        //        isUploadPromptVisible = true
-        
-        //         CloudRecord(
-        ////            typeOfCook: "",
-        ////            cookingMethod: "",
-        ////            cookDetails: "",
-        //
-        //            userId: user.uid,
-        //            fileName: "lala"
-        //        )
-        
-        //    )
-        
     }
-    
-    //        guard let user = authService.user else {
-    //            isAuthVisible = true
-    //            return
-    //        }
-    //
-    //        do {
-    //            try await cloudService.upload(
-    //                data: CloudRecord(
-    //                    typeOfCook: "",
-    //                    cookingMethod: "",
-    //                    cookDetails: "",
-    //
-    //                    userId: user.uid,
-    //                    fileName: "lala"
-    //                ),
-    //                contents: "test,test"
-    //            )
-    //
-    //            popupMessage.wrappedValue = .init(
-    //                state: .success,
-    //                title: "File uploaded",
-    //                description: "Link copied to clipboard"
-    //            )
-    //        } catch {
-    //            popupMessage.wrappedValue = .init(
-    //                state: .error,
-    //                title: "File upload failed",
-    //                description: "\(error.localizedDescription)"
-    //            )
-    //        }
-    
-    
-    
-    
-    
-    //        do {
-    //            let _ = try await viewModel.uploadCSVFile()
-    //
-    //            popupMessage.wrappedValue = .init(
-    //                state: .success,
-    //                title: "File uploaded",
-    //                description: "Link copied to clipboard"
-    //            )
-    //        } catch {
-    //            popupMessage.wrappedValue = .init(
-    //                state: .error,
-    //                title: "File upload failed",
-    //                description: "\(error.localizedDescription)"
-    //            )
-    //        }
-    
-    /// Called when the user has completed filling in the upload form
-    /// - Parameter model: The model containing the cloud record data
-    //    func didTapSaveFileCloud(model: UploadPrompt.Model) {
-    //        Task {
-    //            do {
-    //                let _ = try await viewModel.didTapSaveCloud(model: model)
-    //
-    //                popupMessage.wrappedValue = .init(
-    //                    state: .success,
-    //                    title: "File uploaded",
-    //                    description: "Link copied to clipboard"
-    //                )
-    //            } catch {
-    //                popupMessage.wrappedValue = .init(
-    //                    state: .error,
-    //                    title: "File upload failed",
-    //                    description: "\(error.localizedDescription)"
-    //                )
-    //            }
-    //        }
-    //    }
     
     /// Result callback from file importer.
     ///
@@ -230,7 +106,7 @@ struct HomeView: View {
     func onFilePickerCompletion(_ result: Result<URL, Error>) {
         switch result {
         case .success(let url):
-            viewModel.didSelect(file: url)
+            viewModel.didSelect(fileURL: url)
         case .failure(let error):
             self.popupMessage.wrappedValue = .init(
                 state: .error,
@@ -246,7 +122,7 @@ struct HomeView: View {
             enabledCurves: enabledCurves,
             temperatureUnit: temperatureUnit,
             
-            data: viewModel.data,
+            data: viewModel.file?.data ?? [],
             notes: viewModel.notes,
             noteHoverPosition: $noteHoverPosition,
             graphAnnotationRequest: $graphAnnotationRequest
@@ -267,9 +143,9 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack {
-            if viewModel.data.isEmpty {
+            if viewModel.file == nil {
                 SelectFileScreen(
-                    didSelectFile: viewModel.didSelect(file:),
+                    didSelectFile: viewModel.didSelect(fileURL:),
                     didTapOpenFilePicker: viewModel.didTapOpenFilepicker
                 )
             } else {
@@ -289,18 +165,18 @@ struct HomeView: View {
                         notesView
                             .frame(width: 350)
                     }
-                    .csvDropDestination(with: viewModel.didSelect(file:))
+                    .csvDropDestination(with: viewModel.didSelect(fileURL:))
                     
                     // Vertical view, when the sidebar doesn't fit side by side.
                     VStack(alignment: .leading) {
                         chartView
                         notesView
                     }
-                    .csvDropDestination(with: viewModel.didSelect(file:))
+                    .csvDropDestination(with: viewModel.didSelect(fileURL:))
                 }
                 .toolbar {
                     HomeToolbarContent(
-                        fileURL: viewModel.selectedFileURL,
+                        windowTitle: viewModel.file?.windowTitle,
                         shareGraphImage: generateGraphSnapshot()!,
                         didTapUploadFile: didTapUploadCSV,
                         didTapSaveFile: viewModel.didTapSaveLocally,

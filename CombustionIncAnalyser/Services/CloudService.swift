@@ -113,8 +113,8 @@ class CloudService: ObservableObject {
     
     func download(record: CloudRecord) async throws {
         let storage = Storage.storage()
-        let root = storage.reference(withPath: "cooks")
-        let fileRef = root.child(record.filePath)
+        let fileRef = storage.reference(withPath: record.filePath)
+        
         
         // 2mb maximum file size
         let data = try await withCheckedThrowingContinuation { continuation in
@@ -123,10 +123,9 @@ class CloudService: ObservableObject {
             }
         }
         
-        let str = String(data: data, encoding: .utf16)
+        let str = String(data: data, encoding: .utf8)
         print("URL: \(record.filePath)")
         print("str", str)
-        
     }
     
     /// Creates/Updates the cook cloud record, and uploads the related CSV document
@@ -150,8 +149,7 @@ class CloudService: ObservableObject {
         
         // Delete associated data
         let storage = Storage.storage()
-        let root = storage.reference(withPath: "cooks")
-        let fileRef = root.child(record.filePath)
+        let fileRef = storage.reference(withPath: record.filePath)
         
         try await fileRef.delete()
         

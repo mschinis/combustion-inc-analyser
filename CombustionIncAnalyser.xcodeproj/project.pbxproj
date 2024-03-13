@@ -45,6 +45,8 @@
 		CDB489222B84DB38003E1F38 /* CombustionBLE in Frameworks */ = {isa = PBXBuildFile; productRef = CDB489212B84DB38003E1F38 /* CombustionBLE */; };
 		CDB489242B84E923003E1F38 /* LiveProbeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB489232B84E923003E1F38 /* LiveProbeView.swift */; };
 		CDB489632BA0DC95003E1F38 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB489622BA0DC95003E1F38 /* AuthError.swift */; };
+		CDB489662BA25577003E1F38 /* FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB489652BA25577003E1F38 /* FileType.swift */; };
+		CDB489682BA255A1003E1F38 /* LocalFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB489672BA255A1003E1F38 /* LocalFile.swift */; };
 		CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */; };
 		CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */; };
 		CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DD2AFF80D5006E6597 /* SwiftDataItem.swift */; };
@@ -121,6 +123,8 @@
 		CDB4891E2B84DAAD003E1F38 /* LiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveView.swift; sourceTree = "<group>"; };
 		CDB489232B84E923003E1F38 /* LiveProbeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveProbeView.swift; sourceTree = "<group>"; };
 		CDB489622BA0DC95003E1F38 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		CDB489652BA25577003E1F38 /* FileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileType.swift; sourceTree = "<group>"; };
+		CDB489672BA255A1003E1F38 /* LocalFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFile.swift; sourceTree = "<group>"; };
 		CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombustionIncAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserApp.swift; sourceTree = "<group>"; };
 		CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContentView.swift; sourceTree = "<group>"; };
@@ -270,6 +274,15 @@
 			path = Errors;
 			sourceTree = "<group>";
 		};
+		CDB489642BA25570003E1F38 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				CDB489652BA25577003E1F38 /* FileType.swift */,
+				CDB489672BA255A1003E1F38 /* LocalFile.swift */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
 		CDB4B1CD2AFF80D5006E6597 = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +359,7 @@
 		CDB4B20D2B016EBF006E6597 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CDB489642BA25570003E1F38 /* File */,
 				CDB489612BA0DC84003E1F38 /* Errors */,
 				CDB4B2102B09F093006E6597 /* EnvironmentKeys */,
 				CDD314A72B080ABC00A557F8 /* ViewModifiers */,
@@ -610,6 +624,7 @@
 				CD8427492B19ED8600DA293E /* AsyncButton.swift in Sources */,
 				CD84273D2B18BE9700DA293E /* Pasteboard.swift in Sources */,
 				CD5F3EB62B03DF96001F3061 /* NotesView.swift in Sources */,
+				CDB489682BA255A1003E1F38 /* LocalFile.swift in Sources */,
 				CD8427302B17CE0400DA293E /* MacOSPadding.swift in Sources */,
 				CDB4B2082AFF94C1006E6597 /* HomeView.swift in Sources */,
 				CD8427432B19291300DA293E /* PopupMessage.swift in Sources */,
@@ -622,6 +637,7 @@
 				CD91AFF92B224F05000D6E19 /* MacOSWrappedScrollview.swift in Sources */,
 				CDD314A92B080ADA00A557F8 /* CSVDropDestination.swift in Sources */,
 				CD91AFFE2B28B400000D6E19 /* AuthViewModel.swift in Sources */,
+				CDB489662BA25577003E1F38 /* FileType.swift in Sources */,
 				CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */,
 				CDB4B20C2B016E70006E6597 /* CSVTemperatureParser.swift in Sources */,
 				CD67A19D2B0F9750008053FF /* CADevice.swift in Sources */,
