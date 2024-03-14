@@ -125,7 +125,7 @@ struct GraphView: View {
         let distance = Double(data.count) - Double(ruleMarkPosition)
         let percentage = distance / Double(data.count)
         
-        if Device.current.isDevice(.iPhone) {
+        if CADevice.current.isDevice(.iPhone) {
             return percentage > 0.5
         } else {
             return percentage > 0.25

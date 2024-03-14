@@ -5,109 +5,107 @@
 //  Created by Michael Schinis on 21/11/2023.
 //
 
-
+import Factory
+import FirebaseStorage
 import Foundation
 import SwiftUI
 
+@MainActor
 class HomeViewModel: ObservableObject {
-    private(set) var fileInfo: String = ""
-    private(set) var csvParser: CSVTemperatureParser!
-
-    @Published private(set) var selectedFileURL: URL? = nil
-    @Published private(set) var data: [CookTimelineRow] = []
     @Published var isFileImporterVisible = false
-
+    
+    @Published var file: FileType? = nil
+    
+    @Injected(\.authService) private var authService: AuthService
+    @Injected(\.cloudService) private var cloudService: CloudService
+    
+    var csvOutput: String {
+        file?.output ?? ""
+    }
+    
+    /// Filter out CSV rows which contain notes
     var notes: [CookTimelineRow] {
-        data.filter {
+        (file?.data ?? []).filter {
             $0.notes?.isEmpty == false
         }
     }
-
+    
+    /// Opens the file picker
     func didTapOpenFilepicker() {
         isFileImporterVisible = true
     }
     
-    /// Ensure the file we're trying to open is already security scoped on macOS.
-    /// If it's not security scoped, we request from the filesystem to give us access.
-    ///
-    /// On iPadOS / iOS, the files are never security scoped, so we request from the fileystem to give us access
-    /// - Parameter file: The file being loaded
-    /// - Returns: Boolean indicating if the file can be accessed
-    func securelyAccess(file: URL) -> Bool {
-        #if os(macOS)
-        let isSecurityScoped = (try? file.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)) != nil
-
-        return isSecurityScoped ? true : file.startAccessingSecurityScopedResource()
-        #else
-        return file.startAccessingSecurityScopedResource()
-        #endif
+    /// Called when a file was selected using the file picker
+    /// - Parameter fileURL: The selected filesystem file URL
+    func didSelect(fileURL: URL) {
+        // Stop accessing the file URL, if opening another file
+        if let file = file as? LocalFile {
+            file.unload()
+        }
+        
+        self.file = LocalFile(fileURL: fileURL)
     }
     
-    func didSelect(file: URL) {
-        // Stop accessing the file with security scope, if opening another file
-        if let selectedFileURL {
-            selectedFileURL.stopAccessingSecurityScopedResource()
+    /// Adds a note annotation to the associated loaded file
+    /// - Parameters:
+    ///   - sequenceNumber: The position to store the note
+    ///   - text: The note to add
+    func didAddAnnotation(sequenceNumber: Int, text: String) {
+        file?.didAddAnnotation(sequenceNumber: sequenceNumber, text: text)
+    }
+    
+    /// Removes a note annotation from the associated loaded file
+    /// - Parameter sequenceNumber: The position of the note
+    func didRemoveAnnotation(sequenceNumber: Int) {
+        file?.didRemoveAnnotation(sequenceNumber: sequenceNumber)
+    }
+    
+    /// Saves file to the local filesystem
+    func didTapSaveLocally() {
+        guard let file = file as? LocalFile else {
+            return
         }
 
-        // Load the selected file
         do {
-            guard securelyAccess(file: file) else {
-                return
-            }
-
-            self.selectedFileURL = file
-
-            let contents = (try String(contentsOf: file))
-                // Some CSV exports contain "\r\n" for each new CSV line, while others contain just "\n".
-                // Replace all the \r\n occurences with a "\n" which is a more widely accepted format.
-                .replacingOccurrences(of: "\r\n", with: "\n")
-
-            // Separate cook information from the remaining temperature data
-            let fileSegments = contents.split(separator: "\n\n").map { String($0) }
-            let fileInfo = fileSegments[0]
-            let temperatureInfo = fileSegments[1]
-
-            self.fileInfo = fileInfo
-            self.csvParser = CSVTemperatureParser(temperatureInfo)
-            self.data = csvParser.parse()
+            try csvOutput.write(to: file.fileURL, atomically: false, encoding: .utf8)
         } catch {
             print(error.localizedDescription)
         }
     }
     
-    func didAddAnnotation(sequenceNumber: Int, text: String) {
-        guard let index = data.firstIndex(where: { $0.sequenceNumber == sequenceNumber }) else {
+    func didTapSaveRemote() async {
+        guard let file = file as? CloudFile else {
             return
         }
-
-        var row = data[index]
-        row.notes = text
-
-        data[index] = row
+        
+        do {
+            let _ = try await cloudService.upload(data: file.cloudRecord, contents: file.output)
+            print("Upload:: Success")
+        } catch {
+            print("Upload:: Error")
+        }
     }
     
-    func didRemoveAnnotation(sequenceNumber: Int) {
-        guard let index = data.firstIndex(where: { $0.sequenceNumber == sequenceNumber }) else {
-            return
+    func didTapSave() async {
+        switch file {
+        case is LocalFile:
+            didTapSaveLocally()
+        case is CloudFile:
+            await didTapSaveRemote()
+        default:
+            fatalError("Unsupported file being saved")
         }
-
-        var row = data[index]
-        row.notes = nil
-
-        data[index] = row
     }
     
-    func didTapSave() {
-        guard let selectedFileURL else {
-            return
+    /// Loads remote cloud record and associated CSV contents
+    ///
+    /// - Parameter record: The record to load
+    func didSelectRemote(record: CloudRecord) async {
+        do {
+            let response = try await cloudService.download(record: record)
+            self.file = CloudFile(cloudRecord: response.record, csv: response.csv)
+        } catch {
+            print("Error", error)
         }
-
-        CSVTemperatureExporter(
-            url: selectedFileURL,
-            fileInfo: fileInfo,
-            headers: csvParser.headers,
-            data: data
-        )
-        .save()
     }
 }

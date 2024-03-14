@@ -5,9 +5,18 @@
 //  Created by Michael Schinis on 11/11/2023.
 //
 
+import Factory
 import SwiftUI
 import Charts
 
+struct UploadPromptRequest: Identifiable {
+    var id: UUID {
+        cloudRecord.uuid
+    }
+
+    var cloudRecord: CloudRecord
+    var csvOutput: String
+}
 
 struct HomeView: View {
     @StateObject private var viewModel: HomeViewModel
@@ -18,11 +27,21 @@ struct HomeView: View {
     @State private var graphAnnotationRequest: GraphAnnotationRequest? = nil
     /// Controls the visibility of the notes sidebar
     @State private var isNotesSidebarVisible = true
-    /// Controls the visibility of the settings sheet
-    @Environment(\.isSettingsVisible) private var isSettingsVisible: Binding<Bool>
-
+    /// Controls the visibility of the authentication page
+    @State private var isAuthVisible: Bool = false
+    /// Controls the visibility of the upload prompt
+    @State private var uploadPromptData: UploadPromptRequest? = nil
+    
+    /// Controls whether a popup should be shown or not
+    @Environment(\.popupMessage) private var popupMessage: Binding<PopupMessage?>
+    
+    @Environment(\.openCrossCompatibleWindow) private var openCrossCompatibleWindow
+    
     @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
     @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
+    
+    @Injected(\.authService) private var authService: AuthService
+    @Injected(\.cloudService) private var cloudService: CloudService
     
     init() {
         self._viewModel = StateObject(wrappedValue: HomeViewModel())
@@ -41,7 +60,7 @@ struct HomeView: View {
     
     /// Changes the state of the settings view visibility
     func didTapOpenSettings() {
-        isSettingsVisible.wrappedValue = true
+        openCrossCompatibleWindow(.settings)
     }
     
     @MainActor
@@ -56,8 +75,45 @@ struct HomeView: View {
                     height: 1080
                 )
         )
-            
+        
         return renderer.cgImage
+    }
+    
+    @MainActor
+    /// Callback when the user taps on upload CSV button on the navigation bar
+    /// Shows success/error message depending on the result of the operation
+    func didTapUploadCSV() async {
+        guard
+            let user = authService.user,
+            let localFile = viewModel.file as? LocalFile
+        else {
+            isAuthVisible = true
+            return
+        }
+        
+        self.uploadPromptData = UploadPromptRequest(
+            cloudRecord: CloudRecord(
+                userId: user.uid,
+                fileName: localFile.fileURL.lastPathComponent
+            ),
+            csvOutput: viewModel.csvOutput
+        )
+    }
+    
+    /// Result callback from file importer.
+    ///
+    /// - Parameter result: The result of the file importer
+    func onFilePickerCompletion(_ result: Result<URL, Error>) {
+        switch result {
+        case .success(let url):
+            viewModel.didSelect(fileURL: url)
+        case .failure(let error):
+            self.popupMessage.wrappedValue = .init(
+                state: .error,
+                title: "Error loading file",
+                description: error.localizedDescription
+            )
+        }
     }
     
     /// The chart view being displayed
@@ -66,7 +122,7 @@ struct HomeView: View {
             enabledCurves: enabledCurves,
             temperatureUnit: temperatureUnit,
             
-            data: viewModel.data,
+            data: viewModel.file?.data ?? [],
             notes: viewModel.notes,
             noteHoverPosition: $noteHoverPosition,
             graphAnnotationRequest: $graphAnnotationRequest
@@ -84,58 +140,72 @@ struct HomeView: View {
         )
         .opacity(isNotesSidebarVisible ? 1 : 0)
     }
-
+    
     var body: some View {
         NavigationStack {
-            if viewModel.data.isEmpty {
+            if viewModel.file == nil {
+                // MARK: File picker view
                 SelectFileScreen(
-                    didSelectFile: viewModel.didSelect(file:),
+                    didSelectFile: viewModel.didSelect(fileURL:),
                     didTapOpenFilePicker: viewModel.didTapOpenFilepicker
                 )
             } else {
+                // MARK: File selected view
                 ViewThatFits {
+                    // Horizontal View
                     HStack(alignment: .top) {
                         chartView
                         // The minimum width, forces the notes to wrap underneath the chart,
                         // when the window is small on MacOS, or on iPad portrait mode
                         // On iPhone, remove the minimum width.
                         #if os(macOS)
-                        .frame(minWidth: 700)
+                            .frame(minWidth: 700)
                         #else
-                        .frame(minWidth: UIDevice.current.userInterfaceIdiom == .phone ? nil : 700)
+                            .frame(minWidth: UIDevice.current.userInterfaceIdiom == .phone ? nil : 700)
                         #endif
-
+                        
                         notesView
                             .frame(width: 350)
                     }
-                    .csvDropDestination(with: viewModel.didSelect(file:))
-
+                    .csvDropDestination(with: viewModel.didSelect(fileURL:))
+                    
+                    // Vertical view, when the sidebar doesn't fit side by side.
                     VStack(alignment: .leading) {
                         chartView
-                        
                         notesView
                     }
-                    .csvDropDestination(with: viewModel.didSelect(file:))
+                    .csvDropDestination(with: viewModel.didSelect(fileURL:))
                 }
+                // MARK: - Selected file toolbar
                 .toolbar {
                     #if os(macOS)
                     // Show currently open filename at the top on MacOS.
                     // On iOS, it looks ugly, so removing it.
-                    if let selectedFileURL = viewModel.selectedFileURL {
+                    if let windowTitle = viewModel.file?.windowTitle {
                         ToolbarItem(placement: .automatic) {
-                            Text(selectedFileURL.lastPathComponent)
+                            Text(windowTitle)
                         }
                     }
                     #endif
 
+                    // Show Upload CSV file only when it's a local file
+                    if viewModel.file is LocalFile {
+                        ToolbarItem(id: "upload_csv", placement: .primaryAction) {
+                            AsyncButton(
+                                systemImageName: "icloud.and.arrow.up",
+                                action: didTapUploadCSV
+                            )
+                            .help("Upload file to cloud")
+                        }
+                    }
+                    
                     ToolbarItem(id: "save_file", placement: .primaryAction) {
-                        Button(action: viewModel.didTapSave, label: {
+                        AsyncButton(action: viewModel.didTapSave, label: {
                             Image(systemName: "scribble")
                         })
-                        .disabled(viewModel.selectedFileURL == nil)
-                        .help("Save file")
+                        .help("Save file locally")
                     }
-
+                    
                     // Share graph button
                     ToolbarItem(id: "share", placement: .primaryAction) {
                         ShareLink(
@@ -147,74 +217,59 @@ struct HomeView: View {
                         ) {
                             Image(systemName: "square.and.arrow.up")
                         }
-                        .disabled(viewModel.selectedFileURL == nil)
                         .help("Share graph")
                     }
 
                     // Toggle notes button
-                    ToolbarItem(id: "settings", placement: .primaryAction) {
-                        Button(action: didTapOpenSettings, label: {
-                            Image(systemName: "gear")
-                        })
-                        .disabled(viewModel.selectedFileURL == nil)
-                        .help("Open settings")
-                    }
+//                    ToolbarItem(id: "settings", placement: .primaryAction) {
+//                        Button(action: didTapOpenSettings, label: {
+//                            Image(systemName: "gear")
+//                        })
+//                        .help("Open settings")
+//                    }
                 }
             }
         }
+        // Select file popup
         .fileImporter(
             isPresented: $viewModel.isFileImporterVisible,
-            
             allowedContentTypes: [
                 .init(filenameExtension: "csv")!
-            ]
-        ) { result in
-                switch result {
-                case .success(let url):
-                    viewModel.didSelect(file: url)
-                case .failure(let error):
-                    print("Error:: \(error.localizedDescription)")
-                }
-            }
-        // Annotation Sheet
-        .sheet(item: $graphAnnotationRequest, content: { item in
-            // Make a copy of the annotation request and edit this, so we avoid rerendering the graph unnecessarily
-            var graphAnnotationRequestCopy = item
-
-            NavigationStack {
-                Form {
-                    TextEditor(
-                        text: Binding(get: {
-                            graphAnnotationRequestCopy.note
-                        }, set: { newValue in
-                            graphAnnotationRequestCopy.note = newValue
-                        })
-                    )
-                    .frame(width: 300, height: 200)
-
-                    HStack {
-                        Button("OK", action: {
-                            // Update graph
-                            viewModel.didAddAnnotation(
-                                sequenceNumber: item.sequenceNumber,
-                                text: graphAnnotationRequestCopy.note
-                            )
-
-                            // Close the sheet
-                            self.graphAnnotationRequest = nil
-                        })
-
-                        Button("Cancel", role: .cancel) {
-                            self.graphAnnotationRequest = nil
-                        }
-                    }
-                }
-                .navigationTitle("Add new note")
-                .macPadding()
-            }
+            ],
+            onCompletion: onFilePickerCompletion(_:)
+        )
+        .sheet(item: $uploadPromptData, content: { item in
+            UploadPrompt(
+                cloudRecord: item.cloudRecord,
+                csvOutput: item.csvOutput
+            )
         })
-        .sheet(isPresented: isSettingsVisible, content: {
-            SettingsView()
+        // Create/Edit Annotation sheet
+        .sheet(item: $graphAnnotationRequest, content: { item in
+            GraphAnnotationView(
+                annotationRequest: item,
+                didSubmit: viewModel.didAddAnnotation(sequenceNumber:text:),
+                didDismiss: {
+                    self.graphAnnotationRequest = nil
+                }
+            )
+        })
+        .sheet(isPresented: $isAuthVisible, content: {
+            AuthView(
+                viewModel: AuthViewModel(
+                    authorizationSuccess: { user in
+                        isAuthVisible = false
+                        popupMessage.wrappedValue = .init(
+                            state: .success,
+                            title: "Logged in",
+                            description: "Try uploading your file again"
+                        )
+                    },
+                    authorizationError: { error in
+                        print("Error:: \(error.localizedDescription)")
+                    }
+                )
+            )
         })
     }
 }
