@@ -64,9 +64,11 @@ class ListCloudViewModel: ObservableObject {
 
 struct ListCloudView: View {
     @StateObject private var viewModel: ListCloudViewModel
-    
-    init(viewModel: ListCloudViewModel = .init()) {
+    var didTapDownload: (CloudRecord) async -> Void
+
+    init(viewModel: ListCloudViewModel = .init(), didTapDownload: @escaping (CloudRecord) async -> Void) {
         self._viewModel = StateObject(wrappedValue: viewModel)
+        self.didTapDownload = didTapDownload
     }
     
     var body: some View {
@@ -80,14 +82,17 @@ struct ListCloudView: View {
                 Text("You have no saved cooks")
                     .font(.title)
             case .success(let records):
-                ListCloudViewLoaded(records: records)
-                    .toolbar {
-                        ToolbarItem {
-                            Button("Logout", systemImage: "person.slash") {
-                                viewModel.logout()
-                            }
+                ListCloudViewLoaded(
+                    records: records,
+                    didTapDownload: didTapDownload
+                )
+                .toolbar {
+                    ToolbarItem {
+                        Button("Logout", systemImage: "person.slash") {
+                            viewModel.logout()
                         }
                     }
+                }
             case .failed(let error as AuthError) where error == .notLoggedIn:
                 AuthView(
                     viewModel: .init(authorizationSuccess: { _ in
@@ -114,6 +119,8 @@ struct ListCloudView: View {
 }
 
 #Preview {
-    ListCloudView()
-        .previewDisplayName("Logged out")
+    ListCloudView(
+        didTapDownload: { _ in }
+    )
+    .previewDisplayName("Logged out")
 }

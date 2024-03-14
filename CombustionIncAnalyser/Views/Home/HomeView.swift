@@ -144,11 +144,13 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             if viewModel.file == nil {
+                // MARK: File picker view
                 SelectFileScreen(
                     didSelectFile: viewModel.didSelect(fileURL:),
                     didTapOpenFilePicker: viewModel.didTapOpenFilepicker
                 )
             } else {
+                // MARK: File selected view
                 ViewThatFits {
                     // Horizontal View
                     HStack(alignment: .top) {
@@ -174,14 +176,57 @@ struct HomeView: View {
                     }
                     .csvDropDestination(with: viewModel.didSelect(fileURL:))
                 }
+                // MARK: - Selected file toolbar
                 .toolbar {
-                    HomeToolbarContent(
-                        windowTitle: viewModel.file?.windowTitle,
-                        shareGraphImage: generateGraphSnapshot()!,
-                        didTapUploadFile: didTapUploadCSV,
-                        didTapSaveFile: viewModel.didTapSaveLocally,
-                        didTapSettings: didTapOpenSettings
-                    )
+                    #if os(macOS)
+                    // Show currently open filename at the top on MacOS.
+                    // On iOS, it looks ugly, so removing it.
+                    if let windowTitle = viewModel.file?.windowTitle {
+                        ToolbarItem(placement: .automatic) {
+                            Text(windowTitle)
+                        }
+                    }
+                    #endif
+
+                    // Show Upload CSV file only when it's a local file
+                    if viewModel.file is LocalFile {
+                        ToolbarItem(id: "upload_csv", placement: .primaryAction) {
+                            AsyncButton(
+                                systemImageName: "icloud.and.arrow.up",
+                                action: didTapUploadCSV
+                            )
+                            .help("Upload file to cloud")
+                        }
+                    }
+                    
+                    ToolbarItem(id: "save_file", placement: .primaryAction) {
+                        AsyncButton(action: viewModel.didTapSave, label: {
+                            Image(systemName: "scribble")
+                        })
+                        .help("Save file locally")
+                    }
+                    
+                    // Share graph button
+                    ToolbarItem(id: "share", placement: .primaryAction) {
+                        ShareLink(
+                            item: Image(decorative: generateGraphSnapshot()!, scale: 1),
+                            preview: SharePreview(
+                                "Combustion Inc Analyser Export",
+                                image: Image(decorative: generateGraphSnapshot()!, scale: 1)
+                            )
+                        ) {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                        .help("Share graph")
+                    }
+
+                    // Toggle notes button
+//                    ToolbarItem(id: "settings", placement: .primaryAction) {
+//                        Button(action: didTapOpenSettings, label: {
+//                            Image(systemName: "gear")
+//                        })
+//                        .help("Open settings")
+//                    }
                 }
             }
         }

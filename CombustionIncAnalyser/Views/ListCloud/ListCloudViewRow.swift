@@ -13,60 +13,12 @@ struct ListCloudViewRow: View {
 
     @State private var areDetailsVisible = false
 
-    @Injected(\.cloudService) private var cloudService: CloudService
-
-    func download(record: CloudRecord) {
-        Task {
-            do {
-                try await cloudService.download(record: record)
-            } catch {
-                print("Error", error)
-            }
-        }
-    }
-    
     var body: some View {
         HStack {
             Text(record.title)
             
             Spacer()
-
-//            Button(action: {
-//                download(record: record)
-//            }, label: {
-//                Label("Load", systemImage: "envelope.open")
-//            })
-            
-//            Button(action: {
-//                areDetailsVisible = true
-//            }, label: {
-//                Image(systemName: "info.circle")
-//            })
         }
-//        .alert("Cook details", isPresented: $areDetailsVisible) {
-//            Button {
-//                // TODO: Load csv file
-//            } label: {
-//                Text("Analyse")
-//            }
-//
-//            Button(role: .cancel) {
-//                areDetailsVisible = false
-//            } label: {
-//                Text("Close")
-//            }
-//        } message: {
-//            Text(
-//                """
-//                Last updated: \(record.updatedAt.formatted())
-//                
-//                \(record.title)
-//                \(record.cookingMethod)
-//                \n\(record.cookDetails)
-//                """
-//            )
-//        }
-
     }
 }
 

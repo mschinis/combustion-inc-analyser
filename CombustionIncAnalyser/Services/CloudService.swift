@@ -14,70 +14,13 @@ import Foundation
 enum CloudServiceError: Error {
     case noFileSelected
     case dataCannotBeCreated
-}
-
-struct CloudRecord: Identifiable {
-    var id: UUID {
-        uuid
-    }
-    
-    var uuid: UUID = UUID()
-
-    var title: String = ""
-    var cookingMethod: String = ""
-    var cookDetails: String = ""
-    
-    var shareWithCombustion: Bool = true
-    
-    var userId: String = ""
-    var fileName: String = ""
-
-    var filePath: String {
-        "cooks/uploads/\(userId)/\(uuid)/data.csv"
-    }
-
-    var updatedAt = Date()
-}
-
-extension CloudRecord: Codable {
-    enum CodingKeys: CodingKey {
-        case uuid, title, cookingMethod, cookDetails, shareWithCombustion, userId, fileName, filePath, updatedAt
-    }
-
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encode(uuid, forKey: .uuid)
-        try container.encode(title, forKey: .title)
-        try container.encode(cookingMethod, forKey: .cookingMethod)
-        try container.encode(cookDetails, forKey: .cookDetails)
-        try container.encode(shareWithCombustion, forKey: .shareWithCombustion)
-        try container.encode(userId, forKey: .userId)
-        try container.encode(fileName, forKey: .fileName)
-        try container.encode(filePath, forKey: .filePath)
-        try container.encode(updatedAt, forKey: .updatedAt)
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        self.uuid = try container.decode(UUID.self, forKey: .uuid)
-        
-        self.title = try container.decode(String.self, forKey: .title)
-        self.cookingMethod = try container.decode(String.self, forKey: .cookingMethod)
-        self.cookDetails = try container.decode(String.self, forKey: .cookDetails)
-        
-        self.shareWithCombustion = try container.decode(Bool.self, forKey: .shareWithCombustion)
-        self.userId = try container.decode(String.self, forKey: .userId)
-        self.fileName = try container.decode(String.self, forKey: .fileName)
-        
-        self.updatedAt = try container.decode(Date.self, forKey: .updatedAt)
-    }
+    case failedDeserializingCSV
 }
 
 class CloudService: ObservableObject {
-    enum ListError: Error {
-        case notLoggedIn
+    struct DownloadResponse {
+        let record: CloudRecord
+        let csv: String
     }
 
     // Combine subject storing the available records right now
@@ -88,7 +31,7 @@ class CloudService: ObservableObject {
     
     func findUserRecords() async throws -> [CloudRecord] {
         guard let user = authService.user else {
-            throw ListError.notLoggedIn
+            throw AuthError.notLoggedIn
         }
 
         return try await find(by: user.uid)
@@ -111,7 +54,7 @@ class CloudService: ObservableObject {
         return documents
     }
     
-    func download(record: CloudRecord) async throws {
+    func download(record: CloudRecord) async throws -> DownloadResponse {
         let storage = Storage.storage()
         let fileRef = storage.reference(withPath: record.filePath)
         
@@ -123,9 +66,11 @@ class CloudService: ObservableObject {
             }
         }
         
-        let str = String(data: data, encoding: .utf8)
-        print("URL: \(record.filePath)")
-        print("str", str)
+        guard let str = String(data: data, encoding: .utf8) else {
+            throw CloudServiceError.failedDeserializingCSV
+        }
+        
+        return DownloadResponse(record: record, csv: str)
     }
     
     /// Creates/Updates the cook cloud record, and uploads the related CSV document
@@ -175,12 +120,6 @@ class CloudService: ObservableObject {
     ///   - contents: The contents of the CSV
     /// - Returns: The full URL of the uploaded record
     private func uploadCSV(filePath: String, contents: String) async throws -> URL {
-//        self.uploadFileLoadingState = .idle
-        
-//        guard let selectedFileURL else {
-//            throw CSVUploadError.noFileSelected
-//        }
-
         // Build the path to the CSV file
         let storage = Storage.storage()
         let fileRef = storage.reference(withPath: filePath)
@@ -193,17 +132,10 @@ class CloudService: ObservableObject {
             throw CloudServiceError.dataCannotBeCreated
         }
 
-//        self.uploadFileLoadingState = .loading
-
         do {
             let _ = try await fileRef.putDataAsync(csvData, metadata: fileMetadata)
             return try await fileRef.downloadURL()
-
-//            Pasteboard.general.set(string: url.absoluteString)
-            // Update loading state
-//            self.uploadFileLoadingState = .success(url)
         } catch {
-//            self.uploadFileLoadingState = .failed(error)
             throw error
         }
     }

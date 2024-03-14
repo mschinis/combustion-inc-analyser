@@ -10,7 +10,8 @@ import SwiftUI
 
 struct ListCloudViewLoaded: View {
     var records: [CloudRecord]
-    
+    var didTapDownload: (CloudRecord) async -> Void
+
     @Injected(\.cloudService) private var cloudService: CloudService
 
     @State private var recordToDelete: CloudRecord? = nil
@@ -21,16 +22,6 @@ struct ListCloudViewLoaded: View {
         Task {
             do {
                 try await cloudService.delete(record: record)
-            } catch {
-                print("Error", error)
-            }
-        }
-    }
-    
-    func didTapDownload(record: CloudRecord) {
-        Task {
-            do {
-                try await cloudService.download(record: record)
             } catch {
                 print("Error", error)
             }
@@ -54,15 +45,15 @@ struct ListCloudViewLoaded: View {
     var body: some View {
         List {
             ForEach(records) { record in
-                Button {
-                    didTapDownload(record: record)
+                AsyncButton {
+                    await didTapDownload(record)
                 } label: {
                     ListCloudViewRow(record: record)
                 }
                 .buttonStyle(.plain)
                 .contextMenu {
-                    Button {
-                        didTapDownload(record: record)
+                    AsyncButton {
+                        await didTapDownload(record)
                     } label: {
                         Text("Download")
                     }
@@ -103,6 +94,7 @@ struct ListCloudViewLoaded: View {
             .init(title: "Chicken"),
             .init(title: "Beef"),
             .init(title: "Phoenix")
-        ]
+        ],
+        didTapDownload: { _ in }
     )
 }

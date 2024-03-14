@@ -10,6 +10,7 @@ import FirebaseStorage
 import Foundation
 import SwiftUI
 
+@MainActor
 class HomeViewModel: ObservableObject {
     @Published var isFileImporterVisible = false
     
@@ -45,14 +46,21 @@ class HomeViewModel: ObservableObject {
         self.file = LocalFile(fileURL: fileURL)
     }
     
+    /// Adds a note annotation to the associated loaded file
+    /// - Parameters:
+    ///   - sequenceNumber: The position to store the note
+    ///   - text: The note to add
     func didAddAnnotation(sequenceNumber: Int, text: String) {
         file?.didAddAnnotation(sequenceNumber: sequenceNumber, text: text)
     }
     
+    /// Removes a note annotation from the associated loaded file
+    /// - Parameter sequenceNumber: The position of the note
     func didRemoveAnnotation(sequenceNumber: Int) {
         file?.didRemoveAnnotation(sequenceNumber: sequenceNumber)
     }
     
+    /// Saves file to the local filesystem
     func didTapSaveLocally() {
         guard let file = file as? LocalFile else {
             return
@@ -62,6 +70,42 @@ class HomeViewModel: ObservableObject {
             try csvOutput.write(to: file.fileURL, atomically: false, encoding: .utf8)
         } catch {
             print(error.localizedDescription)
+        }
+    }
+    
+    func didTapSaveRemote() async {
+        guard let file = file as? CloudFile else {
+            return
+        }
+        
+        do {
+            let _ = try await cloudService.upload(data: file.cloudRecord, contents: file.output)
+            print("Upload:: Success")
+        } catch {
+            print("Upload:: Error")
+        }
+    }
+    
+    func didTapSave() async {
+        switch file {
+        case is LocalFile:
+            didTapSaveLocally()
+        case is CloudFile:
+            await didTapSaveRemote()
+        default:
+            fatalError("Unsupported file being saved")
+        }
+    }
+    
+    /// Loads remote cloud record and associated CSV contents
+    ///
+    /// - Parameter record: The record to load
+    func didSelectRemote(record: CloudRecord) async {
+        do {
+            let response = try await cloudService.download(record: record)
+            self.file = CloudFile(cloudRecord: response.record, csv: response.csv)
+        } catch {
+            print("Error", error)
         }
     }
 }
