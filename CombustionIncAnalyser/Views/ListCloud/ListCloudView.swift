@@ -18,6 +18,13 @@ class ListCloudViewModel: ObservableObject {
     private var subscribers: Set<AnyCancellable> = []
 
     init() {
+        // User logged out
+        authService.auth.addStateDidChangeListener { _, user in
+            if user == nil {
+                self.loadingState = .failed(AuthError.notLoggedIn)
+            }
+        }
+        
         cloudService
             .publisher
             .receive(on: DispatchQueue.main)
@@ -55,9 +62,8 @@ class ListCloudViewModel: ObservableObject {
     func logout() {
         do {
             try authService.logout()
-            loadingState = .failed(AuthError.notLoggedIn)
         } catch {
-            print("CloudList:: Failed logging")
+            print("CloudList:: Failed logging out")
         }
     }
 }

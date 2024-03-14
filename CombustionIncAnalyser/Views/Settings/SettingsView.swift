@@ -5,9 +5,9 @@
 ////  Created by Michael Schinis on 14/11/2023.
 ////
 //
+
+import Factory
 import SwiftUI
-
-
 
 struct SettingsView: View {
     // Graph Curves
@@ -21,6 +21,17 @@ struct SettingsView: View {
     @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
 
     @Environment(\.dismiss) private var dismiss
+    @Injected(\.authService) private var authService: AuthService
+    
+    func logout() {
+        Task {
+            do {
+                try authService.logout()
+            } catch {
+                print("Auth:: Failed logging out")
+            }
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -80,6 +91,8 @@ struct SettingsView: View {
                             .font(.subheadline)
                             .fixedSize()
                     }
+                    
+                    
                 } header: {
                     Text("Other")
                         .bold()

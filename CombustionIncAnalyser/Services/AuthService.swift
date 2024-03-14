@@ -10,6 +10,8 @@ import FirebaseAuth
 import Foundation
 
 class AuthService {
+    private(set) var auth = Auth.auth()
+
     var user: User? = nil
 
     var isLoggedIn: Bool {
@@ -17,8 +19,7 @@ class AuthService {
     }
     
     init() {
-        Auth
-            .auth()
+        auth
             .addStateDidChangeListener { _, user in
                 self.user = user
             }
