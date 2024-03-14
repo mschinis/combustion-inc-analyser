@@ -1,5 +1,5 @@
 //
-//  ListCloudView.swift
+//  CloudListViewLoaded.swift
 //  CombustionIncAnalyser
 //
 //  Created by Michael Schinis on 14/12/2023.
@@ -8,7 +8,7 @@
 import Factory
 import SwiftUI
 
-struct ListCloudViewLoaded: View {
+struct CloudListViewLoaded: View {
     var records: [CloudRecord]
     var didTapDownload: (CloudRecord) async -> Void
 
@@ -48,7 +48,7 @@ struct ListCloudViewLoaded: View {
                 AsyncButton {
                     await didTapDownload(record)
                 } label: {
-                    ListCloudViewRow(record: record)
+                    CloudListViewRow(record: record)
                 }
                 .buttonStyle(.plain)
                 .contextMenu {
@@ -89,7 +89,7 @@ struct ListCloudViewLoaded: View {
 }
 
 #Preview {
-    ListCloudViewLoaded(
+    CloudListViewLoaded(
         records: [
             .init(title: "Chicken"),
             .init(title: "Beef"),

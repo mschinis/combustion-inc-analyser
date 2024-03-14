@@ -46,7 +46,7 @@ struct AppView: View {
 //                        )
 //                    }
             
-            ListCloudView(
+            CloudListView(
                 didTapDownload: didSelectRemote(record:)
             )
             .tag(Tab.cloudList)

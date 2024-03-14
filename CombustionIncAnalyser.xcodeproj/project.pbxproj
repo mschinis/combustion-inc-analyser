@@ -14,6 +14,7 @@
 		CD477EC92BA3182800F363D1 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = CD477EC82BA3182800F363D1 /* FirebaseInstallations */; };
 		CD477ECB2BA3182800F363D1 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = CD477ECA2BA3182800F363D1 /* FirebasePerformance */; };
 		CD477ECD2BA3182800F363D1 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CD477ECC2BA3182800F363D1 /* FirebaseStorage */; };
+		CD477ECF2BA3210A00F363D1 /* CloudListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD477ECE2BA3210A00F363D1 /* CloudListViewModel.swift */; };
 		CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EA92B02C8BB001F3061 /* CSVTemperatureSerializer.swift */; };
 		CD5F3EAE2B03AC61001F3061 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EAD2B03AC61001F3061 /* GraphView.swift */; };
 		CD5F3EB42B03D4BB001F3061 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EB32B03D4BB001F3061 /* TimeInterval.swift */; };
@@ -41,9 +42,9 @@
 		CD91B0092B29C9E1000D6E19 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91B0082B29C9E1000D6E19 /* Container.swift */; };
 		CD91B00C2B29FBFF000D6E19 /* CloudUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91B00B2B29FBFF000D6E19 /* CloudUploadView.swift */; };
 		CD91B00E2B29FE19000D6E19 /* CloudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91B00D2B29FE19000D6E19 /* CloudService.swift */; };
-		CD91B0112B2B37B4000D6E19 /* ListCloudViewLoaded.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91B0102B2B37B4000D6E19 /* ListCloudViewLoaded.swift */; };
-		CD91B0132B2B8C43000D6E19 /* ListCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91B0122B2B8C43000D6E19 /* ListCloudView.swift */; };
-		CD91B0152B2B9083000D6E19 /* ListCloudViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91B0142B2B9083000D6E19 /* ListCloudViewRow.swift */; };
+		CD91B0112B2B37B4000D6E19 /* CloudListViewLoaded.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91B0102B2B37B4000D6E19 /* CloudListViewLoaded.swift */; };
+		CD91B0132B2B8C43000D6E19 /* CloudListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91B0122B2B8C43000D6E19 /* CloudListView.swift */; };
+		CD91B0152B2B9083000D6E19 /* CloudListViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91B0142B2B9083000D6E19 /* CloudListViewRow.swift */; };
 		CDB4891F2B84DAAD003E1F38 /* LiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4891E2B84DAAD003E1F38 /* LiveView.swift */; };
 		CDB489222B84DB38003E1F38 /* CombustionBLE in Frameworks */ = {isa = PBXBuildFile; productRef = CDB489212B84DB38003E1F38 /* CombustionBLE */; };
 		CDB489242B84E923003E1F38 /* LiveProbeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB489232B84E923003E1F38 /* LiveProbeView.swift */; };
@@ -97,6 +98,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD477ECE2BA3210A00F363D1 /* CloudListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudListViewModel.swift; sourceTree = "<group>"; };
 		CD5F3EA92B02C8BB001F3061 /* CSVTemperatureSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVTemperatureSerializer.swift; sourceTree = "<group>"; };
 		CD5F3EAD2B03AC61001F3061 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		CD5F3EB32B03D4BB001F3061 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
@@ -123,9 +125,9 @@
 		CD91B0082B29C9E1000D6E19 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		CD91B00B2B29FBFF000D6E19 /* CloudUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudUploadView.swift; sourceTree = "<group>"; };
 		CD91B00D2B29FE19000D6E19 /* CloudService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudService.swift; sourceTree = "<group>"; };
-		CD91B0102B2B37B4000D6E19 /* ListCloudViewLoaded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCloudViewLoaded.swift; sourceTree = "<group>"; };
-		CD91B0122B2B8C43000D6E19 /* ListCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCloudView.swift; sourceTree = "<group>"; };
-		CD91B0142B2B9083000D6E19 /* ListCloudViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCloudViewRow.swift; sourceTree = "<group>"; };
+		CD91B0102B2B37B4000D6E19 /* CloudListViewLoaded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudListViewLoaded.swift; sourceTree = "<group>"; };
+		CD91B0122B2B8C43000D6E19 /* CloudListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudListView.swift; sourceTree = "<group>"; };
+		CD91B0142B2B9083000D6E19 /* CloudListViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudListViewRow.swift; sourceTree = "<group>"; };
 		CDB4891E2B84DAAD003E1F38 /* LiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveView.swift; sourceTree = "<group>"; };
 		CDB489232B84E923003E1F38 /* LiveProbeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveProbeView.swift; sourceTree = "<group>"; };
 		CDB489622BA0DC95003E1F38 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
@@ -259,14 +261,15 @@
 			path = CloudUploadView;
 			sourceTree = "<group>";
 		};
-		CD91B00F2B2B379C000D6E19 /* ListCloud */ = {
+		CD91B00F2B2B379C000D6E19 /* CloudList */ = {
 			isa = PBXGroup;
 			children = (
-				CD91B0122B2B8C43000D6E19 /* ListCloudView.swift */,
-				CD91B0102B2B37B4000D6E19 /* ListCloudViewLoaded.swift */,
-				CD91B0142B2B9083000D6E19 /* ListCloudViewRow.swift */,
+				CD91B0122B2B8C43000D6E19 /* CloudListView.swift */,
+				CD477ECE2BA3210A00F363D1 /* CloudListViewModel.swift */,
+				CD91B0102B2B37B4000D6E19 /* CloudListViewLoaded.swift */,
+				CD91B0142B2B9083000D6E19 /* CloudListViewRow.swift */,
 			);
-			path = ListCloud;
+			path = CloudList;
 			sourceTree = "<group>";
 		};
 		CDB4891D2B84DAA6003E1F38 /* Live */ = {
@@ -418,7 +421,7 @@
 				CDD314A52B07A36A00A557F8 /* Graph */,
 				CDD314B52B0CF31000A557F8 /* Home */,
 				CDB4891D2B84DAA6003E1F38 /* Live */,
-				CD91B00F2B2B379C000D6E19 /* ListCloud */,
+				CD91B00F2B2B379C000D6E19 /* CloudList */,
 				CDD314A62B07A38800A557F8 /* Notes */,
 				CDD3149E2B05346A00A557F8 /* Settings */,
 				CDD3149C2B04EF6F00A557F8 /* SelectFileScreen.swift */,
@@ -635,7 +638,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD91B0112B2B37B4000D6E19 /* ListCloudViewLoaded.swift in Sources */,
+				CD91B0112B2B37B4000D6E19 /* CloudListViewLoaded.swift in Sources */,
 				CD8427412B19149800DA293E /* PopupMessageView.swift in Sources */,
 				CDD314A42B057E5400A557F8 /* TemperatureCurvesView.swift in Sources */,
 				CD91AFF72B1FD918000D6E19 /* UploadPrompt.swift in Sources */,
@@ -659,8 +662,9 @@
 				CDB4B20A2AFFA95B006E6597 /* CookTimelineRow.swift in Sources */,
 				CD91AFFB2B225720000D6E19 /* OpenCrossCompatibleWindow.swift in Sources */,
 				CDD314B22B0CF28200A557F8 /* GraphTimelinePosition.swift in Sources */,
+				CD477ECF2BA3210A00F363D1 /* CloudListViewModel.swift in Sources */,
 				CD67A19B2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift in Sources */,
-				CD91B0132B2B8C43000D6E19 /* ListCloudView.swift in Sources */,
+				CD91B0132B2B8C43000D6E19 /* CloudListView.swift in Sources */,
 				CDD314B72B0CF32500A557F8 /* GraphAnnotationRequest.swift in Sources */,
 				CD91AFF92B224F05000D6E19 /* MacOSWrappedScrollview.swift in Sources */,
 				CDD314A92B080ADA00A557F8 /* CSVDropDestination.swift in Sources */,
@@ -670,7 +674,7 @@
 				CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */,
 				CDB4B20C2B016E70006E6597 /* CSVTemperatureParser.swift in Sources */,
 				CD67A19D2B0F9750008053FF /* CADevice.swift in Sources */,
-				CD91B0152B2B9083000D6E19 /* ListCloudViewRow.swift in Sources */,
+				CD91B0152B2B9083000D6E19 /* CloudListViewRow.swift in Sources */,
 				CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */,
 				CDD314A22B05349400A557F8 /* AppSettingsKeys.swift in Sources */,
 				CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureSerializer.swift in Sources */,

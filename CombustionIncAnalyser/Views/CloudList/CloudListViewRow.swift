@@ -1,5 +1,5 @@
 //
-//  ListCloudViewRow.swift
+//  CloudListViewRow.swift
 //  CombustionIncAnalyser
 //
 //  Created by Michael Schinis on 14/12/2023.
@@ -8,7 +8,7 @@
 import Factory
 import SwiftUI
 
-struct ListCloudViewRow: View {
+struct CloudListViewRow: View {
     var record: CloudRecord
 
     @State private var areDetailsVisible = false
@@ -23,7 +23,7 @@ struct ListCloudViewRow: View {
 }
 
 #Preview {
-    ListCloudViewRow(
+    CloudListViewRow(
         record: CloudRecord(
             title: "Lemon Chicken Breast",
             cookingMethod: "Pan cooked",
