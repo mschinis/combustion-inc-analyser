@@ -20,8 +20,10 @@ struct SettingsView: View {
     @AppStorage(AppSettingsKeys.performanceMode.rawValue) private var isPerformanceModeEnabled: Bool = true
     @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
 
+    @State private var isDeleteAccountDialogVisible = false
+    
     @Environment(\.dismiss) private var dismiss
-    @Injected(\.authService) private var authService: AuthService
+    @InjectedObject(\.authService) private var authService: AuthService
     
     func logout() {
         Task {
@@ -31,6 +33,10 @@ struct SettingsView: View {
                 print("Auth:: Failed logging out")
             }
         }
+    }
+    
+    func didConfirmDeleteAccount() {
+        authService.reauthenticateAndDeleteAccount()
     }
     
     var body: some View {
@@ -91,18 +97,30 @@ struct SettingsView: View {
                             .font(.subheadline)
                             .fixedSize()
                     }
-                    
-                    
                 } header: {
                     Text("Other")
                         .bold()
                         .macPadding(.top, 16)
+                }
+                
+                if authService.user != nil {
+                    Button(role: .destructive) {
+                        isDeleteAccountDialogVisible.toggle()
+                    } label: {
+                        Text("Delete account")
+                    }
+                    .macPadding(.top, 16)
                 }
             }
             .macPadding()
             .macWrappedScrollview()
             .navigationTitle("Settings")
             .macPadding(8)
+        }
+        .confirmationDialog("Delete account?", isPresented: $isDeleteAccountDialogVisible) {
+            Button("Delete", role: .destructive, action: didConfirmDeleteAccount)
+        } message: {
+            Text("You'll lose all your stored cooks. We can't recover them once you delete.\n\nYou will first be prompted to login, to authenticate you.")
         }
     }
 }
