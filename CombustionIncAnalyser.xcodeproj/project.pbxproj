@@ -23,7 +23,6 @@
 		CD67A19B2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD67A19A2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift */; };
 		CD67A19D2B0F9750008053FF /* CADevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD67A19C2B0F9750008053FF /* CADevice.swift */; };
 		CD8427302B17CE0400DA293E /* MacOSPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84272F2B17CE0400DA293E /* MacOSPadding.swift */; };
-		CD8427322B188E5900DA293E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD8427312B188E5900DA293E /* GoogleService-Info.plist */; };
 		CD84273D2B18BE9700DA293E /* Pasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84273C2B18BE9700DA293E /* Pasteboard.swift */; };
 		CD84273F2B18BEDE00DA293E /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84273E2B18BEDE00DA293E /* LoadingState.swift */; };
 		CD8427412B19149800DA293E /* PopupMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8427402B19149800DA293E /* PopupMessageView.swift */; };
@@ -78,6 +77,7 @@
 		CDD314B42B0CF2BF00A557F8 /* ProbeNotInsertedRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314B32B0CF2BF00A557F8 /* ProbeNotInsertedRange.swift */; };
 		CDD314B72B0CF32500A557F8 /* GraphAnnotationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314B62B0CF32500A557F8 /* GraphAnnotationRequest.swift */; };
 		CDD314B92B0CF39500A557F8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314B82B0CF39500A557F8 /* HomeViewModel.swift */; };
+		CDF5557F2BAF038A00D560FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDF5557E2BAF038A00D560FD /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,7 +107,6 @@
 		CD67A19A2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationBackgroundViewModifier.swift; sourceTree = "<group>"; };
 		CD67A19C2B0F9750008053FF /* CADevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CADevice.swift; sourceTree = "<group>"; };
 		CD84272F2B17CE0400DA293E /* MacOSPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSPadding.swift; sourceTree = "<group>"; };
-		CD8427312B188E5900DA293E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD84273C2B18BE9700DA293E /* Pasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pasteboard.swift; sourceTree = "<group>"; };
 		CD84273E2B18BEDE00DA293E /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
 		CD8427402B19149800DA293E /* PopupMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupMessageView.swift; sourceTree = "<group>"; };
@@ -164,6 +163,7 @@
 		CDD314B32B0CF2BF00A557F8 /* ProbeNotInsertedRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProbeNotInsertedRange.swift; sourceTree = "<group>"; };
 		CDD314B62B0CF32500A557F8 /* GraphAnnotationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphAnnotationRequest.swift; sourceTree = "<group>"; };
 		CDD314B82B0CF39500A557F8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		CDF5557E2BAF038A00D560FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,8 +339,8 @@
 				CDB4B20D2B016EBF006E6597 /* Utils */,
 				CD91B0012B29C8B2000D6E19 /* Services */,
 				CDB4B1DF2AFF80D6006E6597 /* Assets.xcassets */,
+				CDF5557E2BAF038A00D560FD /* GoogleService-Info.plist */,
 				CDB4B1E12AFF80D6006E6597 /* CombustionIncAnalyser.entitlements */,
-				CD8427312B188E5900DA293E /* GoogleService-Info.plist */,
 				CDB4B1E22AFF80D6006E6597 /* Preview Content */,
 			);
 			path = CombustionIncAnalyser;
@@ -613,7 +613,7 @@
 			files = (
 				CDB4B1E42AFF80D6006E6597 /* Preview Assets.xcassets in Resources */,
 				CDB4B1E02AFF80D6006E6597 /* Assets.xcassets in Resources */,
-				CD8427322B188E5900DA293E /* GoogleService-Info.plist in Resources */,
+				CDF5557F2BAF038A00D560FD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -864,7 +864,6 @@
 				INFOPLIST_FILE = CombustionIncAnalyser/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CombAnalyser;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "We use bluetooth to connect to your Combustion Devices.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -911,7 +910,6 @@
 				INFOPLIST_FILE = CombustionIncAnalyser/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CombAnalyser;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "We use bluetooth to connect to your Combustion Devices.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
