@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CDB4B1D52AFF80D5006E6597"
-               BuildableName = "CombustionIncAnalyser.app"
-               BlueprintName = "CombustionIncAnalyser"
-               ReferencedContainer = "container:CombustionIncAnalyser.xcodeproj">
+               BuildableName = "CombAnalyser.app"
+               BlueprintName = "CombAnalyser"
+               ReferencedContainer = "container:CombAnalyser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,9 +35,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CDB4B1E82AFF80D7006E6597"
-               BuildableName = "CombustionIncAnalyserTests.xctest"
-               BlueprintName = "CombustionIncAnalyserTests"
-               ReferencedContainer = "container:CombustionIncAnalyser.xcodeproj">
+               BuildableName = "CombAnalyserTests.xctest"
+               BlueprintName = "CombAnalyserTests"
+               ReferencedContainer = "container:CombAnalyser.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -46,9 +46,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CDB4B1F22AFF80D7006E6597"
-               BuildableName = "CombustionIncAnalyserUITests.xctest"
-               BlueprintName = "CombustionIncAnalyserUITests"
-               ReferencedContainer = "container:CombustionIncAnalyser.xcodeproj">
+               BuildableName = "CombAnalyserUITests.xctest"
+               BlueprintName = "CombAnalyserUITests"
+               ReferencedContainer = "container:CombAnalyser.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -68,9 +68,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CDB4B1D52AFF80D5006E6597"
-            BuildableName = "CombustionIncAnalyser.app"
-            BlueprintName = "CombustionIncAnalyser"
-            ReferencedContainer = "container:CombustionIncAnalyser.xcodeproj">
+            BuildableName = "CombAnalyser.app"
+            BlueprintName = "CombAnalyser"
+            ReferencedContainer = "container:CombAnalyser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -92,9 +92,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CDB4B1D52AFF80D5006E6597"
-            BuildableName = "CombustionIncAnalyser.app"
-            BlueprintName = "CombustionIncAnalyser"
-            ReferencedContainer = "container:CombustionIncAnalyser.xcodeproj">
+            BuildableName = "CombAnalyser.app"
+            BlueprintName = "CombAnalyser"
+            ReferencedContainer = "container:CombAnalyser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

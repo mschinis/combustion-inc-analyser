@@ -1,5 +1,5 @@
 //
-//  CombustionIncAnalyserApp.swift
+//  CombAnalyserApp.swift
 //  CombustionIncAnalyser
 //
 //  Created by Michael Schinis on 11/11/2023.
@@ -12,7 +12,7 @@ import SwiftData
 import FirebaseCore
 
 @main
-struct CombustionIncAnalyserApp: App {
+struct CombAnalyserApp: App {
     @State private var crossCompatibleSheet: CrossCompatibleWindow?
 
     @StateObject private var homeViewModel = HomeViewModel()

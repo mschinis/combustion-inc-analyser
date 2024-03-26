@@ -53,7 +53,7 @@
 		CDB4896A2BA25851003E1F38 /* CloudFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB489692BA25851003E1F38 /* CloudFile.swift */; };
 		CDB4896D2BA25D83003E1F38 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4896C2BA25D83003E1F38 /* AppView.swift */; };
 		CDB4896F2BA2618E003E1F38 /* CloudRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4896E2BA2618E003E1F38 /* CloudRecord.swift */; };
-		CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */; };
+		CDB4B1DA2AFF80D5006E6597 /* CombAnalyserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1D92AFF80D5006E6597 /* CombAnalyserApp.swift */; };
 		CDB4B1DC2AFF80D5006E6597 /* SwiftDataContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */; };
 		CDB4B1DE2AFF80D5006E6597 /* SwiftDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4B1DD2AFF80D5006E6597 /* SwiftDataItem.swift */; };
 		CDB4B1E02AFF80D6006E6597 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDB4B1DF2AFF80D6006E6597 /* Assets.xcassets */; };
@@ -135,16 +135,16 @@
 		CDB489692BA25851003E1F38 /* CloudFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFile.swift; sourceTree = "<group>"; };
 		CDB4896C2BA25D83003E1F38 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		CDB4896E2BA2618E003E1F38 /* CloudRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudRecord.swift; sourceTree = "<group>"; };
-		CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombustionIncAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserApp.swift; sourceTree = "<group>"; };
+		CDB4B1D62AFF80D5006E6597 /* CombAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDB4B1D92AFF80D5006E6597 /* CombAnalyserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombAnalyserApp.swift; sourceTree = "<group>"; };
 		CDB4B1DB2AFF80D5006E6597 /* SwiftDataContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataContentView.swift; sourceTree = "<group>"; };
 		CDB4B1DD2AFF80D5006E6597 /* SwiftDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataItem.swift; sourceTree = "<group>"; };
 		CDB4B1DF2AFF80D6006E6597 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CDB4B1E12AFF80D6006E6597 /* CombustionIncAnalyser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CombustionIncAnalyser.entitlements; sourceTree = "<group>"; };
+		CDB4B1E12AFF80D6006E6597 /* CombAnalyser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CombAnalyser.entitlements; sourceTree = "<group>"; };
 		CDB4B1E32AFF80D6006E6597 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		CDB4B1E92AFF80D7006E6597 /* CombustionIncAnalyserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CombustionIncAnalyserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDB4B1E92AFF80D7006E6597 /* CombAnalyserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CombAnalyserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB4B1ED2AFF80D7006E6597 /* CombustionIncAnalyserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserTests.swift; sourceTree = "<group>"; };
-		CDB4B1F32AFF80D7006E6597 /* CombustionIncAnalyserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CombustionIncAnalyserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDB4B1F32AFF80D7006E6597 /* CombAnalyserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CombAnalyserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB4B1F72AFF80D7006E6597 /* CombustionIncAnalyserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserUITests.swift; sourceTree = "<group>"; };
 		CDB4B1F92AFF80D7006E6597 /* CombustionIncAnalyserUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombustionIncAnalyserUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CDB4B2072AFF94C1006E6597 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -310,9 +310,9 @@
 		CDB4B1CD2AFF80D5006E6597 = {
 			isa = PBXGroup;
 			children = (
-				CDB4B1D82AFF80D5006E6597 /* CombustionIncAnalyser */,
-				CDB4B1EC2AFF80D7006E6597 /* CombustionIncAnalyserTests */,
-				CDB4B1F62AFF80D7006E6597 /* CombustionIncAnalyserUITests */,
+				CDB4B1D82AFF80D5006E6597 /* CombAnalyser */,
+				CDB4B1EC2AFF80D7006E6597 /* CombAnalyserTests */,
+				CDB4B1F62AFF80D7006E6597 /* CombAnalyserUITests */,
 				CDB4B1D72AFF80D5006E6597 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -320,18 +320,18 @@
 		CDB4B1D72AFF80D5006E6597 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */,
-				CDB4B1E92AFF80D7006E6597 /* CombustionIncAnalyserTests.xctest */,
-				CDB4B1F32AFF80D7006E6597 /* CombustionIncAnalyserUITests.xctest */,
+				CDB4B1D62AFF80D5006E6597 /* CombAnalyser.app */,
+				CDB4B1E92AFF80D7006E6597 /* CombAnalyserTests.xctest */,
+				CDB4B1F32AFF80D7006E6597 /* CombAnalyserUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CDB4B1D82AFF80D5006E6597 /* CombustionIncAnalyser */ = {
+		CDB4B1D82AFF80D5006E6597 /* CombAnalyser */ = {
 			isa = PBXGroup;
 			children = (
 				CD91AFFC2B289B17000D6E19 /* Info.plist */,
-				CDB4B1D92AFF80D5006E6597 /* CombustionIncAnalyserApp.swift */,
+				CDB4B1D92AFF80D5006E6597 /* CombAnalyserApp.swift */,
 				CD91B0072B29C98D000D6E19 /* DependencyInjection */,
 				CDB4B2062AFF9492006E6597 /* SwiftData */,
 				CDB4B20F2B016EE2006E6597 /* Views */,
@@ -340,10 +340,10 @@
 				CD91B0012B29C8B2000D6E19 /* Services */,
 				CDB4B1DF2AFF80D6006E6597 /* Assets.xcassets */,
 				CDF5557E2BAF038A00D560FD /* GoogleService-Info.plist */,
-				CDB4B1E12AFF80D6006E6597 /* CombustionIncAnalyser.entitlements */,
+				CDB4B1E12AFF80D6006E6597 /* CombAnalyser.entitlements */,
 				CDB4B1E22AFF80D6006E6597 /* Preview Content */,
 			);
-			path = CombustionIncAnalyser;
+			path = CombAnalyser;
 			sourceTree = "<group>";
 		};
 		CDB4B1E22AFF80D6006E6597 /* Preview Content */ = {
@@ -354,21 +354,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		CDB4B1EC2AFF80D7006E6597 /* CombustionIncAnalyserTests */ = {
+		CDB4B1EC2AFF80D7006E6597 /* CombAnalyserTests */ = {
 			isa = PBXGroup;
 			children = (
 				CDB4B1ED2AFF80D7006E6597 /* CombustionIncAnalyserTests.swift */,
 			);
-			path = CombustionIncAnalyserTests;
+			path = CombAnalyserTests;
 			sourceTree = "<group>";
 		};
-		CDB4B1F62AFF80D7006E6597 /* CombustionIncAnalyserUITests */ = {
+		CDB4B1F62AFF80D7006E6597 /* CombAnalyserUITests */ = {
 			isa = PBXGroup;
 			children = (
 				CDB4B1F72AFF80D7006E6597 /* CombustionIncAnalyserUITests.swift */,
 				CDB4B1F92AFF80D7006E6597 /* CombustionIncAnalyserUITestsLaunchTests.swift */,
 			);
-			path = CombustionIncAnalyserUITests;
+			path = CombAnalyserUITests;
 			sourceTree = "<group>";
 		};
 		CDB4B2062AFF9492006E6597 /* SwiftData */ = {
@@ -492,9 +492,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CDB4B1D52AFF80D5006E6597 /* CombustionIncAnalyser */ = {
+		CDB4B1D52AFF80D5006E6597 /* CombAnalyser */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CDB4B1FD2AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombustionIncAnalyser" */;
+			buildConfigurationList = CDB4B1FD2AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombAnalyser" */;
 			buildPhases = (
 				CDB4B1D22AFF80D5006E6597 /* Sources */,
 				CDB4B1D32AFF80D5006E6597 /* Frameworks */,
@@ -504,7 +504,7 @@
 			);
 			dependencies = (
 			);
-			name = CombustionIncAnalyser;
+			name = CombAnalyser;
 			packageProductDependencies = (
 				CD8427452B19308200DA293E /* PopupView */,
 				CD91B0052B29C97F000D6E19 /* Factory */,
@@ -518,12 +518,12 @@
 				CD477ECC2BA3182800F363D1 /* FirebaseStorage */,
 			);
 			productName = CombustionIncAnalyser;
-			productReference = CDB4B1D62AFF80D5006E6597 /* CombustionIncAnalyser.app */;
+			productReference = CDB4B1D62AFF80D5006E6597 /* CombAnalyser.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CDB4B1E82AFF80D7006E6597 /* CombustionIncAnalyserTests */ = {
+		CDB4B1E82AFF80D7006E6597 /* CombAnalyserTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CDB4B2002AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombustionIncAnalyserTests" */;
+			buildConfigurationList = CDB4B2002AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombAnalyserTests" */;
 			buildPhases = (
 				CDB4B1E52AFF80D7006E6597 /* Sources */,
 				CDB4B1E62AFF80D7006E6597 /* Frameworks */,
@@ -534,14 +534,14 @@
 			dependencies = (
 				CDB4B1EB2AFF80D7006E6597 /* PBXTargetDependency */,
 			);
-			name = CombustionIncAnalyserTests;
+			name = CombAnalyserTests;
 			productName = CombustionIncAnalyserTests;
-			productReference = CDB4B1E92AFF80D7006E6597 /* CombustionIncAnalyserTests.xctest */;
+			productReference = CDB4B1E92AFF80D7006E6597 /* CombAnalyserTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CDB4B1F22AFF80D7006E6597 /* CombustionIncAnalyserUITests */ = {
+		CDB4B1F22AFF80D7006E6597 /* CombAnalyserUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CDB4B2032AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombustionIncAnalyserUITests" */;
+			buildConfigurationList = CDB4B2032AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombAnalyserUITests" */;
 			buildPhases = (
 				CDB4B1EF2AFF80D7006E6597 /* Sources */,
 				CDB4B1F02AFF80D7006E6597 /* Frameworks */,
@@ -552,9 +552,9 @@
 			dependencies = (
 				CDB4B1F52AFF80D7006E6597 /* PBXTargetDependency */,
 			);
-			name = CombustionIncAnalyserUITests;
+			name = CombAnalyserUITests;
 			productName = CombustionIncAnalyserUITests;
-			productReference = CDB4B1F32AFF80D7006E6597 /* CombustionIncAnalyserUITests.xctest */;
+			productReference = CDB4B1F32AFF80D7006E6597 /* CombAnalyserUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -580,7 +580,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CDB4B1D12AFF80D5006E6597 /* Build configuration list for PBXProject "CombustionIncAnalyser" */;
+			buildConfigurationList = CDB4B1D12AFF80D5006E6597 /* Build configuration list for PBXProject "CombAnalyser" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -599,9 +599,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CDB4B1D52AFF80D5006E6597 /* CombustionIncAnalyser */,
-				CDB4B1E82AFF80D7006E6597 /* CombustionIncAnalyserTests */,
-				CDB4B1F22AFF80D7006E6597 /* CombustionIncAnalyserUITests */,
+				CDB4B1D52AFF80D5006E6597 /* CombAnalyser */,
+				CDB4B1E82AFF80D7006E6597 /* CombAnalyserTests */,
+				CDB4B1F22AFF80D7006E6597 /* CombAnalyserUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -675,7 +675,7 @@
 				CDB4B20C2B016E70006E6597 /* CSVTemperatureParser.swift in Sources */,
 				CD67A19D2B0F9750008053FF /* CADevice.swift in Sources */,
 				CD91B0152B2B9083000D6E19 /* CloudListViewRow.swift in Sources */,
-				CDB4B1DA2AFF80D5006E6597 /* CombustionIncAnalyserApp.swift in Sources */,
+				CDB4B1DA2AFF80D5006E6597 /* CombAnalyserApp.swift in Sources */,
 				CDD314A22B05349400A557F8 /* AppSettingsKeys.swift in Sources */,
 				CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureSerializer.swift in Sources */,
 				CDB489242B84E923003E1F38 /* LiveProbeView.swift in Sources */,
@@ -718,12 +718,12 @@
 /* Begin PBXTargetDependency section */
 		CDB4B1EB2AFF80D7006E6597 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CDB4B1D52AFF80D5006E6597 /* CombustionIncAnalyser */;
+			target = CDB4B1D52AFF80D5006E6597 /* CombAnalyser */;
 			targetProxy = CDB4B1EA2AFF80D7006E6597 /* PBXContainerItemProxy */;
 		};
 		CDB4B1F52AFF80D7006E6597 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CDB4B1D52AFF80D5006E6597 /* CombustionIncAnalyser */;
+			target = CDB4B1D52AFF80D5006E6597 /* CombAnalyser */;
 			targetProxy = CDB4B1F42AFF80D7006E6597 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -854,14 +854,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconYellow;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = CombustionIncAnalyser/CombustionIncAnalyser.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CombAnalyser/CombAnalyser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_ASSET_PATHS = "\"CombustionIncAnalyser/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"CombAnalyser/Preview Content\"";
 				DEVELOPMENT_TEAM = KB4UVH66FP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CombustionIncAnalyser/Info.plist;
+				INFOPLIST_FILE = CombAnalyser/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CombAnalyser;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -900,14 +900,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconYellow;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = CombustionIncAnalyser/CombustionIncAnalyser.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CombAnalyser/CombAnalyser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_ASSET_PATHS = "\"CombustionIncAnalyser/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"CombAnalyser/Preview Content\"";
 				DEVELOPMENT_TEAM = KB4UVH66FP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CombustionIncAnalyser/Info.plist;
+				INFOPLIST_FILE = CombAnalyser/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CombAnalyser;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -955,7 +955,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CombustionIncAnalyser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CombustionIncAnalyser";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CombAnalyser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CombAnalyser";
 			};
 			name = Debug;
 		};
@@ -977,7 +977,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CombustionIncAnalyser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CombustionIncAnalyser";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CombAnalyser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CombAnalyser";
 			};
 			name = Release;
 		};
@@ -1026,7 +1026,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CDB4B1D12AFF80D5006E6597 /* Build configuration list for PBXProject "CombustionIncAnalyser" */ = {
+		CDB4B1D12AFF80D5006E6597 /* Build configuration list for PBXProject "CombAnalyser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CDB4B1FB2AFF80D7006E6597 /* Debug */,
@@ -1035,7 +1035,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CDB4B1FD2AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombustionIncAnalyser" */ = {
+		CDB4B1FD2AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombAnalyser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CDB4B1FE2AFF80D7006E6597 /* Debug */,
@@ -1044,7 +1044,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CDB4B2002AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombustionIncAnalyserTests" */ = {
+		CDB4B2002AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombAnalyserTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CDB4B2012AFF80D7006E6597 /* Debug */,
@@ -1053,7 +1053,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CDB4B2032AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombustionIncAnalyserUITests" */ = {
+		CDB4B2032AFF80D7006E6597 /* Build configuration list for PBXNativeTarget "CombAnalyserUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CDB4B2042AFF80D7006E6597 /* Debug */,
