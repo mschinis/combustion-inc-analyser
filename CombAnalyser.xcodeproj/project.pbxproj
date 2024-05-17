@@ -78,6 +78,9 @@
 		CDD314B72B0CF32500A557F8 /* GraphAnnotationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314B62B0CF32500A557F8 /* GraphAnnotationRequest.swift */; };
 		CDD314B92B0CF39500A557F8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314B82B0CF39500A557F8 /* HomeViewModel.swift */; };
 		CDF5557F2BAF038A00D560FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDF5557E2BAF038A00D560FD /* GoogleService-Info.plist */; };
+		CDF555872BB488E800D560FD /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF555862BB488E800D560FD /* ShareViewController.swift */; };
+		CDF5558E2BB488E800D560FD /* CombAnalyserShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CDF555842BB488E800D560FD /* CombAnalyserShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CDF555942BB4944200D560FD /* ShareExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF555932BB4944200D560FD /* ShareExtensionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,7 +98,28 @@
 			remoteGlobalIDString = CDB4B1D52AFF80D5006E6597;
 			remoteInfo = CombustionIncAnalyser;
 		};
+		CDF5558C2BB488E800D560FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDB4B1CE2AFF80D5006E6597 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CDF555832BB488E800D560FD;
+			remoteInfo = CombAnalyserShareExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CDF555922BB488E800D560FD /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CDF5558E2BB488E800D560FD /* CombAnalyserShareExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		CD477ECE2BA3210A00F363D1 /* CloudListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudListViewModel.swift; sourceTree = "<group>"; };
@@ -164,6 +188,10 @@
 		CDD314B62B0CF32500A557F8 /* GraphAnnotationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphAnnotationRequest.swift; sourceTree = "<group>"; };
 		CDD314B82B0CF39500A557F8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CDF5557E2BAF038A00D560FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CDF555842BB488E800D560FD /* CombAnalyserShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CombAnalyserShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDF555862BB488E800D560FD /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		CDF5558B2BB488E800D560FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDF555932BB4944200D560FD /* ShareExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +220,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CDB4B1F02AFF80D7006E6597 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDF555812BB488E800D560FD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -313,6 +348,7 @@
 				CDB4B1D82AFF80D5006E6597 /* CombAnalyser */,
 				CDB4B1EC2AFF80D7006E6597 /* CombAnalyserTests */,
 				CDB4B1F62AFF80D7006E6597 /* CombAnalyserUITests */,
+				CDF555852BB488E800D560FD /* CombAnalyserShareExtension */,
 				CDB4B1D72AFF80D5006E6597 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -323,6 +359,7 @@
 				CDB4B1D62AFF80D5006E6597 /* CombAnalyser.app */,
 				CDB4B1E92AFF80D7006E6597 /* CombAnalyserTests.xctest */,
 				CDB4B1F32AFF80D7006E6597 /* CombAnalyserUITests.xctest */,
+				CDF555842BB488E800D560FD /* CombAnalyserShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -489,6 +526,16 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		CDF555852BB488E800D560FD /* CombAnalyserShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				CDF555862BB488E800D560FD /* ShareViewController.swift */,
+				CDF555932BB4944200D560FD /* ShareExtensionView.swift */,
+				CDF5558B2BB488E800D560FD /* Info.plist */,
+			);
+			path = CombAnalyserShareExtension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -499,10 +546,12 @@
 				CDB4B1D22AFF80D5006E6597 /* Sources */,
 				CDB4B1D32AFF80D5006E6597 /* Frameworks */,
 				CDB4B1D42AFF80D5006E6597 /* Resources */,
+				CDF555922BB488E800D560FD /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CDF5558D2BB488E800D560FD /* PBXTargetDependency */,
 			);
 			name = CombAnalyser;
 			packageProductDependencies = (
@@ -557,6 +606,23 @@
 			productReference = CDB4B1F32AFF80D7006E6597 /* CombAnalyserUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		CDF555832BB488E800D560FD /* CombAnalyserShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDF5558F2BB488E800D560FD /* Build configuration list for PBXNativeTarget "CombAnalyserShareExtension" */;
+			buildPhases = (
+				CDF555802BB488E800D560FD /* Sources */,
+				CDF555812BB488E800D560FD /* Frameworks */,
+				CDF555822BB488E800D560FD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CombAnalyserShareExtension;
+			productName = CombAnalyserShareExtension;
+			productReference = CDF555842BB488E800D560FD /* CombAnalyserShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -564,7 +630,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					CDB4B1D52AFF80D5006E6597 = {
@@ -577,6 +643,9 @@
 					CDB4B1F22AFF80D7006E6597 = {
 						CreatedOnToolsVersion = 15.0.1;
 						TestTargetID = CDB4B1D52AFF80D5006E6597;
+					};
+					CDF555832BB488E800D560FD = {
+						CreatedOnToolsVersion = 15.2;
 					};
 				};
 			};
@@ -602,6 +671,7 @@
 				CDB4B1D52AFF80D5006E6597 /* CombAnalyser */,
 				CDB4B1E82AFF80D7006E6597 /* CombAnalyserTests */,
 				CDB4B1F22AFF80D7006E6597 /* CombAnalyserUITests */,
+				CDF555832BB488E800D560FD /* CombAnalyserShareExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -625,6 +695,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CDB4B1F12AFF80D7006E6597 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDF555822BB488E800D560FD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -713,6 +790,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CDF555802BB488E800D560FD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDF555942BB4944200D560FD /* ShareExtensionView.swift in Sources */,
+				CDF555872BB488E800D560FD /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -725,6 +811,11 @@
 			isa = PBXTargetDependency;
 			target = CDB4B1D52AFF80D5006E6597 /* CombAnalyser */;
 			targetProxy = CDB4B1F42AFF80D7006E6597 /* PBXContainerItemProxy */;
+		};
+		CDF5558D2BB488E800D560FD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CDF555832BB488E800D560FD /* CombAnalyserShareExtension */;
+			targetProxy = CDF5558C2BB488E800D560FD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -852,6 +943,7 @@
 		CDB4B1FE2AFF80D7006E6597 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconYellow;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CombAnalyser/CombAnalyser.entitlements;
@@ -898,6 +990,7 @@
 		CDB4B1FF2AFF80D7006E6597 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconYellow;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CombAnalyser/CombAnalyser.entitlements;
@@ -1023,6 +1116,69 @@
 			};
 			name = Release;
 		};
+		CDF555902BB488E800D560FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KB4UVH66FP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CombAnalyserShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CombAnalyserShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.opensourcerer.CombustionIncAnalyser.CombAnalyserShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CDF555912BB488E800D560FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KB4UVH66FP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CombAnalyserShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CombAnalyserShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.opensourcerer.CombustionIncAnalyser.CombAnalyserShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1058,6 +1214,15 @@
 			buildConfigurations = (
 				CDB4B2042AFF80D7006E6597 /* Debug */,
 				CDB4B2052AFF80D7006E6597 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CDF5558F2BB488E800D560FD /* Build configuration list for PBXNativeTarget "CombAnalyserShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDF555902BB488E800D560FD /* Debug */,
+				CDF555912BB488E800D560FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

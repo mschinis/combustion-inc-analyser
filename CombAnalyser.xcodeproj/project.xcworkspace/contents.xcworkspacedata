@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/mschinis/Documents/code/mschinis/combustion-inc-analyser/CombAnalyser.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
