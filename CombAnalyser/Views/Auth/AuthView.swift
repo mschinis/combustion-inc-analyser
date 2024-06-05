@@ -103,7 +103,9 @@ struct AuthView: View {
             .padding()
 
         }
-        #if os(macOS)
+        #if os(visionOS)
+        .frame(minWidth: 200, minHeight: 400)
+        #elseif os(macOS)
         .frame(minWidth: 100, minHeight: 300)
         #endif
         .onReceive(timer, perform: { _ in
