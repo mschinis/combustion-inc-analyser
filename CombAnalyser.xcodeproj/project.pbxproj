@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD1113EF2C105B4A00EAB9A2 /* SettingsSheetToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1113EE2C105B4A00EAB9A2 /* SettingsSheetToolbar.swift */; };
 		CD477EC12BA3182800F363D1 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CD477EC02BA3182800F363D1 /* FirebaseAnalyticsSwift */; };
 		CD477EC32BA3182800F363D1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CD477EC22BA3182800F363D1 /* FirebaseAuth */; };
 		CD477EC52BA3182800F363D1 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = CD477EC42BA3182800F363D1 /* FirebaseCrashlytics */; };
@@ -79,7 +80,7 @@
 		CDD314B92B0CF39500A557F8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314B82B0CF39500A557F8 /* HomeViewModel.swift */; };
 		CDF5557F2BAF038A00D560FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDF5557E2BAF038A00D560FD /* GoogleService-Info.plist */; };
 		CDF555872BB488E800D560FD /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF555862BB488E800D560FD /* ShareViewController.swift */; };
-		CDF5558E2BB488E800D560FD /* CombAnalyserShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CDF555842BB488E800D560FD /* CombAnalyserShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CDF5558E2BB488E800D560FD /* CombAnalyserShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CDF555842BB488E800D560FD /* CombAnalyserShareExtension.appex */; platformFilters = (ios, macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CDF555942BB4944200D560FD /* ShareExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF555932BB4944200D560FD /* ShareExtensionView.swift */; };
 /* End PBXBuildFile section */
 
@@ -122,6 +123,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CD1113EE2C105B4A00EAB9A2 /* SettingsSheetToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSheetToolbar.swift; sourceTree = "<group>"; };
 		CD477ECE2BA3210A00F363D1 /* CloudListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudListViewModel.swift; sourceTree = "<group>"; };
 		CD5F3EA92B02C8BB001F3061 /* CSVTemperatureSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVTemperatureSerializer.swift; sourceTree = "<group>"; };
 		CD5F3EAD2B03AC61001F3061 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
@@ -482,6 +484,7 @@
 				CDD314A12B05349400A557F8 /* AppSettingsKeys.swift */,
 				CDD3149F2B05348100A557F8 /* AppSettingsEnabledCurves.swift */,
 				CD5F3EB82B03EB08001F3061 /* SettingsView.swift */,
+				CD1113EE2C105B4A00EAB9A2 /* SettingsSheetToolbar.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -733,6 +736,7 @@
 				CD5F3EB62B03DF96001F3061 /* NotesView.swift in Sources */,
 				CDB489682BA255A1003E1F38 /* LocalFile.swift in Sources */,
 				CDB4896D2BA25D83003E1F38 /* AppView.swift in Sources */,
+				CD1113EF2C105B4A00EAB9A2 /* SettingsSheetToolbar.swift in Sources */,
 				CD8427302B17CE0400DA293E /* MacOSPadding.swift in Sources */,
 				CDB4B2082AFF94C1006E6597 /* HomeView.swift in Sources */,
 				CD8427432B19291300DA293E /* PopupMessage.swift in Sources */,
@@ -814,6 +818,10 @@
 		};
 		CDF5558D2BB488E800D560FD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilters = (
+				ios,
+				macos,
+			);
 			target = CDF555832BB488E800D560FD /* CombAnalyserShareExtension */;
 			targetProxy = CDF5558C2BB488E800D560FD /* PBXContainerItemProxy */;
 		};
@@ -979,11 +987,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.opensourcerer.CombustionIncAnalyser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Debug;
 		};
@@ -1022,11 +1031,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.opensourcerer.CombustionIncAnalyser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Release;
 		};
@@ -1243,7 +1253,7 @@
 			repositoryURL = "https://github.com/exyte/PopupView";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.8.3;
+				minimumVersion = 2.10.1;
 			};
 		};
 		CD91B0042B29C97F000D6E19 /* XCRemoteSwiftPackageReference "Factory" */ = {

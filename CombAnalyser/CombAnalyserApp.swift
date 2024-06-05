@@ -64,7 +64,7 @@ struct CombAnalyserApp: App {
                 .sheet(item: $crossCompatibleSheet, content: { type in
                     switch type {
                     case .settings:
-                        SettingsView()
+                        SettingsView(toolbarContent: SettingsSheetToolbar())
                     }
                 })
         }
@@ -97,7 +97,7 @@ struct CombAnalyserApp: App {
         }
         
         WindowGroup("Settings", id: CrossCompatibleWindow.settings.rawValue) {
-            SettingsView()
+            SettingsView(toolbarContent: SettingsSheetToolbar())
         }
         #if os(macOS)
         .windowResizability(.contentMinSize)

@@ -25,6 +25,8 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @InjectedObject(\.authService) private var authService: AuthService
     
+    var toolbarContent: SettingsSheetToolbar? = nil
+
     func logout() {
         Task {
             do {
@@ -116,6 +118,9 @@ struct SettingsView: View {
             .macWrappedScrollview()
             .navigationTitle("Settings")
             .macPadding(8)
+            .toolbar {
+                toolbarContent
+            }
         }
         .confirmationDialog("Delete account?", isPresented: $isDeleteAccountDialogVisible) {
             Button("Delete", role: .destructive, action: didConfirmDeleteAccount)
