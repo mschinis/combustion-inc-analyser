@@ -80,7 +80,7 @@
 		CDD314B92B0CF39500A557F8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD314B82B0CF39500A557F8 /* HomeViewModel.swift */; };
 		CDF5557F2BAF038A00D560FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDF5557E2BAF038A00D560FD /* GoogleService-Info.plist */; };
 		CDF555872BB488E800D560FD /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF555862BB488E800D560FD /* ShareViewController.swift */; };
-		CDF5558E2BB488E800D560FD /* CombAnalyserShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CDF555842BB488E800D560FD /* CombAnalyserShareExtension.appex */; platformFilters = (ios, macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CDF5558E2BB488E800D560FD /* CombAnalyserShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CDF555842BB488E800D560FD /* CombAnalyserShareExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CDF555942BB4944200D560FD /* ShareExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF555932BB4944200D560FD /* ShareExtensionView.swift */; };
 /* End PBXBuildFile section */
 
@@ -818,10 +818,7 @@
 		};
 		CDF5558D2BB488E800D560FD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilters = (
-				ios,
-				macos,
-			);
+			platformFilter = ios;
 			target = CDF555832BB488E800D560FD /* CombAnalyserShareExtension */;
 			targetProxy = CDF5558C2BB488E800D560FD /* PBXContainerItemProxy */;
 		};
@@ -964,6 +961,7 @@
 				INFOPLIST_FILE = CombAnalyser/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CombAnalyser;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -1012,6 +1010,7 @@
 				INFOPLIST_FILE = CombAnalyser/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CombAnalyser;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -1147,7 +1146,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1178,7 +1177,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;

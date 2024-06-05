@@ -97,7 +97,7 @@ struct CombAnalyserApp: App {
         }
         
         WindowGroup("Settings", id: CrossCompatibleWindow.settings.rawValue) {
-            SettingsView(toolbarContent: SettingsSheetToolbar())
+            SettingsView()
         }
         #if os(macOS)
         .windowResizability(.contentMinSize)
