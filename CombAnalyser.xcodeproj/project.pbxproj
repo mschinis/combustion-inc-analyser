@@ -30,7 +30,6 @@
 		CD8427432B19291300DA293E /* PopupMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8427422B19291300DA293E /* PopupMessage.swift */; };
 		CD8427462B19308200DA293E /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = CD8427452B19308200DA293E /* PopupView */; };
 		CD8427492B19ED8600DA293E /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8427482B19ED8600DA293E /* AsyncButton.swift */; };
-		CD84274B2B19FB3500DA293E /* HomeToolbarContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84274A2B19FB3500DA293E /* HomeToolbarContent.swift */; };
 		CD84274D2B19FEC800DA293E /* GraphAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84274C2B19FEC800DA293E /* GraphAnnotationView.swift */; };
 		CD8427542B1A0F2C00DA293E /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8427532B1A0F2C00DA293E /* AuthView.swift */; };
 		CD91AFF72B1FD918000D6E19 /* UploadPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91AFF62B1FD918000D6E19 /* UploadPrompt.swift */; };
@@ -138,7 +137,6 @@
 		CD8427402B19149800DA293E /* PopupMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupMessageView.swift; sourceTree = "<group>"; };
 		CD8427422B19291300DA293E /* PopupMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupMessage.swift; sourceTree = "<group>"; };
 		CD8427482B19ED8600DA293E /* AsyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
-		CD84274A2B19FB3500DA293E /* HomeToolbarContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeToolbarContent.swift; sourceTree = "<group>"; };
 		CD84274C2B19FEC800DA293E /* GraphAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphAnnotationView.swift; sourceTree = "<group>"; };
 		CD8427532B1A0F2C00DA293E /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		CD91AFF62B1FD918000D6E19 /* UploadPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPrompt.swift; sourceTree = "<group>"; };
@@ -521,7 +519,6 @@
 		CDD314B52B0CF31000A557F8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				CD84274A2B19FB3500DA293E /* HomeToolbarContent.swift */,
 				CDB4B2072AFF94C1006E6597 /* HomeView.swift */,
 				CDD314B82B0CF39500A557F8 /* HomeViewModel.swift */,
 				CD84274C2B19FEC800DA293E /* GraphAnnotationView.swift */,
@@ -760,7 +757,6 @@
 				CDD314A22B05349400A557F8 /* AppSettingsKeys.swift in Sources */,
 				CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureSerializer.swift in Sources */,
 				CDB489242B84E923003E1F38 /* LiveProbeView.swift in Sources */,
-				CD84274B2B19FB3500DA293E /* HomeToolbarContent.swift in Sources */,
 				CDD314B02B0CE97C00A557F8 /* TemperatureChartPlottable.swift in Sources */,
 				CDB4B21A2B0A2CCA006E6597 /* TemperatureUnit.swift in Sources */,
 				CD84274D2B19FEC800DA293E /* GraphAnnotationView.swift in Sources */,

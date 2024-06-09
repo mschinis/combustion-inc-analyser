@@ -5,6 +5,7 @@
 //  Created by Michael Schinis on 21/11/2023.
 //
 
+import Combine
 import Factory
 import FirebaseStorage
 import Foundation
@@ -19,6 +20,8 @@ class HomeViewModel: ObservableObject {
     @Injected(\.authService) private var authService: AuthService
     @Injected(\.cloudService) private var cloudService: CloudService
     
+    private var autosaveListeners: Set<AnyCancellable> = []
+    
     var csvOutput: String {
         file?.output ?? ""
     }
@@ -28,6 +31,25 @@ class HomeViewModel: ObservableObject {
         (file?.data ?? []).filter {
             $0.notes?.isEmpty == false
         }
+    }
+    
+    func update(file: FileType) {
+        // Remove auto save listeners
+        autosaveListeners.removeAll()
+        
+        // Update file
+        self.file = file
+
+        // Add new auto save listener
+        $file
+            .dropFirst() // Don't save trigger autosave on first load
+            .compactMap { $0 } // Unwrap optional
+            .sink { [weak self] data in
+                Task {
+                    await self?.didTapSave()
+                }
+            }
+            .store(in: &autosaveListeners)
     }
     
     /// Opens the file picker
@@ -43,7 +65,24 @@ class HomeViewModel: ObservableObject {
             file.unload()
         }
         
-        self.file = LocalFile(fileURL: fileURL)
+        self.update(
+            file: LocalFile(fileURL: fileURL)
+        )
+    }
+    
+    /// Loads remote cloud record and associated CSV contents
+    ///
+    /// - Parameter record: The record to load
+    func didSelectRemote(record: CloudRecord) async {
+        do {
+            let response = try await cloudService.download(record: record)
+            
+            self.update(
+                file: CloudFile(cloudRecord: response.record, csv: response.csv)
+            )
+        } catch {
+            print("Error", error)
+        }
     }
     
     /// Adds a note annotation to the associated loaded file
@@ -94,18 +133,6 @@ class HomeViewModel: ObservableObject {
             await didTapSaveRemote()
         default:
             fatalError("Unsupported file being saved")
-        }
-    }
-    
-    /// Loads remote cloud record and associated CSV contents
-    ///
-    /// - Parameter record: The record to load
-    func didSelectRemote(record: CloudRecord) async {
-        do {
-            let response = try await cloudService.download(record: record)
-            self.file = CloudFile(cloudRecord: response.record, csv: response.csv)
-        } catch {
-            print("Error", error)
         }
     }
 }

@@ -89,7 +89,9 @@ struct CombAnalyserApp: App {
                 .keyboardShortcut("o")
                 
                 Button("Save") {
-                    homeViewModel.didTapSaveLocally()
+                    Task {
+                        await homeViewModel.didTapSave()
+                    }
                 }
                 .disabled(homeViewModel.file == nil)
                 .keyboardShortcut("s")

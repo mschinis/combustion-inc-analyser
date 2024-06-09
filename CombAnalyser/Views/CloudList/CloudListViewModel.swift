@@ -32,7 +32,6 @@ class CloudListViewModel: ObservableObject {
                 print("completion", completion)
             } receiveValue: { records in
                 if let records {
-                    print("records", records)
                     self.loadingState = .success(records)
                 }
             }

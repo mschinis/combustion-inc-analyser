@@ -198,14 +198,15 @@ struct HomeView: View {
                             .help("Upload file to cloud")
                         }
                     }
-                    
-                    ToolbarItem(id: "save_file", placement: .primaryAction) {
-                        AsyncButton(action: viewModel.didTapSave, label: {
-                            Image(systemName: "scribble")
-                        })
-                        .help("Save file locally")
+
+                    ToolbarItem(id: "open_local_file", placement: .primaryAction) {
+                        Button {
+                            viewModel.didTapOpenFilepicker()
+                        } label: {
+                            Image(systemName: "folder")
+                        }
                     }
-                    
+
                     // Share graph button
                     ToolbarItem(id: "share", placement: .primaryAction) {
                         ShareLink(
@@ -219,14 +220,6 @@ struct HomeView: View {
                         }
                         .help("Share graph")
                     }
-
-                    // Toggle notes button
-//                    ToolbarItem(id: "settings", placement: .primaryAction) {
-//                        Button(action: didTapOpenSettings, label: {
-//                            Image(systemName: "gear")
-//                        })
-//                        .help("Open settings")
-//                    }
                 }
             }
         }
