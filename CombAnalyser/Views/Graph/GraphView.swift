@@ -30,6 +30,8 @@ struct GraphView: View {
     @AppStorage(AppSettingsKeys.graphsProbeNotInserted.rawValue) private var isGraphsProbeNotInsertedEnabled: Bool = true
     @AppStorage(AppSettingsKeys.performanceMode.rawValue) private var isPerformanceModeEnabled: Bool = true
 
+    @Environment(\.isGraphEditMode) private var isGraphEditModeEnabled
+    
     /// For performance, sample the graph and only show every second data point
     private var _data: [CookTimelineRow] {
         guard isPerformanceModeEnabled else {
@@ -342,6 +344,10 @@ struct GraphView: View {
                 .simultaneousGesture(
                     SpatialTapGesture()
                         .onEnded({ gestureInfo in
+                            guard isGraphEditModeEnabled.wrappedValue else {
+                                return
+                            }
+
                             let xPosition = proxy.value(atX: gestureInfo.location.x, as: Float.self)!
                             
                             if let tapPosition = value(x: xPosition) {
@@ -359,8 +365,22 @@ struct GraphView: View {
                             let xPosition = proxy.value(atX: location.x, as: Float.self)!
                             self.graphHoverPosition = value(x: xPosition)
                         })
-                        .onEnded({ _ in
-                            self.graphHoverPosition = nil
+                        .onEnded({ gestureInfo in
+                            guard isGraphEditModeEnabled.wrappedValue else {
+                                // If edit mode is disabled, remove the annotation
+                                self.graphHoverPosition = nil
+                                return
+                            }
+
+                            // On iOS, if edit mode is enabled, release of the gesture indicates the user wants to add a note
+                            let xPosition = proxy.value(atX: gestureInfo.location.x, as: Float.self)!
+
+                            if let position = value(x: xPosition) {
+                                self.graphHoverPosition = nil
+                                self.graphAnnotationRequest = GraphAnnotationRequest(
+                                    sequenceNumber: position.data.sequenceNumber
+                                )
+                            }
                         })
                 )
             #endif

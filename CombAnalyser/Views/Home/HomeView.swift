@@ -9,15 +9,6 @@ import Factory
 import SwiftUI
 import Charts
 
-struct UploadPromptRequest: Identifiable {
-    var id: UUID {
-        cloudRecord.uuid
-    }
-
-    var cloudRecord: CloudRecord
-    var csvOutput: String
-}
-
 struct HomeView: View {
     @StateObject private var viewModel: HomeViewModel
     
@@ -36,6 +27,8 @@ struct HomeView: View {
     @Environment(\.popupMessage) private var popupMessage: Binding<PopupMessage?>
     
     @Environment(\.openCrossCompatibleWindow) private var openCrossCompatibleWindow
+    
+    @State private var isGraphEditModeEnabled: Bool = false
     
     @AppStorage(AppSettingsKeys.enabledCurves.rawValue) private var enabledCurves: AppSettingsEnabledCurves = .defaults
     @AppStorage(AppSettingsKeys.temperatureUnit.rawValue) private var temperatureUnit: TemperatureUnit = .celsius
@@ -198,31 +191,59 @@ struct HomeView: View {
                             .help("Upload file to cloud")
                         }
                     }
+                    
+//                    #if os(iOS)
+//                    if isGraphEditModeEnabled {
+//                        ToolbarItem(placement: .bottomBar) {
+//                            Button(action: {
+//                                isGraphEditModeEnabled = false
+//                            }) {
+//                                Text("Finished adding notes")
+//                            }
+//                            .help("Finished adding notes")
+//                        }
+//                    }
+//                    #endif
 
-                    ToolbarItem(id: "open_local_file", placement: .primaryAction) {
-                        Button {
-                            viewModel.didTapOpenFilepicker()
+                    ToolbarItem(placement: .primaryAction) {
+                        Menu {
+                            // Edit graph / Add notes
+                            #if os(iOS)
+                            Button(action: {
+                                isGraphEditModeEnabled.toggle()
+                            }) {
+                                Label(isGraphEditModeEnabled ? "Finished adding notes" : "Add notes", systemImage: "pencil")
+                            }
+                            .help(isGraphEditModeEnabled ? "Finished adding notes" : "Add notes")
+                            #endif
+
+                            // Open file picker
+                            Button(action: {
+                                viewModel.didTapOpenFilepicker()
+                            }) {
+                                Label("Open CSV", systemImage: "folder")
+                            }
+                            .help("Open CSV file")
+
+                            // Share graph button
+                            ShareLink(
+                                item: Image(decorative: generateGraphSnapshot()!, scale: 1),
+                                preview: SharePreview(
+                                    "Combustion Inc Analyser Export",
+                                    image: Image(decorative: generateGraphSnapshot()!, scale: 1)
+                                )
+                            ) {
+                                Label("Share graph", systemImage: "square.and.arrow.up")
+                            }
+                            .help("Share graph")
                         } label: {
-                            Image(systemName: "folder")
+                            Image(systemName: "ellipsis.circle")
                         }
-                    }
-
-                    // Share graph button
-                    ToolbarItem(id: "share", placement: .primaryAction) {
-                        ShareLink(
-                            item: Image(decorative: generateGraphSnapshot()!, scale: 1),
-                            preview: SharePreview(
-                                "Combustion Inc Analyser Export",
-                                image: Image(decorative: generateGraphSnapshot()!, scale: 1)
-                            )
-                        ) {
-                            Image(systemName: "square.and.arrow.up")
-                        }
-                        .help("Share graph")
                     }
                 }
             }
         }
+        .environment(\.isGraphEditMode, $isGraphEditModeEnabled)
         // Select file popup
         .fileImporter(
             isPresented: $viewModel.isFileImporterVisible,

@@ -23,6 +23,8 @@
 		CD5F3EB92B03EB08001F3061 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3EB82B03EB08001F3061 /* SettingsView.swift */; };
 		CD67A19B2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD67A19A2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift */; };
 		CD67A19D2B0F9750008053FF /* CADevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD67A19C2B0F9750008053FF /* CADevice.swift */; };
+		CD6B29992C1646A200A617FE /* GraphEditMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6B29982C1646A200A617FE /* GraphEditMode.swift */; };
+		CD6B299B2C164EEA00A617FE /* UploadPromptRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6B299A2C164EEA00A617FE /* UploadPromptRequest.swift */; };
 		CD8427302B17CE0400DA293E /* MacOSPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84272F2B17CE0400DA293E /* MacOSPadding.swift */; };
 		CD84273D2B18BE9700DA293E /* Pasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84273C2B18BE9700DA293E /* Pasteboard.swift */; };
 		CD84273F2B18BEDE00DA293E /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD84273E2B18BEDE00DA293E /* LoadingState.swift */; };
@@ -131,6 +133,8 @@
 		CD5F3EB82B03EB08001F3061 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CD67A19A2B0F8AD8008053FF /* AnnotationBackgroundViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationBackgroundViewModifier.swift; sourceTree = "<group>"; };
 		CD67A19C2B0F9750008053FF /* CADevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CADevice.swift; sourceTree = "<group>"; };
+		CD6B29982C1646A200A617FE /* GraphEditMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphEditMode.swift; sourceTree = "<group>"; };
+		CD6B299A2C164EEA00A617FE /* UploadPromptRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPromptRequest.swift; sourceTree = "<group>"; };
 		CD84272F2B17CE0400DA293E /* MacOSPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSPadding.swift; sourceTree = "<group>"; };
 		CD84273C2B18BE9700DA293E /* Pasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pasteboard.swift; sourceTree = "<group>"; };
 		CD84273E2B18BEDE00DA293E /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
@@ -444,6 +448,7 @@
 				CDD314B32B0CF2BF00A557F8 /* ProbeNotInsertedRange.swift */,
 				CDD314B62B0CF32500A557F8 /* GraphAnnotationRequest.swift */,
 				CDB4896E2BA2618E003E1F38 /* CloudRecord.swift */,
+				CD6B299A2C164EEA00A617FE /* UploadPromptRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -472,6 +477,7 @@
 				CD8427422B19291300DA293E /* PopupMessage.swift */,
 				CDB4B2112B09F0B7006E6597 /* SettingsVisible.swift */,
 				CD91AFFA2B225720000D6E19 /* OpenCrossCompatibleWindow.swift */,
+				CD6B29982C1646A200A617FE /* GraphEditMode.swift */,
 			);
 			path = EnvironmentKeys;
 			sourceTree = "<group>";
@@ -729,6 +735,7 @@
 				CD91B00C2B29FBFF000D6E19 /* CloudUploadView.swift in Sources */,
 				CD91B0032B29C8BF000D6E19 /* AuthService.swift in Sources */,
 				CD8427492B19ED8600DA293E /* AsyncButton.swift in Sources */,
+				CD6B299B2C164EEA00A617FE /* UploadPromptRequest.swift in Sources */,
 				CD84273D2B18BE9700DA293E /* Pasteboard.swift in Sources */,
 				CD5F3EB62B03DF96001F3061 /* NotesView.swift in Sources */,
 				CDB489682BA255A1003E1F38 /* LocalFile.swift in Sources */,
@@ -758,6 +765,7 @@
 				CD5F3EAA2B02C8BB001F3061 /* CSVTemperatureSerializer.swift in Sources */,
 				CDB489242B84E923003E1F38 /* LiveProbeView.swift in Sources */,
 				CDD314B02B0CE97C00A557F8 /* TemperatureChartPlottable.swift in Sources */,
+				CD6B29992C1646A200A617FE /* GraphEditMode.swift in Sources */,
 				CDB4B21A2B0A2CCA006E6597 /* TemperatureUnit.swift in Sources */,
 				CD84274D2B19FEC800DA293E /* GraphAnnotationView.swift in Sources */,
 				CDD314A02B05348100A557F8 /* AppSettingsEnabledCurves.swift in Sources */,
