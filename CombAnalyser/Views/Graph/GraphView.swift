@@ -339,7 +339,7 @@ struct GraphView: View {
                     }
                 }
             #else
-                // On iPadOS / iOS, we display the LineMark when the user touches and drags their finger
+                // On iPadOS / iOS / visionOS, we display the LineMark when the user touches and drags their finger
                 .contentShape(Rectangle())
                 .simultaneousGesture(
                     SpatialTapGesture()

@@ -192,7 +192,7 @@ struct HomeView: View {
                         }
                     }
                     
-//                    #if os(iOS)
+//                    #if os(iOS) || os(visionOS)
 //                    if isGraphEditModeEnabled {
 //                        ToolbarItem(placement: .bottomBar) {
 //                            Button(action: {
@@ -208,7 +208,7 @@ struct HomeView: View {
                     ToolbarItem(placement: .primaryAction) {
                         Menu {
                             // Edit graph / Add notes
-                            #if os(iOS)
+                            #if os(iOS) || os(visionOS)
                             Button(action: {
                                 isGraphEditModeEnabled.toggle()
                             }) {
